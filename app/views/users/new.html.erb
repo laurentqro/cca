@@ -1,0 +1,33 @@
+<h1>Creer un nouvel utilisateur</h1>
+
+<%= form_for @user, url: { action: "create" }, html: { class: "nifty_form" } do |f| %>
+  <%= f.label :username, "Nom d'utilisateur" %>
+  <%= f.text_field :username %>
+  <br />
+
+  <%= f.label :password, "Mot de passe" %>
+  <%= f.password_field :password %>
+  <br />
+
+  <%= f.label :email, "Adresse email" %>
+  <%= f.text_field :email %>
+  <br />
+
+  <%= f.label :first_name, "Prenom" %>
+  <%= f.text_field :first_name %>
+  <br />
+
+  <%= f.label :last_name, "Nom" %>
+  <%= f.text_field :last_name %>
+  <br />
+
+  <%= f.label :company, "Entreprise" %>
+  <%= f.text_field :company %>
+  <br />
+
+  <%= f.label :city, "Ville" %>
+  <%= f.text_field :city %>
+  <br />
+
+  <%= f.submit "Creer" %>
+<% end %>
