@@ -12,16 +12,24 @@ class UsersTest < ApplicationSystemTestCase
     fill_in 'user[company]', with: 'Whitewalker Killerz Inc.'
     fill_in 'user[city]', with: 'Winterfell'
 
-    click_button 'Creer'
+    click_button 'Créer'
 
-    assert_selector 'body', text: 'Compte cree avec succes.'
+    assert_selector 'body', text: 'Compte créé avec succès.'
   end
 
   test "deleting a user" do
     visit user_url(users(:one))
-
     click_on 'Supprimer ce compte'
 
-    assert_selector 'body', text: "Compte #{users(:one).username} supprime"
+    assert_selector 'body', text: "Compte #{users(:one).username} supprimé."
+  end
+
+  test "editing a user" do
+    visit edit_user_url(users(:one))
+    fill_in 'user[username]', with: 'jontargaryen'
+    click_on 'Valider'
+
+    assert_selector 'body', text: 'jontargaryen'
+    assert_selector 'body', text: "Compte #{users(:one).reload.username} modifié avec succès."
   end
 end

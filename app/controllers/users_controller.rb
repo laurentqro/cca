@@ -15,16 +15,31 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save(user_params)
-      redirect_to users_url, notice: 'Compte cree avec succes.'
+      redirect_to users_url, notice: 'Compte créé avec succès.'
     else
       render :new
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+    @button_label = "Valider"
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      redirect_to @user, notice: "Compte #{@user.username} modifié avec succès."
+    else
+      render :edit
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to users_url, notice: "Compte #{@user.username} supprime"
+    redirect_to users_url, notice: "Compte #{@user.username} supprimé."
   end
 
   private
