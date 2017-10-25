@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-  test "creating a user" do
+  test 'creating a user' do
     visit new_user_url
 
     fill_in 'user[username]', with: 'jonsnow'
@@ -14,22 +14,22 @@ class UsersTest < ApplicationSystemTestCase
 
     click_button 'Créer'
 
-    assert_selector 'body', text: 'Compte créé avec succès.'
+    assert_text 'Compte créé avec succès.'
   end
 
-  test "deleting a user" do
+  test 'deleting a user' do
     visit user_url(users(:one))
     click_on 'Supprimer ce compte'
 
-    assert_selector 'body', text: "Compte #{users(:one).username} supprimé."
+    assert_text "Compte #{users(:one).username} supprimé."
   end
 
-  test "editing a user" do
+  test 'editing a user' do
     visit edit_user_url(users(:one))
     fill_in 'user[username]', with: 'jontargaryen'
     click_on 'Valider'
 
-    assert_selector 'body', text: 'jontargaryen'
-    assert_selector 'body', text: "Compte #{users(:one).reload.username} modifié avec succès."
+    assert_text 'jontargaryen'
+    assert_text "Compte #{users(:one).reload.username} modifié avec succès."
   end
 end
