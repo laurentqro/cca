@@ -14,6 +14,14 @@ class UsersTest < ApplicationSystemTestCase
 
     click_button 'Creer'
 
-    assert_selector "body", text: "Utilisateur cree avec succes."
+    assert_selector 'body', text: 'Compte cree avec succes.'
+  end
+
+  test "deleting a user" do
+    visit user_url(users(:one))
+
+    click_on 'Supprimer ce compte'
+
+    assert_selector 'body', text: "Compte #{users(:one).username} supprime"
   end
 end
