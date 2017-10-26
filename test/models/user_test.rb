@@ -31,4 +31,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert_includes(user_2.errors[:email], "n'est pas disponible")
   end
+
+  test "email has a valid format" do
+    user = users(:one)
+    user.email = "&@#(*$@3x7ple.com"
+    user.valid?
+    assert_includes(user.errors[:email], "n'est pas valide")
+  end
 end
