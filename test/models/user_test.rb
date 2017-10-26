@@ -21,4 +21,14 @@ class UserTest < ActiveSupport::TestCase
 
     assert_includes(user_2.errors[:email], "n'est pas disponible")
   end
+
+  test "email is case insensitive" do
+    user_1 = users(:one)
+    user_2 = User.new(user_1.attributes)
+    user_2.email = user_1.email.upcase
+
+    user_2.valid?
+
+    assert_includes(user_2.errors[:email], "n'est pas disponible")
+  end
 end
