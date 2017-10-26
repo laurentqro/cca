@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= @user.username %></p>
-<p><%= @user.email %></p>
+<h2><%= @user.first_name %> <%= @user.last_name %></h2>
+
+<p>Nom d'utilisateur: <%= @user.username %></p>
+<p>Email: <%= @user.email %></p>
+<p>Entreprise: <%= @user.company %></p>
+<p>Ville: <%= @user.city %></p>
 
 <%= link_to "Supprimer ce compte", @user, method: :delete %>
