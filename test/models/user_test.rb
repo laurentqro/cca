@@ -9,7 +9,7 @@ class UserTest < ActiveSupport::TestCase
     attributes = [:username, :first_name, :last_name, :email, :company, :city]
 
     attributes.each do |attribute|
-      assert_includes(user.errors[attribute], "can't be blank")
+      assert_includes(user.errors[attribute], "doit être rempli(e)")
     end
   end
 end
