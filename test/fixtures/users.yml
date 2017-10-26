@@ -6,3 +6,12 @@ one:
   last_name: Snow
   company: Crows Inc.
   city: Castle Black
+
+two:
+  email: user2@example.com
+  username: user2
+  password: password
+  first_name: Denaerys
+  last_name: Targaryen
+  company: Dragons Inc.
+  city: Dragonstone
