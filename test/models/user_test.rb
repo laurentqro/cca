@@ -13,6 +13,15 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "username is unique" do
+    user_1 = users(:one)
+    user_2 = User.new(user_1.attributes)
+
+    user_2.valid?
+
+    assert_includes(user_2.errors[:username], "n'est pas disponible")
+  end
+
   test "email is unique" do
     user_1 = users(:one)
     user_2 = User.new(user_1.attributes)

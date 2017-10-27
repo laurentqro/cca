@@ -1,16 +1,16 @@
 one:
-  email: user1@example.com
-  username: user1
-  password: password
+  email: jon@got.com
+  username: jon
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
   first_name: Jon
   last_name: Snow
   company: Crows Inc.
   city: Castle Black
 
 two:
-  email: user2@example.com
-  username: user2
-  password: password
+  email: denaerys@got.com
+  username: denaerys
+  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
   first_name: Denaerys
   last_name: Targaryen
   company: Dragons Inc.

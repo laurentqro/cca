@@ -1,0 +1,19 @@
+<h1>Connexion</h1>
+
+<%= tag.p flash[:notice], id: "notice" %>
+
+<%= form_with scope: :session, url: log_in_url, local: true do |form| %>
+  <div>
+    <%= form.label :identifier, "Nom d'utilisateur" %>
+    <%= form.text_field :identifier %>
+  </div>
+
+  <div>
+    <%= form.label :password, "Mot de passe" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit 'Connexion' %>
+  </div>
+<% end %>

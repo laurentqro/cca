@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cca</title>
+    <title>CCA</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,6 +11,7 @@
   <body>
     <%= link_to 'Accueil', root_url %>
     | <%= link_to 'Liste des comptes utilisateurs', users_url %>
+    | <%= link_to 'Connexion', log_in_url %>
     <%= yield %>
   </body>
 </html>
