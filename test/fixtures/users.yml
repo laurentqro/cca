@@ -1,7 +1,7 @@
 one:
   email: jon@got.com
   username: jon
-  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  password_digest: <%= BCrypt::Password.create('password') %>
   first_name: Jon
   last_name: Snow
   company: Crows Inc.
@@ -10,7 +10,7 @@ one:
 two:
   email: denaerys@got.com
   username: denaerys
-  password_digest: <%= BCrypt::Password.create('password', cost: 5) %>
+  password_digest: <%= BCrypt::Password.create('password') %>
   first_name: Denaerys
   last_name: Targaryen
   company: Dragons Inc.

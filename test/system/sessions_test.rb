@@ -1,8 +1,9 @@
 require "application_system_test_case"
+require 'test_helper'
 
 class SessionsTest < ApplicationSystemTestCase
   test 'logging in with username' do
-    visit log_in_url
+    visit new_session_url
 
     fill_in 'session[identifier]', with: users(:one).username
     fill_in 'session[password]', with: 'password'
@@ -13,7 +14,7 @@ class SessionsTest < ApplicationSystemTestCase
   end
 
   test 'logging in with email' do
-    visit log_in_url
+    visit new_session_url
 
     fill_in 'session[identifier]', with: users(:one).email
     fill_in 'session[password]', with: 'password'
@@ -24,7 +25,7 @@ class SessionsTest < ApplicationSystemTestCase
   end
 
   test 'failed login attempt' do
-    visit log_in_url
+    visit new_session_url
 
     fill_in 'session[identifier]', with: users(:one).email
     fill_in 'session[password]', with: 'wrong_password'

@@ -12,4 +12,14 @@ class User < ApplicationRecord
   def self.fetch_by_username_or_email(identifier)
     User.where('username LIKE :identifier OR email LIKE :identifier', identifier: identifier).first
   end
+
+  def User.digest(string)
+    BCrypt::Password.create(string, cost: bcrypt_cost)
+  end
+
+  private
+
+  def bcrypt_cost
+    ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+  end
 end

@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
     @user = User.fetch_by_username_or_email(params[:session][:identifier])
 
     if @user && @user.authenticate(params[:session][:password])
+      log_in(@user)
       redirect_to @user, notice: 'Vous êtes connecté'
     else
       flash[:notice] = 'Identifiant ou mot de passe incorrect'
@@ -11,5 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    logout
+    redirect_to root_url
   end
 end

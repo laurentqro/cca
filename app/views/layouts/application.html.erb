@@ -11,7 +11,13 @@
   <body>
     <%= link_to 'Accueil', root_url %>
     | <%= link_to 'Liste des comptes utilisateurs', users_url %>
-    | <%= link_to 'Connexion', log_in_url %>
-    <%= yield %>
+    <% if logged_in? %>
+      | <%= link_to 'Profil', user_url(current_user) %>
+      | <%= link_to 'Déconnexion', session_url, method: :delete %>
+    <% else %>
+      | <%= link_to 'Connexion', new_session_url %>
+    <% end %>
+
+  <%= yield %>
   </body>
 </html>
