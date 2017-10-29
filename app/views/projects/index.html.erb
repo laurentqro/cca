@@ -1,0 +1,22 @@
+<%= tag.p notice, id: 'notice' %>
+
+<h1>Projets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, project %></td>
+        <td><%= link_to "Editer", edit_project_url(project) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Créer un nouveau projet', new_project_url %>

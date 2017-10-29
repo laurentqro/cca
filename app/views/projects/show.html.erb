@@ -1,0 +1,18 @@
+<%= tag.h1 @project.name %>
+
+<h2>Membres</h2>
+
+<ul id="assignments">
+  <%= render @assignments %>
+</ul>
+
+<h2>Assigner des utilisateurs a ce projet</h2>
+
+<% User.unassigned_to_project(@project.id).each do |user| %>
+  <ul>
+    <li>
+      <%= button_to 'ajouter', Assignment.new, params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true %>
+      <%= user.first_name %> <%= user.last_name %>
+    </li>
+  </ul>
+<% end %>
