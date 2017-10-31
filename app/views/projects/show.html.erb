@@ -1,18 +1,22 @@
+<%= tag.p notice, id: 'notice' %>
+
 <%= tag.h1 @project.name %>
 
 <h2>Membres</h2>
 
-<ul id="assignments">
+<ul class='assigned'>
   <%= render @assignments %>
 </ul>
 
 <h2>Assigner des utilisateurs a ce projet</h2>
 
 <% User.unassigned_to_project(@project.id).each do |user| %>
-  <ul>
+  <ul class='unassigned'>
     <li>
-      <%= button_to 'ajouter', Assignment.new, params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true %>
+      <%= button_to 'ajouter', Assignment.new, params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true, id: "add_#{dom_id(user)}" %>
       <%= user.first_name %> <%= user.last_name %>
     </li>
   </ul>
 <% end %>
+
+<%= link_to "Supprimer ce projet", @project, method: :delete %>

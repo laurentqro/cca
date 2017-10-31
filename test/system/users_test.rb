@@ -17,19 +17,19 @@ class UsersTest < ApplicationSystemTestCase
     assert_text 'Compte créé avec succès.'
   end
 
-  test 'deleting a user' do
-    visit user_url(users(:one))
-    click_on 'Supprimer ce compte'
-
-    assert_text "Compte #{users(:one).username} supprimé."
-  end
-
   test 'editing a user' do
     visit edit_user_url(users(:one))
     fill_in 'user[username]', with: 'jontargaryen'
     click_on 'Valider'
 
     assert_text 'jontargaryen'
-    assert_text "Compte #{users(:one).reload.username} modifié avec succès."
+    assert_text 'Modifications enregistrées.'
+  end
+
+  test 'deleting a user' do
+    visit user_url(users(:one))
+    click_on 'Supprimer ce compte'
+
+    assert_text "Compte #{users(:one).username} supprimé."
   end
 end

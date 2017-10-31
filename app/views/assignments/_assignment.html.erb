@@ -1,4 +1,4 @@
 <li>
-  <%= button_to 'retirer', assignment_url(assignment), remote: true, method: :delete %>
+  <%= button_to 'retirer', assignment_url(assignment), remote: true, method: :delete, id: "remove_#{dom_id(assignment.user)}" %>
   <%= assignment.user.first_name %> <%= assignment.user.last_name %>
 </li>

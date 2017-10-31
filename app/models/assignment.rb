@@ -6,7 +6,7 @@ class Assignment < ApplicationRecord
 
   def user_not_yet_assigned_to_project
     if assignment_exists?
-      errors[:base] << "Assignment already exists"
+      errors[:base] << 'Utilisateur déjà assigné au projet'
     end
   end
 
