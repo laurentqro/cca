@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Bienvenue sur CCA, <%= @user.first_name %></h1>
+    <p>
+    Le cabinet CCA vous invite a collaborer.
+    Votre nom d'utilisateur est: '<%= @user.username %>'.
+    </p>
+
+    <p>Pour vous connecter, il vous suffit de vous rendre sur <%= link_to 'ce lien', new_session_url %>.</p>
+
+    <p>Cordialement,</p>
+
+    <p>Cabinet CCA</p>
+  </body>
+</html>

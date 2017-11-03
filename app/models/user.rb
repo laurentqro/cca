@@ -22,6 +22,10 @@ class User < ApplicationRecord
       .where('assignments.id IS NULL')
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def User.digest(string)
     BCrypt::Password.create(string, cost: bcrypt_cost)
   end

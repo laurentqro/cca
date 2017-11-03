@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: Rails.application.secrets[:system_from_email]
   layout 'mailer'
 end

@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      UserMailer.welcome_email(@user).deliver_later
       redirect_to users_url, notice: 'Compte créé avec succès.'
     else
       render :new
