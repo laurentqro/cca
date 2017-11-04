@@ -25,8 +25,6 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 set :keep_releases, 5
 
-set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
-
 # Default value for :linked_files is []
 append :linked_files, 'config/database.yml'
 

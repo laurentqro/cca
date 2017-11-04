@@ -8,7 +8,6 @@ install_plugin Capistrano::SCM::Git
 require "capistrano/rails"
 require "capistrano/bundler"
 require "capistrano/rbenv"
-require 'capistrano/sidekiq'
 
 require "capistrano/puma"
 install_plugin Capistrano::Puma  # Default puma tasks
