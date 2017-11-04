@@ -31,7 +31,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.3'
   gem 'capistrano3-puma', '~> 3.1.1'
   gem 'capistrano-rbenv', '~> 2.1'
-  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+  gem 'capistrano-sidekiq'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
