@@ -1,4 +1,8 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   root to: 'pages#home'
 
   get    '/connexion',   to: 'sessions#new',     as: 'new_session'
