@@ -19,33 +19,38 @@
   </div>
 
   <div>
-    <%= form.label :password, "Mot de passe" %>
+    <%= form.label :password, 'Mot de passe' %>
     <%= form.password_field :password %>
   </div>
 
   <div>
-    <%= form.label :email, "Adresse email" %>
+    <%= form.label :email, 'Adresse email' %>
     <%= form.text_field :email %>
   </div>
 
   <div>
-    <%= form.label :first_name, "Prénom" %>
+    <%= form.label :first_name, 'Prénom' %>
     <%= form.text_field :first_name %>
   </div>
 
   <div>
-    <%= form.label :last_name, "Nom" %>
+    <%= form.label :last_name, 'Nom' %>
     <%= form.text_field :last_name %>
   </div>
 
   <div>
-    <%= form.label :company, "Entreprise" %>
+    <%= form.label :company, 'Entreprise' %>
     <%= form.text_field :company %>
   </div>
 
   <div>
-    <%= form.label :city, "Ville" %>
+    <%= form.label :city, 'Ville' %>
     <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :active, 'Actif' %>
+    <%= form.check_box :active, id: :user_active %>
   </div>
 
   <div>

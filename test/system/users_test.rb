@@ -32,4 +32,12 @@ class UsersTest < ApplicationSystemTestCase
 
     assert_text "Compte #{users(:one).username} supprimé."
   end
+
+  test 'making a user inactive' do
+    user = users(:one)
+    visit edit_user_url(user)
+    uncheck 'Actif'
+    click_on 'Valider'
+    assert_not user.reload.active?
+  end
 end

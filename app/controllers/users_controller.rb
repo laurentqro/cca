@@ -52,7 +52,8 @@ class UsersController < ApplicationController
                                  :first_name,
                                  :last_name,
                                  :company,
-                                 :city
+                                 :city,
+                                 :active
                                 )
   end
 end

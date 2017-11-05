@@ -47,4 +47,9 @@ class UserTest < ActiveSupport::TestCase
     user.valid?
     assert_includes(user.errors[:email], "n'est pas valide")
   end
+
+  test "status is active by default" do
+    user = users(:one)
+    assert user.active?
+  end
 end
