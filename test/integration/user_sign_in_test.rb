@@ -23,4 +23,18 @@ class UserSignInTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     assert_redirected_to new_session_url
   end
+
+  test "logged in user who visits the log in page is taken to the homepage" do
+    session_params = {
+      session: {
+        identifier: users(:one).username,
+        password: 'password'
+      }
+    }
+
+    post sessions_url, params: session_params
+
+    get new_session_url
+    assert_redirected_to root_url
+  end
 end

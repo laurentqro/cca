@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   skip_before_action :authenticate_user!
 
+  def new
+    redirect_to root_url if logged_in?
+  end
+
   def create
     @user = User.fetch_by_username_or_email(params[:session][:identifier])
 
