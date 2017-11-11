@@ -20,6 +20,8 @@
       | <%= link_to 'Connexion', new_session_url %>
     <% end %>
 
-  <%= yield %>
+    <%= tag.p notice, id: 'notice' %>
+
+    <%= yield %>
   </body>
 </html>
