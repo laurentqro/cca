@@ -24,4 +24,25 @@ class ProjectsTest < ApplicationSystemTestCase
 
     assert_text "Projet #{projects(:one).name} supprimé."
   end
+
+  test 'adding a project to the archives' do
+    project = projects(:one)
+    visit project_url(project)
+    click_on 'Archiver ce projet'
+
+    assert_text "Projet #{project.name} archivé."
+    assert_text  project.name
+    assert_current_path archives_path
+  end
+
+  test 'removing a project from the archives' do
+    project = projects(:one)
+    project.archived!
+    visit project_url(project)
+    click_on 'Désarchiver ce projet'
+
+    assert_text "Projet #{project.name} désarchivé."
+    assert_text  project.name
+    assert_current_path projects_path
+  end
 end

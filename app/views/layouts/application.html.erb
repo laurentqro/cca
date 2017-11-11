@@ -11,7 +11,8 @@
   <body>
     <%= link_to 'Accueil', root_url %>
     | <%= link_to 'Comptes utilisateurs', users_url %>
-    | <%= link_to 'Projets', projects_url %>
+    | <%= link_to 'Projets actifs', projects_url %>
+    | <%= link_to 'Archives', archives_url %>
     <% if logged_in? %>
       | <%= link_to 'Profil', user_url(current_user) %>
       | <%= link_to 'Déconnexion', session_url, method: :delete %>

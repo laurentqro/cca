@@ -1,0 +1,20 @@
+<%= tag.p notice, id: 'notice' %>
+
+<h1>Archives</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @archived_projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, project %></td>
+        <td><%= link_to "Editer", edit_project_url(project) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

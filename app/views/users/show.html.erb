@@ -7,4 +7,10 @@
 <p>Entreprise: <%= @user.company %></p>
 <p>Ville: <%= @user.city %></p>
 
-<%= link_to "Supprimer ce compte", @user, method: :delete %>
+<div>
+  <%= link_to 'Supprimer ce compte', @user, method: :delete %>
+</div>
+
+<div>
+  <%= link_to 'Editer', edit_user_path(@user) %>
+</div>

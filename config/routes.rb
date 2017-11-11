@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :users,     path: 'utilisateurs', path_names: { new: 'creer', edit: 'editer' }
   resources :projects,  path: 'projets',      path_names: { new: 'creer', edit: 'editer' }
   resources :assignments, only: [:create, :destroy]
+  resources :archives, only: [:index, :create, :destroy]
 end
