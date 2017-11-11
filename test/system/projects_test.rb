@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class ProjectsTest < ApplicationSystemTestCase
+  setup do
+    sign_in_as(users(:admin))
+  end
+
   test 'creating a project' do
     visit new_project_url
     fill_in 'project[name]', with: 'The Great Wall of China'

@@ -2,6 +2,15 @@ require 'test_helper'
 
 class UserControllerTest < ActionDispatch::IntegrationTest
   test "invite friend" do
+    session_params = {
+      session: {
+        identifier: users(:admin).username,
+        password: 'password'
+      }
+    }
+
+    post sessions_url, params: session_params
+
     user_params = {
       username: 'username',
       password: 'password',

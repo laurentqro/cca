@@ -16,3 +16,12 @@ two:
   last_name: Targaryen
   company: Dragons Inc.
   city: Dragonstone
+
+admin:
+  email: christian@example.com
+  username: christianc
+  password_digest: <%= BCrypt::Password.create('password') %>
+  first_name: Christian
+  last_name: BigBoss
+  company: CCA
+  city: Monaco

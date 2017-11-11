@@ -2,6 +2,7 @@ require "application_system_test_case"
 
 class AssignmentsTest < ApplicationSystemTestCase
   test 'adding a user to a project and then removing him' do
+    sign_in_as(users(:admin))
     visit project_url(projects(:one))
     find("#add_user_#{users(:one).id}").click
 

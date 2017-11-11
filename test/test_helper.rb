@@ -8,4 +8,11 @@ class ActiveSupport::TestCase
   def is_logged_in?
     !session[:user_id].nil?
   end
+
+  def sign_in_as(user)
+    visit new_session_url
+    fill_in 'session[identifier]', with: user.username
+    fill_in 'session[password]', with: 'password'
+    click_button 'Connexion'
+  end
 end

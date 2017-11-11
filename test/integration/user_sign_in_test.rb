@@ -21,6 +21,6 @@ class UserSignInTest < ActionDispatch::IntegrationTest
     delete session_url
 
     assert_not is_logged_in?
-    assert_redirected_to root_url
+    assert_redirected_to new_session_url
   end
 end

@@ -1,6 +1,10 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
+  setup do
+    sign_in_as(users(:admin))
+  end
+
   test 'creating a user' do
     visit new_user_url
 
