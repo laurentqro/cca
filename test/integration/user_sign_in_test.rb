@@ -37,4 +37,19 @@ class UserSignInTest < ActionDispatch::IntegrationTest
     get new_session_url
     assert_redirected_to root_url
   end
+
+  test "user directed to the page he intended to visit before being asked to sign in" do
+    get projects_url
+    assert_redirected_to new_session_url
+
+    session_params = {
+      session: {
+        identifier: users(:one).username,
+        password: 'password'
+      }
+    }
+
+    post sessions_url, params: session_params
+    assert_redirected_to projects_url
+  end
 end

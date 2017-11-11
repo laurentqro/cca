@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user)
-      redirect_to root_url, notice: 'Vous êtes connecté'
+      redirect_to after_sign_in_path, notice: 'Vous êtes connecté'
     else
       flash[:notice] = 'Identifiant ou mot de passe incorrect'
       render :new
@@ -20,5 +20,11 @@ class SessionsController < ApplicationController
   def destroy
     logout
     redirect_to new_session_url
+  end
+
+  private
+
+  def after_sign_in_path
+    session['return_to'] || root_url
   end
 end
