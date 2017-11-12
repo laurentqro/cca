@@ -20,7 +20,7 @@
 <%= link_to "Supprimer ce projet", @project, method: :delete %>
 
 <% if @project.active? %>
-    <%= link_to "Archiver ce projet", archives_path(project_id: @project.id), method: :post %>
+  <%= link_to "Archiver ce projet", archives_path(project_id: @project.id), method: :post %>
 <% end %>
 
 <% if @project.archived? %>
