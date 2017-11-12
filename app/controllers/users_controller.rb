@@ -53,7 +53,8 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :company,
                                  :city,
-                                 :active
+                                 :active,
+                                 :group
                                 )
   end
 end

@@ -52,4 +52,9 @@ class UserTest < ActiveSupport::TestCase
     user = users(:one)
     assert user.active?
   end
+
+  test "group is 'partner' by default" do
+    user = users(:one)
+    assert user.partner?
+  end
 end

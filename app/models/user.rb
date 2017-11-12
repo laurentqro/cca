@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true
   validates :first_name, :last_name, :company, :city, presence: true
 
+  enum group: [ :partner, :employee, :admin ]
+
   def self.fetch_by_username_or_email(identifier)
     User.where('username LIKE :identifier OR email LIKE :identifier', identifier: identifier).first
   end

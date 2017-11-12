@@ -7,10 +7,14 @@ fr:
       user:
         username: Nom d'utilisateur
         password: Mot de passe
-        first_name: Prenom
+        first_name: Prénom
         last_name: Nom
         company: Entreprise
         city: Ville
+        group:
+          partner: Partenaire
+          employee: Employé(e)
+          admin: Administrateur
     errors:
       messages:
         record_invalid: 'La validation a échoué : %{errors}'

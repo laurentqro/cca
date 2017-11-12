@@ -4,6 +4,7 @@
 <p>Email: <%= @user.email %></p>
 <p>Entreprise: <%= @user.company %></p>
 <p>Ville: <%= @user.city %></p>
+<p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
 
 <div>
   <%= link_to 'Supprimer ce compte', @user, method: :delete %>

@@ -44,4 +44,12 @@ class UsersTest < ApplicationSystemTestCase
     click_on 'Valider'
     assert_not user.reload.active?
   end
+
+  test 'moving a user to another group (e.g. admin)' do
+    user = users(:one)
+    visit edit_user_url(user)
+    select 'Administrateur'
+    click_on 'Valider'
+    assert user.reload.admin?
+  end
 end
