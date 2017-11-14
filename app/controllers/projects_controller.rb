@@ -1,10 +1,10 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.active
+    @projects = show_all_projects? ? Project.all : current_user.projects.active
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = current_resource
     @assignments = @project.assignments
   end
 
@@ -23,11 +23,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = current_resource
   end
 
   def update
-    project = Project.find(params[:id])
+    project = current_resource
 
     if project.update(project_params)
       redirect_to project, notice: 'Modifications enregistrées.'
@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    project = Project.find(params[:id])
+    project = current_resource
     project.destroy
     redirect_to projects_url, notice: "Projet #{project.name} supprimé."
   end
@@ -46,5 +46,13 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:name)
+  end
+
+  def current_resource
+    @current_resource ||= Project.find(params[:id]) if params[:id]
+  end
+
+  def show_all_projects?
+    current_user.admin? || current_user.employee?
   end
 end

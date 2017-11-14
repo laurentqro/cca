@@ -11,10 +11,14 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.name, project %></td>
-        <td><%= link_to "Editer", edit_project_url(project) %></td>
+        <% if allow_action? :projects, :edit %>
+          <td><%= link_to "Editer", edit_project_url(project) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'Créer un nouveau projet', new_project_url %>
+<% if allow_action? :projects, :edit %>
+  <%= link_to 'Créer un nouveau projet', new_project_url %>
+<% end %>

@@ -46,7 +46,7 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on 'Désarchiver ce projet'
 
     assert_text "Projet #{project.name} désarchivé."
-    assert_text  project.name
+    assert_text project.name
     assert_current_path projects_path
   end
 end

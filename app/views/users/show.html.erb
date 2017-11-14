@@ -6,10 +6,14 @@
 <p>Ville: <%= @user.city %></p>
 <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
 
-<div>
-  <%= link_to 'Supprimer ce compte', @user, method: :delete %>
-</div>
+<% if allow_action? :users, :destroy %>
+  <div>
+    <%= link_to 'Supprimer ce compte', @user, method: :delete %>
+  </div>
+<% end %>
 
-<div>
-  <%= link_to 'Editer', edit_user_path(@user) %>
-</div>
+<% if allow_action? :users, :edit %>
+  <div>
+    <%= link_to 'Editer', edit_user_path(@user) %>
+  </div>
+<% end %>

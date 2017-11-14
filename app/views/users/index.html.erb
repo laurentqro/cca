@@ -15,10 +15,14 @@
         <td><%= link_to user.username, user %></td>
         <td><%= user.first_name %> <%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= link_to "Editer", edit_user_url(user) %></td>
+        <% if allow_action? :users, :edit %>
+          <td><%= link_to "Editer", edit_user_url(user) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to "Créer un nouveau compte", new_user_url %>
+<% if allow_action? :users, :create %>
+  <%= link_to "Créer un nouveau compte", new_user_url %>
+<% end %>
