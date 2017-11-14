@@ -11,7 +11,7 @@
   <body>
     <% if logged_in? %>
       <% if allow_action? :users, :index %>
-        | <%= link_to 'Comptes utilisateurs', users_url %>
+        <%= link_to 'Comptes utilisateurs', users_url %>
       <% end %>
       | <%= link_to 'Projets actifs', projects_url %>
       <% if allow_action? :archives, :index %>
