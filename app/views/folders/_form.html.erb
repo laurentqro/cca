@@ -1,0 +1,19 @@
+<%= form_with(model: [:project, folder], local: true) do |form| %>
+  <% if folder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(folder.errors.count, "erreur", "erreurs") %>:</h2>
+
+      <ul>
+        <% folder.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, 'Nom' %>
+    <%= form.text_field :name %>
+    <%= form.submit action_name == 'new' ? 'Créer' : 'Valider' %>
+  </div>
+<% end %>

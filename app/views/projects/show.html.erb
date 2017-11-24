@@ -26,3 +26,13 @@
 <% if @project.archived? %>
   <%= link_to "Désarchiver ce projet", archive_path(project_id: @project.id), method: :delete %>
 <% end %>
+
+<h2>Dossiers</h2>
+
+<ul>
+  <% @project.folders.each do |folder| %>
+    <li><%= link_to folder.name, project_folder_path(@project, folder) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'Créer un nouveau dossier', new_project_folder_path(@project) %>
