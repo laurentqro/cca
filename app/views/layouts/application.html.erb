@@ -8,23 +8,15 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if logged_in? %>
-      <% if allow_action? :users, :index %>
-        <%= link_to 'Comptes utilisateurs', users_url %>
-      <% end %>
-      | <%= link_to 'Projets actifs', projects_url %>
-      <% if allow_action? :archives, :index %>
-      | <%= link_to 'Archives', archives_url %>
-      <% end %>
-      | <%= link_to 'Profil', user_url(current_user) %>
-      | <%= link_to 'Déconnexion', session_url, method: :delete %>
-    <% else %>
-      | <%= link_to 'Connexion', new_session_url %>
-    <% end %>
+  <div class="container">
+    <div class="content">
+      <body>
+        <%= render partial: 'navbar' %>
 
-    <%= tag.p notice, id: 'notice' %>
+        <%= tag.p notice, id: 'notice' %>
 
-    <%= yield %>
-  </body>
+        <%= yield %>
+      </body>
+    </div>
+  </div>
 </html>

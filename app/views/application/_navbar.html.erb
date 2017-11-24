@@ -1,0 +1,18 @@
+<ul class="navigation">
+  <% if logged_in? %>
+    <% if allow_action? :users, :index %>
+      <li><%= link_to 'Comptes utilisateurs', users_url %></li>
+    <% end %>
+
+    <li><%= link_to 'Projets actifs', projects_url %></li>
+
+    <% if allow_action? :archives, :index %>
+      <li><%= link_to 'Archives', archives_url %></li>
+    <% end %>
+
+    <li><%= link_to 'Profil', user_url(current_user) %></li>
+    <li><%= link_to 'Déconnexion', session_url, method: :delete %></li>
+  <% else %>
+    <li><%= link_to 'Connexion', new_session_url %></li>
+  <% end %>
+</ul>
