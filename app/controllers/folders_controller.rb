@@ -7,6 +7,7 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
+    @document = Document.new
   end
 
   def create

@@ -1,1 +1,30 @@
 <h1><%= @folder.name %></h1>
+
+<p>Ajouter un nouveau document</p>
+
+<%= form_with(model: [@folder, @document], local: true) do |f| %>
+  <%= f.hidden_field :file, value: @document.cached_file_data %>
+  <%= f.hidden_field :folder_id, value: @folder.id %>
+  <%= f.file_field :file %>
+  <%= f.submit 'Soumettre le document' %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Format</th>
+      <th>Taille</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @folder.documents.each do |document| %>
+      <tr>
+        <td><%= document.file.original_filename %></td>
+        <td><%= document.file.mime_type %></td>
+        <td><%= number_to_human_size(document.file.size, precision: 2, separator: ',') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
