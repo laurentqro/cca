@@ -12,55 +12,54 @@
   <% end %>
 
   <p>Tous les champs sont obligatoires</p>
-
-  <div>
+  <div class="form-group">
     <%= form.label :group, "Niveau d'accès" %>
     <%= form.select :group do %>
       <%= options_for_select(user_groups_for_select, @user.group) %>
     <% end %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :username, "Nom d'utilisateur" %>
     <%= form.text_field :username %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :password, 'Mot de passe' %>
     <%= form.password_field :password %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :email, 'Adresse email' %>
     <%= form.text_field :email %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :first_name, 'Prénom' %>
     <%= form.text_field :first_name %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :last_name, 'Nom' %>
     <%= form.text_field :last_name %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :company, 'Entreprise' %>
     <%= form.text_field :company %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :city, 'Ville' %>
     <%= form.text_field :city %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.label :active, 'Actif' %>
     <%= form.check_box :active, id: :user_active %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= form.submit action_name == 'new' ? 'Créer' : 'Valider' %>
   </div>
 <% end %>
