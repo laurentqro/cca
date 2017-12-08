@@ -1,4 +1,8 @@
 class AssignmentsController < ApplicationController
+  def index
+    @project = Project.find(params[:project_id])
+  end
+
   def create
     @assignment = Assignment.new(assignment_params)
 
