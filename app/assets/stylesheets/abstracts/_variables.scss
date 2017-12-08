@@ -13,3 +13,10 @@ $black:    #000 !default;
 
 // Spacing
 $spacer: 1rem !default;
+
+// Tables
+$table-bg: $white;
+$table-cell-padding: 2px !default;
+$table-border-width: 1px !default;
+$table-border-color: $gray-200;
+$table-cell-padding: $spacer;
