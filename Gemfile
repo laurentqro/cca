@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'sidekiq', '~> 5.0.5'
 gem 'mailgun-ruby', '~> 1.1.8'
 gem 'shrine', '~> 2.8.0'
+gem 'ancestry', '~> 3.0.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

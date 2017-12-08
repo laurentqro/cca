@@ -1,4 +1,27 @@
-<h1><%= @folder.name %></h1>
+<div class="breadcrumb">
+  <% @folder.ancestors.each do |folder| %>
+    <%= link_to folder.name, folder %> &gt;
+  <% end %>
+  <%= @folder.name %>
+</div>
+
+<% if @folder.children.exists? %>
+  <ul>
+    <% @folder.children.each do |folder| %>
+      <li><%= link_to folder.name, folder %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if @folder.documents.exists? %>
+  <ul>
+    <% @folder.documents.each do |document| %>
+      <li>
+        <%= document.file.original_filename %> (<%= document.file.mime_type %>, <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>)
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 
 <p>Ajouter un nouveau document</p>
 
@@ -9,22 +32,3 @@
   <%= f.submit 'Soumettre le document' %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Format</th>
-      <th>Taille</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @folder.documents.each do |document| %>
-      <tr>
-        <td><%= document.file.original_filename %></td>
-        <td><%= document.file.mime_type %></td>
-        <td><%= number_to_human_size(document.file.size, precision: 2, separator: ',') %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
