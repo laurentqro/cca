@@ -6,9 +6,9 @@
 </div>
 
 <% if @folder.children.exists? %>
-  <ul>
+  <ul class="folders-list">
     <% @folder.children.each do |folder| %>
-      <li><%= link_to folder.name, project_folder_path(@project, folder) %></li>
+      <li class="folders-list__folder"><%= link_to folder.name, project_folder_path(@project, folder) %></li>
     <% end %>
   </ul>
 <% end %>

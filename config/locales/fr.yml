@@ -3,6 +3,7 @@ fr:
   activerecord:
     models:
       user: Utilisateur
+      folder: Dossier
     attributes:
       user:
         username: Nom d'utilisateur
@@ -15,6 +16,8 @@ fr:
           partner: Partenaire
           employee: Employé(e)
           admin: Administrateur
+      folder:
+        name: Nom
     errors:
       messages:
         record_invalid: 'La validation a échoué : %{errors}'
