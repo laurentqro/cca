@@ -6,11 +6,23 @@ class FoldersTest < ApplicationSystemTestCase
   end
 
   test 'creating a folder' do
-    visit new_project_folder_url(project_id: projects(:one).id)
+    visit project_url(projects(:one))
     fill_in 'folder[name]', with: 'Folder name'
     click_button 'Créer'
 
     assert_text 'Dossier créé avec succès.'
     assert_text 'Folder name'
+  end
+
+  test 'creating a subfolder' do
+    project = projects(:one)
+    folder = project.folders.create(name: "Foo")
+
+    visit project_folder_url(project, folder)
+    fill_in 'subfolder[name]', with: 'Subfolder name'
+    click_button 'Créer'
+
+    assert_text 'Sous-dossier créé avec succès.'
+    assert_text 'Subfolder name'
   end
 end

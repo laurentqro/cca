@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = current_resource
+    @folder = Folder.new
     @assignments = @project.assignments
   end
 

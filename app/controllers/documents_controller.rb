@@ -1,12 +1,12 @@
 class DocumentsController < ApplicationController
   def create
-    folder = Folder.find(params[:folder_id])
+    folder = Folder.find(params[:document][:folder_id])
     @document = folder.documents.build(document_params)
 
     if @document.save
-      redirect_to folder, notice: 'Document envoyé avec succès.'
+      redirect_to project_folder_path(folder.project, folder), notice: 'Document envoyé avec succès.'
     else
-      render 'folders/new'
+      redirect_to project_folder_path(folder.project, folder), notice: 'Erreur'
     end
   end
 

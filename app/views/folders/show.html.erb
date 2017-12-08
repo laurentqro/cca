@@ -1,6 +1,6 @@
 <div class="breadcrumb">
   <% @folder.ancestors.each do |folder| %>
-    <%= link_to folder.name, folder %> &gt;
+    <%= link_to folder.name, project_folder_path(@project, folder) %> &gt;
   <% end %>
   <%= @folder.name %>
 </div>
@@ -8,18 +8,31 @@
 <% if @folder.children.exists? %>
   <ul>
     <% @folder.children.each do |folder| %>
-      <li><%= link_to folder.name, folder %></li>
+      <li><%= link_to folder.name, project_folder_path(@project, folder) %></li>
     <% end %>
   </ul>
 <% end %>
 
 <p>Creer un nouveau dossier</p>
 
-<%= form_with(model: Folder.new, local: true) do |f| %>
+<%= form_with(model: [@project, @subfolder], local: true) do |f| %>
+  <% if @subfolder.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
+
+      <ul>
+        <% @subfolder.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= f.label :name %>
   <%= f.text_field :name %>
   <%= f.hidden_field :parent_id, value: @folder.id %>
   <%= f.hidden_field :project_id, value: @folder.project_id %>
+  <%= f.hidden_field :id, value: @folder.id %>
   <%= f.submit %>
 <% end %>
 
@@ -35,7 +48,7 @@
 
 <p>Ajouter un nouveau document</p>
 
-<%= form_with(model: [@folder, @document], local: true) do |f| %>
+<%= form_with(model: @document, local: true) do |f| %>
   <%= f.hidden_field :file, value: @document.cached_file_data %>
   <%= f.hidden_field :folder_id, value: @folder.id %>
   <%= f.file_field :file %>

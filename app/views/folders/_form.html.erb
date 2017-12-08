@@ -1,4 +1,4 @@
-<%= form_with(model: [:project, folder], local: true) do |form| %>
+<%= form_with(model: folder, local: true) do |form| %>
   <% if folder.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(folder.errors.count, "erreur", "erreurs") %>:</h2>

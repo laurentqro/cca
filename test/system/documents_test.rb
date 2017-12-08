@@ -7,7 +7,7 @@ class DocumentsTest < ApplicationSystemTestCase
 
   test 'uploading a document' do
     project = projects(:one)
-    folder = project.folders.first
+    folder = project.folders.create(name: 'Foo')
 
     visit project_folder_url(project, folder)
 

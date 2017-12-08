@@ -10,14 +10,13 @@ Rails.application.routes.draw do
   delete '/deconnexion', to: 'sessions#destroy', as: 'session'
 
   resources :users,     path: 'utilisateurs', path_names: { new: 'creer', edit: 'editer' }
+
   resources :projects,  path: 'projets',      path_names: { new: 'creer', edit: 'editer' } do
     resources :folders, path: 'dossiers'
+    resources :subfolders
   end
 
-  resources :folders, path: 'dossiers' do
-    resources :documents
-  end
-
+  resources :documents
   resources :assignments, only: [:create, :destroy]
   resources :archives, only: [:index, :create, :destroy]
 end
