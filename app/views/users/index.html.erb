@@ -3,18 +3,18 @@
 <table class="table">
   <thead class="table__header">
     <tr class="table-header__row">
-      <th class="table-header-row__cell">Nom d'utilisateur</th>
-      <th class="table-header-row__cell">Nom</th>
-      <th class="table-header-row__cell">Email</th>
+      <th class="table-header__cell">Nom d'utilisateur</th>
+      <th class="table-header__cell">Nom</th>
+      <th class="table-header__cell">Email</th>
     </tr>
   </thead>
 
   <tbody class="table__body">
     <% @users.each do |user| %>
       <tr class="table-body__row">
-        <td class="table-body-row__cell"><%= link_to user.username, user %></td>
-        <td class="table-body-row__cell"><%= user.first_name %> <%= user.last_name %></td>
-        <td class="table-body-row__cell"><%= user.email %></td>
+        <td class="table-body__cell"><%= link_to user.username, user %></td>
+        <td class="table-body__cell"><%= user.first_name %> <%= user.last_name %></td>
+        <td class="table-body__cell"><%= user.email %></td>
         <% if allow_action? :users, :edit %>
           <td class="table-body-row__cell"><%= link_to "Editer", edit_user_url(user) %></td>
         <% end %>

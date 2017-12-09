@@ -1,0 +1,35 @@
+.table {
+  border-collapse: collapse;
+  background-color: $table-bg; // Reset for nesting within parents with `background-color`.
+  margin-bottom: $spacer;
+  max-width: 100%;
+  width: 100%;
+
+  &__header {
+    text-align: left;
+    border-bottom: $table-border-width solid $table-border-color;
+  }
+}
+
+.table-header {
+  &__row {
+    vertical-align: top;
+  }
+
+  &__cell {
+    padding-bottom: $table-cell-padding;
+    padding-top: $table-cell-padding;
+    vertical-align: top;
+  }
+}
+
+.table-body {
+  &__row {
+    border-bottom: $table-border-width solid $table-border-color;
+  }
+
+  &__cell {
+    padding-bottom: $table-cell-padding;
+    padding-top: $table-cell-padding;
+  }
+}

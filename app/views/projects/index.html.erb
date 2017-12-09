@@ -3,14 +3,14 @@
 <table class="table">
   <thead class="table__header">
     <tr class="table-header__row">
-      <th class="table-header-row__cell">Nom</th>
+      <th class="table-header__cell">Nom</th>
     </tr>
   </thead>
 
   <tbody class="table__body">
     <% @projects.each do |project| %>
       <tr class="table-body__row">
-        <td class="table-body-row__cell"><%= link_to project.name, project %></td>
+        <td class="table-body__cell"><%= link_to project.name, project %></td>
         <% if allow_action? :projects, :edit %>
           <td class="table-body-row__cell"><%= link_to "Editer", edit_project_url(project) %></td>
         <% end %>
