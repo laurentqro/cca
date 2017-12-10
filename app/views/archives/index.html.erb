@@ -1,17 +1,17 @@
 <h1>Archives</h1>
 
-<table class="table">
-  <thead class="table__header">
-    <tr class="table-header__row">
-      <th class="table-header__cell">Nom</th>
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
     </tr>
   </thead>
 
-  <tbody class="table__body">
+  <tbody>
     <% @archived_projects.each do |project| %>
-      <tr class="table-body__row">
-        <td class="table-body__cell"><%= link_to project.name, project %></td>
-        <td class="table-body__cell"><%= link_to "Editer", edit_project_url(project) %></td>
+      <tr>
+        <td><%= link_to project.name, project %></td>
+        <td><%= link_to "Editer", edit_project_url(project) %></td>
       </tr>
     <% end %>
   </tbody>
