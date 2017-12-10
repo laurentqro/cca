@@ -11,9 +11,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, 'Nom' %>
-    <%= form.text_field :name %>
-    <%= form.submit action_name == 'new' ? 'Créer' : 'Valider' %>
+  <div class="field">
+    <%= form.label :name, 'Nom', class: "label" %>
+    <div class="control">
+      <%= form.text_field :name, class: "input" %>
+    </div>
+  </div>
+
+  <div class="control">
+    <%= form.submit action_name == 'new' ? 'Créer' : 'Valider', class: "button is-primary" %>
   </div>
 <% end %>
