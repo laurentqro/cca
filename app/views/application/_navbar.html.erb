@@ -1,18 +1,22 @@
-<ul>
-  <% if logged_in? %>
-    <% if allow_action? :users, :index %>
-      <li><%= link_to 'Comptes utilisateurs', users_url %></li>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <%= link_to 'Accueil', users_url, class: "navbar-item" %>
+
+    <% if logged_in? %>
+      <% if allow_action? :users, :index %>
+        <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
+      <% end %>
+
+      <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
+
+      <% if allow_action? :archives, :index %>
+        <%= link_to 'Archives', archives_url, class: "navbar-item" %>
+      <% end %>
+
+      <%= link_to 'Profil', user_url(current_user), class: "navbar-item" %>
+      <%= link_to 'Déconnexion', session_url, method: :delete, class: "navbar-item" %>
+    <% else %>
+      <%= link_to 'Connexion', new_session_url, class: "navbar-item" %>
     <% end %>
-
-    <li><%= link_to 'Projets actifs', projects_url %></li>
-
-    <% if allow_action? :archives, :index %>
-      <li><%= link_to 'Archives', archives_url %></li>
-    <% end %>
-
-    <li><%= link_to 'Profil', user_url(current_user) %></li>
-    <li><%= link_to 'Déconnexion', session_url, method: :delete %></li>
-  <% else %>
-    <li><%= link_to 'Connexion', new_session_url %></li>
-  <% end %>
-</ul>
+  </div>
+</nav>
