@@ -1,19 +1,17 @@
-<%= tag.h2 @user.full_name %>
+<%= tag.h2 @user.full_name, class: "title is-2" %>
 
-<p>Nom d'utilisateur: <%= @user.username %></p>
-<p>Email: <%= @user.email %></p>
-<p>Entreprise: <%= @user.company %></p>
-<p>Ville: <%= @user.city %></p>
-<p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
+<div class="content">
+  <p>Nom d'utilisateur: <%= @user.username %></p>
+  <p>Email: <%= @user.email %></p>
+  <p>Entreprise: <%= @user.company %></p>
+  <p>Ville: <%= @user.city %></p>
+  <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
 
-<% if allow_action? :users, :destroy %>
-  <div>
-    <%= link_to 'Supprimer ce compte', @user, method: :delete %>
-  </div>
-<% end %>
+  <% if allow_action? :users, :edit %>
+    <%= link_to 'Editer', edit_user_path(@user), class: "button" %>
+  <% end %>
 
-<% if allow_action? :users, :edit %>
-  <div>
-    <%= link_to 'Editer', edit_user_path(@user) %>
-  </div>
-<% end %>
+  <% if allow_action? :users, :destroy %>
+    <%= link_to 'Supprimer ce compte', @user, method: :delete, class: "button is-danger" %>
+  <% end %>
+</div>

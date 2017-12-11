@@ -1,6 +1,6 @@
-<h1>Archives</h1>
+<h1 class="title is-1">Archives</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Nom</th>
@@ -12,7 +12,7 @@
     <% @archived_projects.each do |project| %>
       <tr>
         <td><%= link_to project.name, project %></td>
-        <td><%= link_to "Editer", edit_project_url(project) %></td>
+        <td><%= link_to "Editer", edit_project_url(project), class: "button is-small" %></td>
       </tr>
     <% end %>
   </tbody>

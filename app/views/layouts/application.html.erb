@@ -10,15 +10,13 @@
     <%= stylesheet_pack_tag 'application' %>
   </head>
 
-  <div class="container">
-    <div class="content">
-      <body>
+  <body>
+    <section class="section">
+      <div class="container">
         <%= render partial: 'navbar' %>
-
         <%= tag.p notice, id: 'notice' %>
-
         <%= yield %>
-      </body>
-    </div>
-  </div>
+      </div>
+    </section>
+  </body>
 </html>
