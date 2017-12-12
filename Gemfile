@@ -18,8 +18,10 @@ gem 'mailgun-ruby', '~> 1.1.8'
 gem 'shrine', '~> 2.8.0'
 gem 'ancestry', '~> 3.0.1'
 gem 'webpacker', '~> 3.0'
+gem 'aws-sdk-s3', '~> 1'
 
 group :development, :test do
+  gem 'dotenv-rails', '~> 2.2.1'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'

@@ -16,7 +16,7 @@
     <ul>
       <% @folder.documents.each do |document| %>
         <li>
-          <%= document.file.original_filename %> (<%= document.file.mime_type %>, <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>)
+          <%= link_to document.file.original_filename, document.file.url(download: true) %> (<%= document.file.mime_type %>, <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>)
         </li>
       <% end %>
     </ul>
@@ -68,7 +68,6 @@
   <h3 class="title is-3">Ajouter un nouveau document</h2>
 
   <%= form_with(model: @document, local: true) do |f| %>
-    <%= f.hidden_field :file, value: @document.cached_file_data %>
     <%= f.hidden_field :folder_id, value: @folder.id %>
     <div class="field">
       <div class="control">
