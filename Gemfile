@@ -19,6 +19,8 @@ gem 'shrine', '~> 2.8.0'
 gem 'ancestry', '~> 3.0.1'
 gem 'webpacker', '~> 3.0'
 gem 'aws-sdk-s3', '~> 1'
+gem 'jquery-rails', '~> 4.3'
+gem 'jquery-fileupload-rails', '0.4'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2.1'
