@@ -2,7 +2,12 @@ $(document).on("turbolinks:load", function() {
   $("input[type=file]").fileupload({
     add: function(e, data) {
       console.log("add", data);
-      data.progressBar = $('<progress class="progress is-success" max="100"></progress>').insertAfter("body");
+      var fileName = data.files[0]['name'];
+      var $progressBar = $('<progress class="progress is-success" max="100"></progress>');
+      var $progressComponent = $('<div class="container"></div>').append(fileName).append($progressBar);
+      $(".js-progress-component").append($progressComponent);
+      data.progressComponent = $progressComponent;
+
       var options = {
         extension: data.files[0].name.match(/(\.\w+)?$/)[0], // set the file extension
         _: Date.now() // prevent caching
@@ -21,12 +26,12 @@ $(document).on("turbolinks:load", function() {
       console.log("progress", data);
       var progress = parseInt(data.loaded / data.total * 100, 10);
       var percentage = progress.toString() + '%';
-      data.progressBar.attr("value", progress);
+      data.progressComponent.find(".progress").attr("value", progress);
     },
 
     done: function(e, data) {
       console.log("done", data);
-      data.progressBar.remove();
+      data.progressComponent.remove();
 
       var document = {
         id:       data.formData.key.match(/cache\/(.+)/)[1], // we have to remove the prefix part
