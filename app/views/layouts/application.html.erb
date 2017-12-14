@@ -10,27 +10,29 @@
     <%= stylesheet_pack_tag 'application' %>
   </head>
 
-  <section class="hero is-dark is-small">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          CCA
-        </h1>
-        <h2 class="subtitle">
-          Partage de fichiers
-        </h2>
-      </div>
-    </div>
-  </section>
-
-  <%= render partial: 'navbar' %>
-
   <body>
+    <section class="hero is-dark is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            CCA
+          </h1>
+          <h2 class="subtitle">
+            Partage de fichiers
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <%= render partial: 'navbar' %>
+
     <section class="section">
       <div class="container">
         <%= tag.p notice, id: 'notice' %>
         <%= yield %>
       </div>
     </section>
+
+    <%= render partial: 'footer' %>
   </body>
 </html>
