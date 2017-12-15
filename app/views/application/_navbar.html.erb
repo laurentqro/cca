@@ -1,22 +1,27 @@
-<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <%= link_to 'Accueil', users_url, class: "navbar-item" %>
+<div class="container">
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
 
-    <% if logged_in? %>
-      <% if allow_action? :users, :index %>
-        <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
-      <% end %>
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to 'Accueil', users_url, class: "navbar-item" %>
 
-      <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
+          <% if logged_in? %>
+            <% if allow_action? :users, :index %>
+              <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
+            <% end %>
 
-      <% if allow_action? :archives, :index %>
-        <%= link_to 'Archives', archives_url, class: "navbar-item" %>
-      <% end %>
+            <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
 
-      <%= link_to 'Profil', user_url(current_user), class: "navbar-item" %>
-      <%= link_to 'Déconnexion', session_url, method: :delete, class: "navbar-item" %>
-    <% else %>
-      <%= link_to 'Connexion', new_session_url, class: "navbar-item" %>
-    <% end %>
-  </div>
-</nav>
+            <% if allow_action? :archives, :index %>
+              <%= link_to 'Archives', archives_url, class: "navbar-item" %>
+            <% end %>
+
+          <% else %>
+            <%= link_to 'Connexion', new_session_url, class: "navbar-item" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
