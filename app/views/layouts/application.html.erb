@@ -15,10 +15,12 @@
     <%= render partial: 'header' %>
     <%= render partial: 'navbar' %>
 
+    <section class="section">
       <div class="container">
         <%= tag.p notice, id: 'notice' %>
         <%= yield %>
       </div>
+    </section>
 
     <%= render partial: 'footer' %>
   </body>
