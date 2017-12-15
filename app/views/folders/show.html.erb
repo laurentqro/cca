@@ -21,6 +21,7 @@
       <tr>
         <th></th>
         <th>Nom</th>
+        <th>Déposé le</th>
         <th>Taille</th>
         <th>Type</th>
       </tr>
@@ -35,15 +36,9 @@
                 <i class="far fa-folder"></i>
               </span>
             </td>
-            <td>
-              <%= link_to folder.name, project_folder_path(@project, folder) %>
-            </td>
-            <td>
-              -
-            </td>
-            <td>
-              Dossier
-            </td>
+            <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
+            <td>-</td>
+            <td>Dossier</td>
           </tr>
         <% end %>
       <% end %>
@@ -58,11 +53,15 @@
             </td>
             <td>
               <%= link_to document.file.original_filename, document.file.url(download: true) %>
-            <td>
-              <%= document.file.mime_type %>
             </td>
             <td>
-            <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+              <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
+            </td>
+            <td>
+              <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+            </td>
+            <td>
+              <%= document.file.mime_type %>
             </td>
           </tr>
         <% end %>
