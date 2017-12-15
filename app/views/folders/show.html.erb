@@ -1,37 +1,77 @@
-<nav class="breadcrumb has-succeeds-separator">
-  <ul>
-    <% @folder.ancestors.each do |folder| %>
-      <li>
-        <%= link_to folder.name, project_folder_path(@project, folder) %>
-      </li>
-    <% end %>
-    <li class="is-active">
-      <%= link_to @folder.name, project_folder_path(@project, @folder) %>
-    </li>
-  </ul>
-</nav>
-
-<div class="content">
-  <% if @folder.documents.exists? %>
+<% unless @folder.root? %>
+  <nav class="breadcrumb has-succeeds-separator">
     <ul>
-      <% @folder.documents.each do |document| %>
+      <% @folder.ancestors.each do |folder| %>
         <li>
-          <%= link_to document.file.original_filename, document.file.url(download: true) %> (<%= document.file.mime_type %>, <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>)
+          <%= link_to folder.name, project_folder_path(@project, folder) %>
         </li>
       <% end %>
+      <li class="is-active">
+        <%= link_to @folder.name, project_folder_path(@project, @folder) %>
+      </li>
     </ul>
-  <% end %>
+  </nav>
+<% end %>
 
-  <% if @folder.children.exists? %>
-    <div class="content">
-      <ul class="folders-list">
+<h2 class="title is-2"><%= @folder.name %></h2>
+
+<div class="content">
+  <table class="table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nom</th>
+        <th>Taille</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @folder.children.exists? %>
         <% @folder.children.each do |folder| %>
-          <li class="folders-list__folder"><%= link_to folder.name, project_folder_path(@project, folder) %></li>
+          <tr>
+            <td class="is-narrow">
+              <span class="icon">
+                <i class="far fa-folder"></i>
+              </span>
+            </td>
+            <td>
+              <%= link_to folder.name, project_folder_path(@project, folder) %>
+            </td>
+            <td>
+              -
+            </td>
+            <td>
+              Dossier
+            </td>
+          </tr>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <% end %>
+
+      <% if @folder.documents.exists? %>
+        <% @folder.documents.each do |document| %>
+          <tr>
+            <td class="is-narrow">
+              <span class="icon">
+                <i class="far fa-file"></i>
+              </span>
+            </td>
+            <td>
+              <%= link_to document.file.original_filename, document.file.url(download: true) %>
+            <td>
+              <%= document.file.mime_type %>
+            </td>
+            <td>
+            <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
+<hr />
 
 <div class="content">
   <h3 class="title is-3">Créer un nouveau dossier</h3>
@@ -64,8 +104,10 @@
   <% end %>
 </div>
 
+<hr />
+
 <div class="content">
-  <h3 class="title is-3">Ajouter un nouveau document</h2>
+  <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
 
   <%= form_with(model: @document, local: true) do |f| %>
     <%= f.hidden_field :folder_id, value: @folder.id %>
