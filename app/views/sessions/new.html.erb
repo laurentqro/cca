@@ -1,8 +1,8 @@
-<h1>Connexion</h1>
+<h2 class="title is-2">Connexion</h1>
 
 <%= form_with scope: :session, url: new_session_url, local: true do |form| %>
   <div class="field">
-    <%= form.label :identifier, "Nom d'utilisateur", class: "label" %>
+    <%= form.label :identifier, "Email ou nom d'utilisateur", class: "label" %>
     <div class="control">
       <%= form.text_field :identifier, class: "input" %>
     </div>
