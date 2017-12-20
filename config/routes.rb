@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   mount Shrine.presign_endpoint(:cache) => '/presign'
 
-  root to: 'pages#home'
+  root to: 'activities#index'
 
   get    '/connexion',   to: 'sessions#new',     as: 'new_session'
   post   '/connexion',   to: 'sessions#create',  as: 'sessions'

@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171208164317) do
+ActiveRecord::Schema.define(version: 20171220220711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "trackable_id"
+    t.integer "project_id"
+    t.integer "folder_id"
+    t.string "action"
+    t.string "trackable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trackable_id"], name: "index_activities_on_trackable_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
 
   create_table "assignments", force: :cascade do |t|
     t.bigint "project_id"

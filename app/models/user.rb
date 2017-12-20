@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :assignments
   has_many :projects, through: :assignments
+  has_many :activities
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,

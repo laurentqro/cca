@@ -5,6 +5,10 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
+        current_user.activities.create(action: "create",
+                                       trackable: @document,
+                                       project_id: folder.project_id,
+                                       folder_id: folder.id)
         format.js
       end
     end

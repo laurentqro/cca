@@ -1,0 +1,6 @@
+  <%= link_to activity.user.full_name, activity.user %>
+  a déposé
+  <%= link_to activity.trackable.file.original_filename, activity.trackable.file.url %>
+  <%= link_to activity.folder.name, activity.folder %>
+  <%= link_to activity.project.name, activity.project %>
+  le <%= activity.created_at.strftime("%d %b %Y à %H:%M") %>

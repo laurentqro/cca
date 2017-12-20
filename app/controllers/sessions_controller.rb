@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(params[:session][:password])
       log_in(@user)
-      redirect_to after_sign_in_path, notice: 'Vous êtes connecté'
+      redirect_to after_sign_in_path, notice: 'Vous êtes connecté(e)'
     else
       flash[:notice] = 'Identifiant ou mot de passe incorrect'
       render :new

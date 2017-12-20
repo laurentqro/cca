@@ -1,7 +1,7 @@
 class Permission
   def initialize(user)
     allow_action :sessions, [:new, :create, :destroy]
-    allow_action :pages, [:home]
+    allow_action :activities, [:index]
 
     if user.present?
       allow_all if user.admin?

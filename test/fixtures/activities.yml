@@ -1,0 +1,4 @@
+---
+create_document:
+  trackable_type: Document
+  action: create
