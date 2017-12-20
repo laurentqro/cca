@@ -21,6 +21,7 @@ gem 'webpacker', '~> 3.0'
 gem 'aws-sdk-s3', '~> 1'
 gem 'jquery-rails', '~> 4.3'
 gem 'jquery-fileupload-rails', '0.4'
+gem 'tzinfo-data'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2.1'
@@ -42,6 +43,3 @@ group :development do
   gem 'capistrano3-puma', '~> 3.1.1'
   gem 'capistrano-rbenv', '~> 2.1'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
