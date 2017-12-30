@@ -58,16 +58,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
     assert !page.has_content?("retirer")
   end
 
-  test 'employee cannot create a new user' do
-    user = users(:one)
-    user.employee!
-    sign_in_as(user)
-
-    visit new_user_url
-
-    assert_text "Accès non autorisé"
-  end
-
   test 'employee can view list of all projects' do
     project = projects(:one)
     another_project = projects(:two)

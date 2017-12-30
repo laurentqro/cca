@@ -16,7 +16,7 @@ class Permission
       end
 
       if user.employee?
-        allow_action :users, :index
+        allow_action :users, [:index, :new, :create, :show]
         allow_action :projects, :index
         allow_action :projects, :show
       end

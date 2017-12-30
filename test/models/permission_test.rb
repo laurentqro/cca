@@ -29,5 +29,6 @@ class UserTest < ActiveSupport::TestCase
     permission = Permission.new(user)
 
     assert permission.allow_action?(:projects, :show, project)
+    assert permission.allow_action?(:users, :create, project)
   end
 end
