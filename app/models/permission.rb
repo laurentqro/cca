@@ -4,8 +4,8 @@ class Permission
     allow_action :activities, [:index]
 
     if user.present?
-      allow_all if user.admin?
-      allow_action :users, :show
+      allow_all               if user.admin?
+      allow_action :users,    :show
       allow_action :projects, :index
 
       if user.partner?
@@ -16,9 +16,10 @@ class Permission
       end
 
       if user.employee?
-        allow_action :users, [:index, :new, :create, :show]
-        allow_action :projects, [:index, :show]
+        allow_action :archives,    :index
         allow_action :assignments, [:create, :destroy]
+        allow_action :projects,    [:index, :show]
+        allow_action :users,       [:index, :new, :create, :show]
       end
     end
   end
