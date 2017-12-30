@@ -22,5 +22,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'employee permissions' do
+    user = users(:one)
+    user.employee!
+    project = projects(:one)
+
+    permission = Permission.new(user)
+
+    assert permission.allow_action?(:projects, :show, project)
   end
 end

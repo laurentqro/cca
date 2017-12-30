@@ -1,7 +1,6 @@
 require "application_system_test_case"
 
 class UserPermissionsTest < ApplicationSystemTestCase
-  ## PARTNER
   test 'partner cannot create a new user' do
     sign_in_as(users(:one))
     visit new_user_url
@@ -59,7 +58,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
     assert !page.has_content?("retirer")
   end
 
-  ## EMPLOYEE
   test 'employee cannot create a new user' do
     user = users(:one)
     user.employee!
@@ -104,5 +102,19 @@ class UserPermissionsTest < ApplicationSystemTestCase
     visit edit_user_url(other_user)
 
     assert_text "Accès non autorisé"
+  end
+
+  test 'employee can view all projects' do
+    user = users(:one)
+    user.employee!
+    sign_in_as(user)
+
+    other_user = users(:two)
+    project = projects(:one)
+    Assignment.create(user: other_user, project: project)
+
+    visit project_url(project)
+
+    assert_text project.name
   end
 end
