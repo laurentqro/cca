@@ -1,12 +1,10 @@
 <h1 class="title is-1">Membres du projet '<%= @project.name %>'</h1>
 
-<section>
+<div class="content">
   <ul class='assigned'>
     <%= render @project.assignments %>
   </ul>
-</section>
 
-<section>
   <h2 class="title is-2">Assigner des utilisateurs a ce projet</h2>
 
   <% User.unassigned_to_project(@project.id).each do |user| %>
@@ -17,4 +15,4 @@
       </li>
     </ul>
   <% end %>
-</section>
+</div>
