@@ -12,7 +12,9 @@
     <% @archived_projects.each do |project| %>
       <tr>
         <td><%= link_to project.name, project %></td>
-        <td><%= link_to "Editer", edit_project_url(project), class: "button is-small" %></td>
+        <% if allow_action? :projects, :edit %>
+          <td><%= link_to "Editer", edit_project_url(project), class: "button is-small" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
