@@ -5,18 +5,19 @@
     <tr>
       <th>Nom</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.name, project %></td>
-        <% if allow_action? :projects, :edit %>
-          <td><%= link_to "Editer", edit_project_url(project), class: "button is-small" %></td>
-          <td><%= link_to "Gérer les membres du projet", project_assignments_path(project), class: "button is-small" %></td>
-        <% end %>
+        <td>
+          <%= link_to project.name, project %>
+        </td>
+
+        <td>
+          <%= render 'controls', project: project %>
+        </td>
       </tr>
     <% end %>
   </tbody>

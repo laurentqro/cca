@@ -1,17 +1,7 @@
 <%= tag.h1 @project.name, class: "title is-1" %>
 
-<% if allow_action? :projects, :delete %>
-  <%= link_to "Supprimer ce projet", @project, method: :delete, class: "button is-small is-danger" %>
-<% end %>
-
-<% if @project.active? && (allow_action? :archives, :create) %>
-  <%= link_to "Archiver ce projet", archives_path(project_id: @project.id), method: :post, class: "button is-small" %>
-<% end %>
-
 <div class="content">
-  <% if @project.archived? && (allow_action? :archives, :destroy) %>
-    <%= link_to "Désarchiver ce projet", archive_path(project_id: @project.id), method: :delete %>
-  <% end %>
+  <%= render 'controls', project: @project %>
 
   <ul class="folders-list">
     <% @project.folders.roots.each do |folder| %>
@@ -20,37 +10,39 @@
   </ul>
 </div>
 
-<hr />
+<% if allow_action? :folders, :create %>
+  <hr />
 
-<div class="content">
-  <h2 class="title is-2">Créer un nouveau dossier</h2>
+  <div class="content">
+    <h2 class="title is-2">Créer un nouveau dossier</h2>
 
-  <%= form_with(model: [@project, @folder], local: true) do |f| %>
-    <% if @folder.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@folder.errors.count, "erreur", "erreurs") %>:</h2>
+    <%= form_with(model: [@project, @folder], local: true) do |f| %>
+      <% if @folder.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@folder.errors.count, "erreur", "erreurs") %>:</h2>
 
-        <ul>
-          <% @folder.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+          <ul>
+            <% @folder.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= f.label :name, class: "label" %>
+
+      <div class="field">
+        <div class="control">
+          <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
+          <%= f.hidden_field :parent_id, value: @folder.id %>
+          <%= f.hidden_field :project_id, value: @folder.project_id %>
+          <%= f.hidden_field :id, value: @folder.id %>
+        </div>
+      </div>
+
+      <div class="control">
+        <%= f.submit "Créer", class: "button is-primary" %>
       </div>
     <% end %>
-
-    <%= f.label :name, class: "label" %>
-
-    <div class="field">
-      <div class="control">
-        <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
-        <%= f.hidden_field :parent_id, value: @folder.id %>
-        <%= f.hidden_field :project_id, value: @folder.project_id %>
-        <%= f.hidden_field :id, value: @folder.id %>
-      </div>
-    </div>
-
-    <div class="control">
-      <%= f.submit "Créer", class: "button is-primary" %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

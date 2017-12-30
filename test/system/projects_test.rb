@@ -24,7 +24,7 @@ class ProjectsTest < ApplicationSystemTestCase
 
   test 'deleting a project' do
     visit project_url(projects(:one))
-    click_on 'Supprimer ce projet'
+    click_on 'Supprimer'
 
     assert_text "Projet #{projects(:one).name} supprimé."
   end
@@ -32,7 +32,7 @@ class ProjectsTest < ApplicationSystemTestCase
   test 'adding a project to the archives' do
     project = projects(:one)
     visit project_url(project)
-    click_on 'Archiver ce projet'
+    click_on 'Archiver'
 
     assert_text "Projet #{project.name} archivé."
     assert_text  project.name
@@ -43,7 +43,7 @@ class ProjectsTest < ApplicationSystemTestCase
     project = projects(:one)
     project.archived!
     visit project_url(project)
-    click_on 'Désarchiver ce projet'
+    click_on 'Désarchiver'
 
     assert_text "Projet #{project.name} désarchivé."
     assert_text project.name

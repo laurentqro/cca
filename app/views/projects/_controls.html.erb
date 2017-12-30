@@ -1,0 +1,23 @@
+<% if project.active? %>
+  <% if allow_action? :projects, :edit %>
+    <%= link_to "Editer", edit_project_url(project), class: "button is-small" %>
+  <% end %>
+
+  <% if allow_action? :assignments, [:create, :destroy] %>
+    <%= link_to "Gérer les membres", project_assignments_path(project), class: "button is-small" %>
+  <% end %>
+
+  <% if allow_action? :archives, :create %>
+    <%= link_to "Archiver", archives_path(project_id: project.id), method: :post, class: "button is-small" %>
+  <% end %>
+<% end %>
+
+<% if project.archived? %>
+  <% if allow_action? :archives, :destroy %>
+    <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "button is-small" %>
+  <% end %>
+<% end %>
+
+<% if allow_action? :projects, :delete %>
+  <%= link_to "Supprimer", project, method: :delete, class: "button is-small is-danger" %>
+<% end %>

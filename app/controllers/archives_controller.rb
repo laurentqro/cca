@@ -11,7 +11,7 @@ class ArchivesController < ApplicationController
   end
 
   def destroy
-    project = Project.find(params[:project_id])
+    project = Project.find(params[:id])
     project.active!
     redirect_to projects_url, notice: "Projet #{project.name} désarchivé."
   end
