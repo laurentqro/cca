@@ -17,8 +17,8 @@ class Permission
 
       if user.employee?
         allow_action :users, [:index, :new, :create, :show]
-        allow_action :projects, :index
-        allow_action :projects, :show
+        allow_action :projects, [:index, :show]
+        allow_action :assignments, [:create, :destroy]
       end
     end
   end

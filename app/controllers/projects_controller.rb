@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = show_all_projects? ? Project.all : current_user.projects.active
+    @projects = show_all_projects? ? Project.active : current_user.projects.active
   end
 
   def show

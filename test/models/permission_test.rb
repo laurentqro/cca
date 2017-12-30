@@ -30,5 +30,7 @@ class UserTest < ActiveSupport::TestCase
 
     assert permission.allow_action?(:projects, :show, project)
     assert permission.allow_action?(:users, :create, project)
+    assert permission.allow_action?(:assignments, :create)
+    assert permission.allow_action?(:assignments, :destroy)
   end
 end

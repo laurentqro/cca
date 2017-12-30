@@ -3,7 +3,7 @@
     <%= link_to "Editer", edit_project_url(project), class: "button is-small" %>
   <% end %>
 
-  <% if allow_action? :assignments, [:create, :destroy] %>
+  <% if allow_action? :assignments, :create %>
     <%= link_to "Gérer les membres", project_assignments_path(project), class: "button is-small" %>
   <% end %>
 
