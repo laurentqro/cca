@@ -1,5 +1,8 @@
 class User < ApplicationRecord
-  has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
 
   has_many :assignments
   has_many :projects, through: :assignments
@@ -27,15 +30,5 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  def User.digest(string)
-    BCrypt::Password.create(string, cost: bcrypt_cost)
-  end
-
-  private
-
-  def bcrypt_cost
-    ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
   end
 end
