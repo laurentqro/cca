@@ -1,16 +1,8 @@
 require 'test_helper'
 
-class UserControllerTest < ActionDispatch::IntegrationTest
-  test "invite friend" do
-    session_params = {
-      session: {
-        identifier: users(:admin).username,
-        password: 'password'
-      }
-    }
+class UserRegistrationTest < ActionDispatch::IntegrationTest
 
-    post sessions_url, params: session_params
-
+  test 'user account registration' do
     user_params = {
       username: 'username',
       password: 'password',
@@ -21,8 +13,8 @@ class UserControllerTest < ActionDispatch::IntegrationTest
       city: 'City'
     }
 
-    assert_difference 'ActionMailer::Base.deliveries.size', +1 do
-      post users_url, params: { user: user_params }
+    assert_difference 'ActionMailer::Base.deliveries.size' do
+      post '/users', params: { user: user_params }
     end
 
     welcome_email = ActionMailer::Base.deliveries.last
