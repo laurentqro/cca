@@ -4,13 +4,17 @@
 
       <div class="navbar-menu">
         <div class="navbar-start">
-          <%= link_to 'Accueil', root_url, class: "navbar-item" %>
+          <% if logged_in? %>
+            <%= link_to 'Accueil', root_url, class: "navbar-item" %>
+          <% end %>
 
           <% if allow_action? :users, :index %>
             <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
           <% end %>
 
-          <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
+          <% if allow_action? :projects, :index %>
+            <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
+          <% end %>
 
           <% if allow_action? :archives, :index %>
             <%= link_to 'Archives', archives_url, class: "navbar-item" %>
