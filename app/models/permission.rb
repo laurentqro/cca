@@ -1,12 +1,14 @@
 class Permission
   def initialize(user)
-    allow_action :sessions, [:new, :create, :destroy]
-    allow_action :activities, [:index]
+    allow_action 'devise/sessions', [:new, :create]
+    allow_action 'devise/registrations', [:new, :create]
+    allow_action :activities, :index
 
     if user.present?
       allow_all               if user.admin?
       allow_action :users,    :show
       allow_action :projects, :index
+      allow_action 'devise/sessions', :destroy
 
       if user.partner?
         allow_action :projects, :index
