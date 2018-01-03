@@ -2,7 +2,7 @@
 one:
   email: jon@got.com
   username: jon
-  password_digest: <%= BCrypt::Password.create('password') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Jon
   last_name: Snow
   company: Crows Inc.
@@ -11,7 +11,7 @@ one:
 two:
   email: denaerys@got.com
   username: denaerys
-  password_digest: <%= BCrypt::Password.create('password') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Denaerys
   last_name: Targaryen
   company: Dragons Inc.
@@ -20,7 +20,7 @@ two:
 admin:
   email: christian@example.com
   username: christianc
-  password_digest: <%= BCrypt::Password.create('password') %>
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Christian
   last_name: BigBoss
   company: CCA
