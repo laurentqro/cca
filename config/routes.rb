@@ -1,10 +1,18 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
+  devise_for :users,
+    controllers: {
+      sessions: 'users/sessions',
+      registrations: 'users/registrations',
+      passwords: 'users/passwords'
+    },
+    path_names: {
+      sign_in: 'connexion',
+      sign_out: 'deconnexion',
+      sign_up: 'inscription'
+    },
+    path: 'auth'
 
   mount Sidekiq::Web => '/sidekiq'
   mount Shrine.presign_endpoint(:cache) => '/presign'
