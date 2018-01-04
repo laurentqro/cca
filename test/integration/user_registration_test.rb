@@ -14,7 +14,7 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
     }
 
     assert_difference 'ActionMailer::Base.deliveries.size' do
-      post '/users', params: { user: user_params }
+      post '/auth', params: { user: user_params }
     end
 
     welcome_email = ActionMailer::Base.deliveries.last
