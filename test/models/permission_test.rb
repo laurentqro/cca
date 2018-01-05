@@ -24,10 +24,10 @@ class UserTest < ActiveSupport::TestCase
     user = users(:one)
     permission = Permission.new(user)
 
-    # can visit edit profile page
+    # can visit edit a profile page
     assert permission.allow_action?('users/registrations', :edit)
 
-    # can modify profile
+    # can modify his own profile
     assert permission.allow_action?('users/registrations', :update)
 
     # can log out
