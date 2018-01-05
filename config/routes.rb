@@ -19,9 +19,12 @@ Rails.application.routes.draw do
 
   root to: 'activities#index'
 
-  resources :users,     path: 'utilisateurs', path_names: { new: 'creer', edit: 'editer' }
+  resources :users,
+    path: 'utilisateurs',
+    path_names: { new: 'creer', edit: 'editer' },
+    only: [:index, :show]
 
-  resources :projects,  path: 'projets',      path_names: { new: 'creer', edit: 'editer' } do
+  resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
     resources :assignments, only: [:index, :create, :destroy], path: 'membres'
     resources :folders, path: 'dossiers'
     resources :subfolders
