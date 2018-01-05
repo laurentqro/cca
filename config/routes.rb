@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :users,
     path: 'utilisateurs',
     path_names: { new: 'creer', edit: 'editer' },
-    only: [:index, :show]
+    only: [:index, :show, :edit, :update]
 
   resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
     resources :assignments, only: [:index, :create, :destroy], path: 'membres'
