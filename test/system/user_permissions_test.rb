@@ -1,13 +1,6 @@
 require "application_system_test_case"
 
 class UserPermissionsTest < ApplicationSystemTestCase
-  test 'partner cannot create a new user' do
-    sign_in_as(users(:one))
-    visit new_user_url
-
-    assert_text "Accès non autorisé"
-  end
-
   test 'partner can only access a project he is assigned to' do
     sign_in_as(users(:one))
     project = projects(:one)
