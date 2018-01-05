@@ -3,19 +3,23 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <div class="control">
+        <%= f.label :email, class: "label" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      </div>
     </div>
 
     <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "off" %>
+      <div class="control">
+        <%= f.label :password, class: "label" %>
+        <%= f.password_field :password, autocomplete: "off", class: "input" %>
+      </div>
     </div>
 
     <% if devise_mapping.rememberable? -%>
       <div class="field">
         <div class="control">
-          <label class="label" name="remember_me">
+          <label class="checkbox" name="remember_me">
             <%= f.check_box :remember_me, class: "checkbox" %>
             <%= t("devise.remember_me") %>
           </label>
@@ -23,10 +27,8 @@
       </div>
     <% end -%>
 
-    <div class="actions">
-      <%= f.submit t("devise.sign_in"), class: "button" %>
-    </div>
+    <%= f.submit t("devise.sign_in"), class: "button" %>
   <% end %>
-
-  <%= render "devise/shared/links" %>
 </div>
+
+<%= render "users/shared/links" %>
