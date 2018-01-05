@@ -6,7 +6,7 @@
     <div class="field">
       <%= form.label :first_name, 'Prénom', class: "label" %>
       <div class="control">
-        <%= form.text_field :first_name, class: "input" %>
+        <%= form.text_field :first_name, autofocus: true, class: "input" %>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
     <div class="field">
       <%= form.label :email, class: "label" %>
       <div class="control">
-        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+        <%= form.email_field :email, autocomplete: "email", class: "input" %>
       </div>
     </div>
 
