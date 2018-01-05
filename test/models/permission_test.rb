@@ -15,6 +15,9 @@ class UserTest < ActiveSupport::TestCase
 
     #can sign up
     assert permission.allow_action?('users/registrations', :create)
+
+    # can view the reset password page
+    assert permission.allow_action?('users/passwords', :new)
   end
 
   test 'any logged in user permissions' do

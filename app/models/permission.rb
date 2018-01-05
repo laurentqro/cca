@@ -2,6 +2,7 @@ class Permission
   def initialize(user)
     allow_action 'users/sessions', [:new, :create]
     allow_action 'users/registrations', [:new, :create]
+    allow_action 'users/passwords', :new
     allow_action :activities, :index
 
     if user.present?
