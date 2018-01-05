@@ -18,6 +18,15 @@ class UserTest < ActiveSupport::TestCase
 
     # can view the reset password page
     assert permission.allow_action?('users/passwords', :new)
+
+    # can ask to reset password
+    assert permission.allow_action?('users/passwords', :create)
+
+    # can view the password change form
+    assert permission.allow_action?('users/passwords', :edit)
+
+    # can submit new password form
+    assert permission.allow_action?('users/passwords', :update)
   end
 
   test 'any logged in user permissions' do
@@ -55,6 +64,9 @@ class UserTest < ActiveSupport::TestCase
     any_project = projects(:one)
 
     permission = Permission.new(user)
+
+    # can view a list of all projects
+    assert permission.allow_action?(:projects, :index)
 
     # can view any project
     assert permission.allow_action?(:projects, :show, any_project)

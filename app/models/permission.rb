@@ -1,9 +1,8 @@
 class Permission
   def initialize(user)
-    allow_action 'users/sessions', [:new, :create]
+    allow_action 'users/sessions',      [:new, :create]
     allow_action 'users/registrations', [:new, :create]
-    allow_action 'users/passwords', :new
-    allow_action :activities, :index
+    allow_action 'users/passwords',     [:new, :create, :edit, :update]
 
     if user.present?
       allow_all               if user.admin?
@@ -23,7 +22,7 @@ class Permission
         allow_action :archives,    :index
         allow_action :assignments, [:create, :destroy]
         allow_action :projects,    [:index, :show]
-        allow_action :users,       [:index, :new, :create, :show]
+        allow_action :users,       [:index, :show]
       end
     end
   end
