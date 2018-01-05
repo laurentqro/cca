@@ -21,7 +21,7 @@ class SessionsTest < ApplicationSystemTestCase
 
     click_button 'Se connecter'
 
-    assert_text 'Identifiant ou mot de passe incorrect'
+    assert_text 'Email ou mot de passe incorrect'
   end
 
   test "logged in user who visits the log in page is taken to the homepage" do
