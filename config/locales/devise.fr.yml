@@ -2,7 +2,7 @@
 
 fr:
   devise:
-    already_have_an_account: "Vous avez deja un compte ?"
+    already_have_an_account: "Vous avez déjà un compte ?"
     remember_me: "retenir mes identifiants pour mes prochaines connexions"
     submit: "Valider"
     sign_in: "Se connecter"
@@ -10,6 +10,7 @@ fr:
     forgot_your_password: "Mot de passe oublié ?"
     characters_minimum: "caractères minimum"
     password_confirmation: "Confirmer votre mot de passe"
+    send_me_reset_password_instructions:  "Envoyez-moi les instructions pour réinitialiser mon mot de passe"
     confirmations:
       confirmed: "Votre compte a été validé."
       send_instructions: "Vous allez recevoir les instructions nécessaires à la confirmation de votre compte dans quelques minutes."
