@@ -10,8 +10,4 @@
   <% if current_user == @user %>
     <%= link_to 'Editer', edit_user_registration_path, class: "button" %>
   <% end %>
-
-  <% if allow_action? :users, :destroy %>
-    <%= link_to 'Supprimer ce compte', @user, method: :delete, class: "button is-danger" %>
-  <% end %>
 </div>
