@@ -39,15 +39,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
     assert_text "Accès non autorisé"
   end
 
-  test 'partner can only edit his own profile' do
-    user = users(:one)
-    other_user = users(:two)
-    sign_in_as(user)
-    visit edit_user_url(other_user)
-
-    assert_text "Accès non autorisé"
-  end
-
   test 'partner cannot create or delete project assignments' do
     project = projects(:one)
     user = users(:one)
@@ -81,17 +72,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
 
     assert_text "#{user.full_name}"
     assert_text "#{other_user.full_name}"
-  end
-
-  test 'employee can only edit his own profile' do
-    user = users(:one)
-    user.employee!
-    sign_in_as(user)
-
-    other_user = users(:two)
-    visit edit_user_url(other_user)
-
-    assert_text "Accès non autorisé"
   end
 
   test 'employee can view all projects' do
