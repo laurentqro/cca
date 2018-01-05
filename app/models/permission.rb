@@ -9,6 +9,7 @@ class Permission
       allow_action :users,    :show
       allow_action :projects, :index
       allow_action 'users/sessions', :destroy
+      allow_action 'users/registrations', [:edit, :update]
 
       if user.partner?
         allow_action :projects, :index

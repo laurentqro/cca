@@ -5,14 +5,16 @@ class UserTest < ActiveSupport::TestCase
     permission = Permission.new(nil)
     assert permission.allow_action?('users/sessions', :new)
     assert permission.allow_action?('users/sessions', :create)
+    assert permission.allow_action?('users/registrations', :new)
+    assert permission.allow_action?('users/registrations', :create)
   end
 
   test 'any logged in user permissions' do
     user = users(:one)
     permission = Permission.new(user)
 
-    assert permission.allow_action?('users/registrations', :new)
-    assert permission.allow_action?('users/registrations', :create)
+    assert permission.allow_action?('users/registrations', :edit)
+    assert permission.allow_action?('users/registrations', :update)
     assert permission.allow_action?('users/sessions', :destroy)
   end
 
