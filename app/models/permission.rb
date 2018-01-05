@@ -10,6 +10,7 @@ class Permission
       allow_action :projects, :index
       allow_action 'users/sessions', :destroy
       allow_action 'users/registrations', [:edit, :update]
+      allow_action 'activities', :index
 
       if user.partner?
         allow_action :projects, :index

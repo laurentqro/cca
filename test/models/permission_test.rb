@@ -33,6 +33,9 @@ class UserTest < ActiveSupport::TestCase
     user = users(:one)
     permission = Permission.new(user)
 
+    # can visit activities page (home) - avoids redirect loop after sign in
+    assert permission.allow_action?('activities', :index)
+
     # can visit edit a profile page
     assert permission.allow_action?('users/registrations', :edit)
 
