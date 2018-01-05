@@ -7,8 +7,6 @@
   <p>Ville: <%= @user.city %></p>
   <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
 
-  <%= console %>
-
   <% if current_user == @user %>
     <%= link_to 'Editer', edit_user_registration_path, class: "button" %>
   <% end %>
