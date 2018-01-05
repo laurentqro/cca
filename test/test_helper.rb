@@ -13,9 +13,9 @@ class ActiveSupport::TestCase
   end
 
   def sign_in_as(user)
-    visit new_session_url
-    fill_in 'session[identifier]', with: user.username
-    fill_in 'session[password]', with: 'password'
-    click_button 'Connexion'
+    visit new_user_session_url
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: 'password'
+    click_button 'Se connecter'
   end
 end

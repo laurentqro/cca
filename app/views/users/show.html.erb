@@ -6,12 +6,4 @@
   <p>Entreprise: <%= @user.company %></p>
   <p>Ville: <%= @user.city %></p>
   <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
-
-  <% if allow_action? :users, :edit %>
-    <%= link_to 'Editer', edit_user_path(@user), class: "button" %>
-  <% end %>
-
-  <% if allow_action? :users, :destroy %>
-    <%= link_to 'Supprimer ce compte', @user, method: :delete, class: "button is-danger" %>
-  <% end %>
 </div>

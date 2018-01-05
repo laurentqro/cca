@@ -1,13 +1,6 @@
 require "application_system_test_case"
 
 class UserPermissionsTest < ApplicationSystemTestCase
-  test 'partner cannot create a new user' do
-    sign_in_as(users(:one))
-    visit new_user_url
-
-    assert_text "Accès non autorisé"
-  end
-
   test 'partner can only access a project he is assigned to' do
     sign_in_as(users(:one))
     project = projects(:one)
@@ -35,15 +28,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
     user = users(:one)
     sign_in_as(user)
     visit users_url
-
-    assert_text "Accès non autorisé"
-  end
-
-  test 'partner can only edit his own profile' do
-    user = users(:one)
-    other_user = users(:two)
-    sign_in_as(user)
-    visit edit_user_url(other_user)
 
     assert_text "Accès non autorisé"
   end
@@ -81,17 +65,6 @@ class UserPermissionsTest < ApplicationSystemTestCase
 
     assert_text "#{user.full_name}"
     assert_text "#{other_user.full_name}"
-  end
-
-  test 'employee can only edit his own profile' do
-    user = users(:one)
-    user.employee!
-    sign_in_as(user)
-
-    other_user = users(:two)
-    visit edit_user_url(other_user)
-
-    assert_text "Accès non autorisé"
   end
 
   test 'employee can view all projects' do

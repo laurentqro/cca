@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  include SessionsHelper
-  before_action :store_location!
   before_action :authenticate_user!
   before_action :authorize
 
@@ -11,21 +9,7 @@ class ApplicationController < ActionController::Base
   delegate :allow_param?, to: :current_permission
   helper_method :allow_param?
 
-  private
-
-  def authenticate_user!
-    redirect_to new_session_url unless logged_in?
-  end
-
-  def store_location!
-    session['return_to'] = request.fullpath if store_location?
-  end
-
-  def store_location?
-    return false if request.fullpath =~ /\/connexion/
-    return false if request.fullpath =~ /\/deconnexion/
-    true
-  end
+  protected
 
   def current_permission
     @current_permission ||= Permission.new(current_user)

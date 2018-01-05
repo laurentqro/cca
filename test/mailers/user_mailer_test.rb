@@ -16,6 +16,6 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal [user.email], email.to
     assert_equal 'Bienvenue sur CCA', email.subject
     assert_includes email.html_part.body.to_s, user.username
-    assert_includes email.html_part.body.to_s, "#{Rails.application.secrets[:host]}/connexion"
+    assert_includes email.html_part.body.to_s, "#{Rails.application.secrets[:host]}/auth/connexion"
   end
 end

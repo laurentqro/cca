@@ -1,9 +1,10 @@
 <section class="hero is-dark is-small">
   <div class="hero-body">
     <div class="navbar-end">
-      <% if logged_in? %>
-        <%= link_to current_user.full_name, user_url(current_user), class: "navbar-item" %>
-        <%= link_to 'Déconnexion', session_url, method: :delete, class: "navbar-item" %>
+      <% if current_user.present? %>
+        <p class="navbar-item">Bonjour <%= current_user.first_name %></p>
+        <%= link_to "Editer mon profil", edit_user_registration_url, class: "navbar-item" %>
+        <%= link_to 'Déconnexion', destroy_user_session_url, method: :delete, class: "navbar-item" %>
       <% end %>
     </div>
 

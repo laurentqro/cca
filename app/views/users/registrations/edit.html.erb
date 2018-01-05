@@ -1,0 +1,82 @@
+<h2 class="title is-2">Editer profil</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |form| %>
+  <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= form.label :first_name, 'Prénom', class: "label" %>
+      <div class="control">
+        <%= form.text_field :first_name, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :last_name, 'Nom', class: "label" %>
+      <div class="control">
+        <%= form.text_field :last_name, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :company, 'Entreprise', class: "label" %>
+      <div class="control">
+        <%= form.text_field :company, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :city, 'Ville', class: "label" %>
+      <div class="control">
+        <%= form.text_field :city, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :username, "Nom d'utilisateur", class: "label" %>
+      <div class="control">
+        <%= form.text_field :username, class: "input" %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= form.label :email, class: "label" %>
+      <div class="control">
+        <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
+      </div>
+    </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :password, class: "label" %>
+    <p>(laissez vide si vous ne souhaitez pas le modifier)</p>
+    <% if @minimum_password_length %>
+      <p><%= @minimum_password_length %> <%= t("devise.characters_minimum") %></p>
+    <% end %>
+    <div class="control">
+      <%= form.password_field :password, autocomplete: "off", class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :password_confirmation, t("devise.password_confirmation"), class: "label" %>
+    <p>(laissez vide si vous ne souhaitez pas le modifier)</p>
+    <div class="control">
+      <%= form.password_field :password_confirmation, autocomplete: "off", class: "input" %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= form.label :current_password, "Mot de passe actuel", class: "label" %>
+      <p>(nous avons besoin de votre mot de passe actuel pour confirmer vos modifications)</p>
+      <%= form.password_field :current_password, autocomplete: "off", class: "input" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Valider", class: "button" %>
+  </div>
+<% end %>
