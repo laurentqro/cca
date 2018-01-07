@@ -24,7 +24,7 @@ class SessionsTest < ApplicationSystemTestCase
     assert_text 'Email ou mot de passe incorrect'
   end
 
-  test "logged in user who visits the log in page is taken to the homepage" do
+  test 'logged in user who visits the log in page is taken to the homepage' do
     visit new_user_session_url
 
     fill_in 'user[email]', with: users(:one).email
@@ -37,7 +37,7 @@ class SessionsTest < ApplicationSystemTestCase
     assert_current_path root_path
   end
 
-  test "user directed to the page he intended to visit before being asked to sign in" do
+  test 'user directed to the page he intended to visit before being asked to sign in' do
     visit projects_path
     assert_current_path new_user_session_path
 
@@ -47,5 +47,20 @@ class SessionsTest < ApplicationSystemTestCase
     click_button 'Se connecter'
 
     assert_current_path projects_path
+  end
+
+  test 'inactive user account is not authorised to sign in' do
+    user = users(:one)
+    user.update(active: false)
+
+    visit new_user_session_url
+
+    fill_in 'user[email]', with: user.email
+    fill_in 'user[password]', with: 'password'
+
+    click_button 'Se connecter'
+
+    assert_current_path new_user_session_path
+    assert_text %{Votre compte n'est pas activé. Si vous pensez que c'est une erreur, contactez l'administrateur.}
   end
 end
