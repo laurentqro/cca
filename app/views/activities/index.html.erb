@@ -1,9 +1,11 @@
 <h1 class="title is-1">Activités récentes</h1>
 
 <% if @activities.exists? %>
+  <ul>
   <% @activities.each do |activity| %>
-    <%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %>
+    <li><%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %></li>
   <% end %>
+  </ul>
 <% else %>
   <p>Aucune activité.</p>
 <% end %>
