@@ -63,4 +63,17 @@ class SessionsTest < ApplicationSystemTestCase
     assert_current_path new_user_session_path
     assert_text %{Votre compte n'est pas activé. Si vous pensez que c'est une erreur, contactez l'administrateur.}
   end
+
+  test 'logged in user is shown his user privilege group' do
+    visit new_user_session_url
+
+    fill_in 'user[email]', with: users(:one).email
+    fill_in 'user[password]', with: 'password'
+
+    click_button 'Se connecter'
+
+    visit new_user_session_url
+
+    assert_text "Partenaire"
+  end
 end
