@@ -32,6 +32,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def account_status
+    self.active? ? "actif" : "inactif"
+  end
+
   def active_for_authentication?
     super && self.active?
   end

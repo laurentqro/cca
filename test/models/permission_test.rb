@@ -82,5 +82,14 @@ class UserTest < ActiveSupport::TestCase
 
     # can view the archives
     assert permission.allow_action?(:archives, :index)
+
+    # can view the user edit page
+    assert permission.allow_action?(:users, :edit)
+
+    # can update a user
+    assert permission.allow_action?(:users, :edit)
+
+    # can mark a partner as active/inactive
+    assert permission.allow_param?(:user, :active)
   end
 end

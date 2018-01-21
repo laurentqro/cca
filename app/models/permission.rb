@@ -23,7 +23,8 @@ class Permission
         allow_action :archives,    :index
         allow_action :assignments, [:create, :destroy]
         allow_action :projects,    [:index, :show]
-        allow_action :users,       [:index, :show]
+        allow_action :users,       [:index, :show, :edit, :update]
+        allow_param :user,         [:active]
       end
     end
   end
