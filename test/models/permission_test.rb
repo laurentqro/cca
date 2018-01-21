@@ -64,14 +64,13 @@ class UserTest < ActiveSupport::TestCase
   test 'employee permissions' do
     user = users(:one)
     user.employee!
-    any_project = projects(:one)
-
     permission = Permission.new(user)
 
     # can view a list of all projects
     assert permission.allow_action?(:projects, :index)
 
     # can view any project
+    any_project = projects(:one)
     assert permission.allow_action?(:projects, :show, any_project)
 
     # can assign a user to a project
@@ -83,11 +82,10 @@ class UserTest < ActiveSupport::TestCase
     # can view the archives
     assert permission.allow_action?(:archives, :index)
 
-    # can view the user edit page
-    assert permission.allow_action?(:users, :edit)
-
-    # can update a user
-    assert permission.allow_action?(:users, :edit)
+    # can only update a partner
+    assert permission.allow_action?(:users, :edit, users(:partner))
+    assert !permission.allow_action?(:users, :edit, users(:employee))
+    assert !permission.allow_action?(:users, :edit, users(:admin))
 
     # can mark a partner as active/inactive
     assert permission.allow_param?(:user, :active)

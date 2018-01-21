@@ -16,9 +16,11 @@
         <td><%= link_to user.username, user %></td>
         <td><%= user.first_name %> <%= user.last_name %></td>
         <td><%= user.email %></td>
-        <% if allow_action? :users, :edit %>
-          <td><%= link_to "Editer", edit_user_url(user), class: "button is-small" %></td>
-        <% end %>
+        <td>
+          <% if allow_action?(:users, :edit, user) %>
+            <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
