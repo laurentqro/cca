@@ -3,18 +3,29 @@
 <div class="content">
   <%= render 'controls', project: @project %>
 
-  <ul class="folders-list">
-    <% @project.folders.roots.each do |folder| %>
-      <li class="folders-list__folder"><%= link_to folder.name, project_folder_path(@project, folder) %></li>
-    <% end %>
-  </ul>
+  <hr />
+
+  <table class="table">
+    <tbody>
+      <% @project.folders.roots.each do |folder| %>
+        <tr>
+          <td class="is-narrow">
+            <span class="icon">
+              <i class="far fa-folder"></i>
+            </span>
+          </td>
+          <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 
 <% if allow_action? :folders, :create %>
   <hr />
 
   <div class="content">
-    <h2 class="title is-2">Créer un nouveau dossier</h2>
+    <h3 class="title is-3">Créer un nouveau dossier</h3>
 
     <%= form_with(model: [@project, @folder], local: true) do |f| %>
       <% if @folder.errors.any? %>
