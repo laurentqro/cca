@@ -24,7 +24,7 @@ class UserRegistrationsTest < ApplicationSystemTestCase
     sign_in_as(user)
 
     visit edit_user_registration_url
-    fill_in 'user[username]', with: 'jontargaryen'
+    fill_in 'user[city]', with: 'Westeros'
     fill_in 'user[current_password]', with: 'password'
     click_on 'Valider'
 
