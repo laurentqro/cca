@@ -1,18 +1,53 @@
-<h1 class="title is-1">Membres du projet '<%= @project.name %>'</h1>
+<h1 class="title is-3">Gestion des membres du projet '<%= @project.name %>'</h1>
 
-<div class="content">
-  <ul class='assigned'>
-    <%= render @project.assignments %>
-  </ul>
+  <div class="columns">
+    <div class="column">
+      <h2 class="title is-4">Non-membres</h1>
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Entreprise</th>
+            <th></th>
+          </tr>
+        </thead>
 
-  <h2 class="title is-2">Assigner des utilisateurs a ce projet</h2>
+        <tbody>
+          <% User.unassigned_to_project(@project.id).each do |user| %>
+            <tr>
+              <td><%= link_to user.full_name, user %></td>
+              <td><%= user.company %></td>
+              <td>
+                <%= button_to 'ajouter', [@project, Assignment.new], params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true, id: "add_#{dom_id(user)}", class: "button is-small is-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
-  <% User.unassigned_to_project(@project.id).each do |user| %>
-    <ul class='unassigned'>
-      <li>
-        <%= button_to 'ajouter', [@project, Assignment.new], params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true, id: "add_#{dom_id(user)}", class: "button is-small is-success" %>
-        <%= user.first_name %> <%= user.last_name %>
-      </li>
-    </ul>
-  <% end %>
-</div>
+    <div class="column">
+      <h2 class="title is-4">Membres</h1>
+      <table class="table is-fullwidth is-hoverable">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Entreprise</th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @project.assignments.each do |assignment| %>
+            <tr>
+              <td><%= link_to assignment.user.full_name, assignment.user %></td>
+              <td><%= assignment.user.company %></td>
+              <td>
+                <%= button_to 'retirer', project_assignment_url(assignment.project, assignment), remote: true, method: :delete, id: "remove_#{dom_id(assignment.user)}", class: "button is-small is-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
