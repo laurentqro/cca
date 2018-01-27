@@ -3,7 +3,6 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   test "should validate all fields have been filled in" do
     user = User.new
-    user.save
     user.valid?
 
     attributes = [:username, :first_name, :last_name, :email, :city]
@@ -11,6 +10,13 @@ class UserTest < ActiveSupport::TestCase
     attributes.each do |attribute|
       assert_includes(user.errors[attribute], "doit être rempli(e)")
     end
+  end
+
+  test "should validate the presence of a company" do
+    user = User.new
+    user.valid?
+
+    assert_includes(user.errors[:company], "doit exister")
   end
 
   test "username is unique" do
