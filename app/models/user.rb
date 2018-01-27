@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  belongs_to :company
   has_many :assignments
   has_many :projects, through: :assignments
   has_many :activities
@@ -14,7 +15,7 @@ class User < ApplicationRecord
             format: { with: VALID_EMAIL_REGEX }
 
   validates :username, uniqueness: true, presence: true
-  validates :first_name, :last_name, :company, :city, presence: true
+  validates :first_name, :last_name, :city, presence: true
 
   enum group: [ :partner, :employee, :admin ]
 

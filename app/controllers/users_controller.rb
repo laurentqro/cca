@@ -28,7 +28,7 @@ class UsersController < ApplicationController
                                  :email,
                                  :first_name,
                                  :last_name,
-                                 :company,
+                                 :company_id,
                                  :city,
                                  :active,
                                  :group)

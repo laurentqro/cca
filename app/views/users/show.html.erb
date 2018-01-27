@@ -5,6 +5,6 @@
   <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
   <p>Nom d'utilisateur: <%= @user.username %></p>
   <p>Email: <%= @user.email %></p>
-  <p>Entreprise: <%= @user.company %></p>
+  <p>Entreprise: <%= @user.company.name %></p>
   <p>Ville: <%= @user.city %></p>
 </div>

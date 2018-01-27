@@ -53,18 +53,20 @@
 
   <% if allow_param? :user, :email %>
     <div class="field">
+      <%= form.label :email, class: "label" %>
       <div class="control">
-        <%= form.label :email, class: "label" %>
         <%= form.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
       </div>
     </div>
   <% end %>
 
-  <% if allow_param? :user, :company %>
+  <% if allow_param? :user, :company_id %>
     <div class="field">
-      <%= form.label :company, 'Entreprise', class: "label" %>
+      <%= form.label :company_id, "Entreprise", class: "label" %>
       <div class="control">
-        <%= form.text_field :company, class: "input" %>
+        <div class="select">
+          <%= collection_select(:user, :company_id, Company.all, :id, :name) %>
+        </div>
       </div>
     </div>
   <% end %>

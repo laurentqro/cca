@@ -9,7 +9,6 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
       email: 'user@email.com',
       first_name: 'First Name',
       last_name: 'Last Name',
-      company: 'Company',
       city: 'City'
     }
 

@@ -6,7 +6,7 @@ class UserTest < ActiveSupport::TestCase
     user.save
     user.valid?
 
-    attributes = [:username, :first_name, :last_name, :email, :company, :city]
+    attributes = [:username, :first_name, :last_name, :email, :city]
 
     attributes.each do |attribute|
       assert_includes(user.errors[attribute], "doit être rempli(e)")
