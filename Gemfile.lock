@@ -112,6 +112,9 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise_invitable (1.7.2)
+      actionmailer (>= 4.1.0)
+      devise (>= 4.0.0)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.2.1)
@@ -308,6 +311,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise (~> 4.4)
+  devise_invitable (~> 1.7.0)
   dotenv-rails (~> 2.2.1)
   jbuilder (~> 2.5)
   jquery-fileupload-rails (= 0.4)
