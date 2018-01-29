@@ -13,7 +13,7 @@ fr:
         company: Groupe
         city: Ville
         group:
-          partner: Partenaire
+          partner: Utilisateur
           employee: Collaborateur(trice)
           admin: Administrateur
       folder:

@@ -74,6 +74,6 @@ class SessionsTest < ApplicationSystemTestCase
 
     visit new_user_session_url
 
-    assert_text "Partenaire"
+    assert_text "Utilisateur"
   end
 end
