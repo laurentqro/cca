@@ -14,7 +14,7 @@ fr:
         city: Ville
         group:
           partner: Partenaire
-          employee: Employé(e)
+          employee: Collaborateur(trice)
           admin: Administrateur
       folder:
         name: Nom
@@ -23,7 +23,7 @@ fr:
         record_invalid: 'La validation a échoué : %{errors}'
         restrict_dependent_destroy:
           has_one: "Vous ne pouvez pas supprimer l'enregistrement car un(e) %{record} dépendant(e) existe"
-          has_many: "Vous ne pouvez pas supprimer l'enregistrement parce que les %{record} dépendants existent" 
+          has_many: "Vous ne pouvez pas supprimer l'enregistrement parce que les %{record} dépendants existent"
   date:
     abbr_day_names:
     - dim
