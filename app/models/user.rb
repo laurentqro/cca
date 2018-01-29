@@ -33,6 +33,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def company_name
+    company.name
+  end
+
   def account_status
     self.active? ? "actif" : "inactif"
   end

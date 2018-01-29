@@ -16,7 +16,7 @@
           <% User.unassigned_to_project(@project.id).each do |user| %>
             <tr>
               <td><%= link_to user.full_name, user %></td>
-              <td><%= user.company %></td>
+              <td><%= user.company_name %></td>
               <td>
                 <%= button_to 'ajouter', [@project, Assignment.new], params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true, id: "add_#{dom_id(user)}", class: "button is-small is-success" %>
               </td>
@@ -41,7 +41,7 @@
           <% @project.assignments.each do |assignment| %>
             <tr>
               <td><%= link_to assignment.user.full_name, assignment.user %></td>
-              <td><%= assignment.user.company %></td>
+              <td><%= assignment.user.company_name %></td>
               <td>
                 <%= button_to 'retirer', project_assignment_url(assignment.project, assignment), remote: true, method: :delete, id: "remove_#{dom_id(assignment.user)}", class: "button is-small is-danger" %>
               </td>

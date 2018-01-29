@@ -21,6 +21,15 @@
     </div>
 
     <div class="field">
+      <%= form.label :company_id, "Entreprise", class: "label" %>
+      <div class="control">
+        <div class="select">
+          <%= collection_select(:user, :company_id, Company.all, :id, :name) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
       <%= form.label :city, 'Ville', class: "label" %>
       <div class="control">
         <%= form.text_field :city, class: "input" %>
