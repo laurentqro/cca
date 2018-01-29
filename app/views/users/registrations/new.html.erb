@@ -21,7 +21,7 @@
     </div>
 
     <div class="field">
-      <%= form.label :company_id, "Entreprise", class: "label" %>
+      <%= form.label :company_id, "Groupe", class: "label" %>
       <div class="control">
         <div class="select">
           <%= collection_select(:user, :company_id, Company.all, :id, :name) %>

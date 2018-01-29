@@ -10,7 +10,7 @@ fr:
         password: Mot de passe
         first_name: Prénom
         last_name: Nom
-        company: Entreprise
+        company: Groupe
         city: Ville
         group:
           partner: Partenaire
