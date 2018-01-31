@@ -32,4 +32,5 @@ Rails.application.routes.draw do
 
   resources :documents
   resources :archives, only: [:index, :create, :destroy]
+  resources :companies, except: [:destroy]
 end

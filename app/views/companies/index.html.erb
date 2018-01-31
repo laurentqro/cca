@@ -1,0 +1,30 @@
+<h1 class="title is-1">Groupes</h1>
+
+<div class="content">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td>
+            <%= link_to company.name, company %>
+          </td>
+
+          <td>
+            <%= render 'controls', company: company %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if allow_action? :companies, :edit %>
+    <%= link_to 'Créer un nouveau groupe', new_company_url, class:"button is-primary" %>
+  <% end %>
+</div>

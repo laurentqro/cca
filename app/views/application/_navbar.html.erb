@@ -10,8 +10,12 @@
             <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
           <% end %>
 
+          <% if allow_action? :companies, :index %>
+            <%= link_to 'Groupes', companies_url, class: "navbar-item" %>
+          <% end %>
+
           <% if allow_action? :projects, :index %>
-            <%= link_to 'Projets actifs', projects_url, class: "navbar-item" %>
+            <%= link_to 'Projets', projects_url, class: "navbar-item" %>
           <% end %>
 
           <% if allow_action? :archives, :index %>
