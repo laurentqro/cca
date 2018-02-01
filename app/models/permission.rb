@@ -30,6 +30,7 @@ class Permission
 
       if user.employee?
         allow_action :folders,     :show
+        allow_action :documents,   :create
         allow_action :companies,   [:index, :show, :new, :create, :edit, :update]
         allow_action :archives,    :index
         allow_action :assignments, [:create, :destroy]

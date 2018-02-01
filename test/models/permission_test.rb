@@ -122,5 +122,8 @@ class UserTest < ActiveSupport::TestCase
 
     # can view a folder
     assert permission.allow_action?(:folders, :show)
+
+    # can upload a document to any folder
+    assert permission.allow_action?(:documents, :create)
   end
 end
