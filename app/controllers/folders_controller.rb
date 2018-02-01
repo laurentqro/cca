@@ -23,4 +23,8 @@ class FoldersController < ApplicationController
   def folder_params
     params.require(:folder).permit(:name)
   end
+
+  def current_resource
+    @current_resource ||= Folder.find(params[:id]) if params[:id]
+  end
 end

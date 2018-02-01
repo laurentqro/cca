@@ -48,9 +48,9 @@ class UserTest < ActiveSupport::TestCase
 
   test 'partner permissions' do
     user = users(:one)
-    user_project = projects(:one)
+    user_project = projects(:pyramid)
     user_project.users << user
-    other_project = projects(:two)
+    other_project = projects(:colossus)
 
     permission = Permission.new(user)
 
@@ -59,6 +59,14 @@ class UserTest < ActiveSupport::TestCase
 
     # cannot view another user's project
     assert !permission.allow_action?(:projects, :show, other_project)
+
+    # can view folders inside a project he is assigned to
+    folder = user_project.folders.first
+    assert permission.allow_action?(:folders, :show, folder)
+
+    # cannot view folders inside a project he is not assigned to
+    other_folder = other_project.folders.first
+    assert !permission.allow_action?(:folders, :show, other_folder)
   end
 
   test 'employee permissions' do
@@ -70,7 +78,7 @@ class UserTest < ActiveSupport::TestCase
     assert permission.allow_action?(:projects, :index)
 
     # can view any project
-    any_project = projects(:one)
+    any_project = projects(:pyramid)
     assert permission.allow_action?(:projects, :show, any_project)
 
     # can assign a user to a project

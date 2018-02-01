@@ -14,8 +14,13 @@ class Permission
 
       if user.partner?
         allow_action :projects, :index
+
         allow_action :projects, :show do |project|
           project.user_ids.include?(user.id)
+        end
+
+        allow_action :folders, :show do |folder|
+          user.folder_ids.include?(folder.id)
         end
       end
 
