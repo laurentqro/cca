@@ -111,5 +111,8 @@ class UserTest < ActiveSupport::TestCase
     # can edit a group
     assert permission.allow_action?(:companies, :edit)
     assert permission.allow_action?(:companies, :update)
+
+    # can view a folder
+    assert permission.allow_action?(:folders, :show)
   end
 end
