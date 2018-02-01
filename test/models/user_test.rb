@@ -5,7 +5,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new
     user.valid?
 
-    attributes = [:username, :first_name, :last_name, :email, :city]
+    attributes = [:first_name, :last_name, :email, :city]
 
     attributes.each do |attribute|
       assert_includes(user.errors[attribute], "doit être rempli(e)")
@@ -17,15 +17,6 @@ class UserTest < ActiveSupport::TestCase
     user.valid?
 
     assert_includes(user.errors[:company], "doit exister")
-  end
-
-  test "username is unique" do
-    user_1 = users(:one)
-    user_2 = User.new(user_1.attributes)
-
-    user_2.valid?
-
-    assert_includes(user_2.errors[:username], "n'est pas disponible")
   end
 
   test "email is unique" do

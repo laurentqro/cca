@@ -14,14 +14,9 @@ class User < ApplicationRecord
             uniqueness: { case_sensitive: false },
             format: { with: VALID_EMAIL_REGEX }
 
-  validates :username, uniqueness: true, presence: true
   validates :first_name, :last_name, :city, presence: true
 
   enum group: [ :partner, :employee, :admin ]
-
-  def self.fetch_by_username_or_email(identifier)
-    User.where('username LIKE :identifier OR email LIKE :identifier', identifier: identifier).first
-  end
 
   def self.unassigned_to_project(project_id)
     User

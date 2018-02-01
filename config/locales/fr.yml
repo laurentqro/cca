@@ -6,7 +6,6 @@ fr:
       folder: Dossier
     attributes:
       user:
-        username: Nom d'utilisateur
         password: Mot de passe
         first_name: Prénom
         last_name: Nom

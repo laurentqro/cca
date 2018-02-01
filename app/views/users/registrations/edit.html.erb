@@ -24,15 +24,6 @@
       </div>
     </div>
 
-    <% if allow_param? :user, :username %>
-      <div class="field">
-        <%= form.label :username, "Nom d'utilisateur", class: "label" %>
-        <div class="control">
-          <%= form.text_field :username, class: "input" %>
-        </div>
-      </div>
-    <% end %>
-
     <div class="field">
       <%= form.label :email, class: "label" %>
       <div class="control">

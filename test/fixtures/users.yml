@@ -1,7 +1,6 @@
 ---
 one:
   email: jon@got.com
-  username: jon
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Jon
   last_name: Snow
@@ -10,7 +9,6 @@ one:
 
 two:
   email: denaerys@got.com
-  username: denaerys
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Denaerys
   last_name: Targaryen
@@ -19,7 +17,6 @@ two:
 
 partner:
   email: mike@got.com
-  username: mike
   group: partner
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Mike
@@ -29,7 +26,6 @@ partner:
 
 employee:
   email: bob@got.com
-  username: bob
   group: employee
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Bob
@@ -39,7 +35,6 @@ employee:
 
 admin:
   email: christian@example.com
-  username: christianc
   group: admin
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Christian

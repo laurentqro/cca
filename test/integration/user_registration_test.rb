@@ -6,9 +6,8 @@ class UserRegistrationTest < ActionDispatch::IntegrationTest
     company = companies(:cca)
 
     user_params = {
-      username: 'username',
-      password: 'password',
       email: 'user@email.com',
+      password: 'password',
       company_id: company.id,
       first_name: 'First Name',
       last_name: 'Last Name',
