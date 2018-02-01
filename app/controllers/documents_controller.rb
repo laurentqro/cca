@@ -1,12 +1,9 @@
 class DocumentsController < ApplicationController
   def create
-    folder = Folder.find(document_params[:folder_id])
-    @document = folder.documents.build(document_params)
-
     respond_to do |format|
-      if @document.save
+      if @current_resource.save
         current_user.activities.create(action: "create",
-                                       trackable: @document,
+                                       trackable: @current_resource,
                                        project_id: folder.project_id,
                                        folder_id: folder.id)
         format.js
@@ -18,5 +15,13 @@ class DocumentsController < ApplicationController
 
   def document_params
     params.require(:document).permit(:file, :folder_id)
+  end
+
+  def current_resource
+    @current_resource ||= folder.documents.build(document_params)
+  end
+
+  def folder
+    @folder ||= Folder.find(document_params[:folder_id])
   end
 end

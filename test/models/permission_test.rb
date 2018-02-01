@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
     # can view the login page
     assert permission.allow_action?('users/sessions', :new)
 
-    #can login
+    # can login
     assert permission.allow_action?('users/sessions', :create)
 
     # can view the sign up page
@@ -67,6 +67,14 @@ class UserTest < ActiveSupport::TestCase
     # cannot view folders inside a project he is not assigned to
     other_folder = other_project.folders.first
     assert !permission.allow_action?(:folders, :show, other_folder)
+
+    # can upload a document to a folder inside a project he is assigned to
+    document = documents(:pyramid_plan)
+    assert permission.allow_action?(:documents, :create, document)
+
+    # cannot upload a document to a folder outside a project he is assigned to
+    document = documents(:colossus_plan)
+    assert !permission.allow_action?(:documents, :create, document)
   end
 
   test 'employee permissions' do

@@ -22,6 +22,10 @@ class Permission
         allow_action :folders, :show do |folder|
           user.folder_ids.include?(folder.id)
         end
+
+        allow_action :documents, :create do |document|
+          user.folder_ids.include?(document.folder_id)
+        end
       end
 
       if user.employee?

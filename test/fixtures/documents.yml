@@ -1,0 +1,6 @@
+---
+pyramid_plan:
+  folder: folder_one
+
+colossus_plan:
+  folder: folder_two
