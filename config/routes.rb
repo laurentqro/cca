@@ -24,6 +24,11 @@ Rails.application.routes.draw do
     path_names: { new: 'creer', edit: 'editer' },
     only: [:index, :show, :edit, :update]
 
+  resources :companies,
+    path: 'groupes',
+    path_names: { new: 'creer', edit: 'editer' },
+    except: :destroy
+
   resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
     resources :assignments, only: [:index, :create, :destroy], path: 'membres'
     resources :folders, path: 'dossiers'
@@ -32,5 +37,4 @@ Rails.application.routes.draw do
 
   resources :documents
   resources :archives, only: [:index, :create, :destroy]
-  resources :companies, except: [:destroy]
 end
