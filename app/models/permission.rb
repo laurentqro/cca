@@ -20,6 +20,7 @@ class Permission
       end
 
       if user.employee?
+        allow_action :companies,   [:index, :show, :new, :create, :edit, :update]
         allow_action :archives,    :index
         allow_action :assignments, [:create, :destroy]
         allow_action :projects,    [:index, :show]

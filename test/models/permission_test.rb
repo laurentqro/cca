@@ -89,5 +89,19 @@ class UserTest < ActiveSupport::TestCase
 
     # can mark a partner as active/inactive
     assert permission.allow_param?(:user, :active)
+
+    # can view the index of groups
+    assert permission.allow_action?(:companies, :index)
+
+    # can create a group
+    assert permission.allow_action?(:companies, :new)
+    assert permission.allow_action?(:companies, :create)
+
+    # can view a group
+    assert permission.allow_action?(:companies, :show)
+
+    # can edit a group
+    assert permission.allow_action?(:companies, :edit)
+    assert permission.allow_action?(:companies, :update)
   end
 end
