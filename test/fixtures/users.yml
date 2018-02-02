@@ -4,7 +4,6 @@ one:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Jon
   last_name: Snow
-  company: company_one
   city: Castle Black
 
 two:
@@ -12,7 +11,6 @@ two:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Denaerys
   last_name: Targaryen
-  company: company_one
   city: Dragonstone
 
 partner:
@@ -21,7 +19,6 @@ partner:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Mike
   last_name: Tyson
-  company: company_one
   city: New York
 
 employee:
@@ -30,7 +27,6 @@ employee:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Bob
   last_name: Smith
-  company: company_one
   city: Houston
 
 admin:
@@ -39,5 +35,4 @@ admin:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   first_name: Christian
   last_name: BigBoss
-  company: cca
   city: Monaco

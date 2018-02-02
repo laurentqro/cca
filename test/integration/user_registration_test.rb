@@ -3,12 +3,9 @@ require 'test_helper'
 class UserRegistrationTest < ActionDispatch::IntegrationTest
 
   test 'user account registration' do
-    company = companies(:cca)
-
     user_params = {
       email: 'user@email.com',
       password: 'password',
-      company_id: company.id,
       first_name: 'First Name',
       last_name: 'Last Name',
       city: 'City'

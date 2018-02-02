@@ -14,7 +14,7 @@ class ProjectsTest < ApplicationSystemTestCase
   end
 
   test 'editing a project' do
-    visit edit_project_url(projects(:one))
+    visit edit_project_url(projects(:pyramid))
     fill_in 'project[name]', with: 'The Colossus of Rhodes'
     click_on 'Valider'
 
@@ -23,14 +23,14 @@ class ProjectsTest < ApplicationSystemTestCase
   end
 
   test 'deleting a project' do
-    visit project_url(projects(:one))
+    visit project_url(projects(:pyramid))
     click_on 'Supprimer'
 
-    assert_text "Projet #{projects(:one).name} supprimé."
+    assert_text "Projet #{projects(:pyramid).name} supprimé."
   end
 
   test 'adding a project to the archives' do
-    project = projects(:one)
+    project = projects(:pyramid)
     visit project_url(project)
     click_on 'Archiver'
 
@@ -40,7 +40,7 @@ class ProjectsTest < ApplicationSystemTestCase
   end
 
   test 'removing a project from the archives' do
-    project = projects(:one)
+    project = projects(:pyramid)
     project.archived!
     visit project_url(project)
     click_on 'Désarchiver'

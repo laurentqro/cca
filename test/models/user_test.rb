@@ -12,13 +12,6 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "should validate the presence of a company" do
-    user = User.new
-    user.valid?
-
-    assert_includes(user.errors[:company], "doit exister")
-  end
-
   test "email is unique" do
     user_1 = users(:one)
     user_2 = User.new(user_1.attributes)

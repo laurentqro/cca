@@ -4,11 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :company
   has_many :assignments
   has_many :projects, through: :assignments
   has_many :activities
   has_many :folders, through: :projects
+  has_many :employments
+  has_many :companies, through: :employments
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
@@ -29,8 +30,8 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def company_name
-    company.name
+  def companies_names
+    companies.pluck(:name).join(", ")
   end
 
   def account_status

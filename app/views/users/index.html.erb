@@ -5,7 +5,7 @@
     <thead>
       <tr>
         <th>Nom</th>
-        <th>Groupe</th>
+        <th>Groupes</th>
         <th>Email</th>
         <th>Niveau d'acces</th>
         <th>Statut</th>
@@ -17,7 +17,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= link_to user.full_name, user %></td>
-          <td><%= link_to user.company_name, user.company %></td>
+          <td><%= user.companies_names %></td>
           <td><%= user.email %></td>
           <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
           <td><%= user.account_status %></td>

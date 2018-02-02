@@ -6,7 +6,7 @@ class FoldersTest < ApplicationSystemTestCase
   end
 
   test 'creating a folder' do
-    visit project_url(projects(:one))
+    visit project_url(projects(:pyramid))
     fill_in 'folder[name]', with: 'Folder name'
     click_button 'Créer'
 
@@ -15,7 +15,7 @@ class FoldersTest < ApplicationSystemTestCase
   end
 
   test 'creating a subfolder' do
-    project = projects(:one)
+    project = projects(:pyramid)
     folder = project.folders.create(name: "Foo")
 
     visit project_folder_url(project, folder)
