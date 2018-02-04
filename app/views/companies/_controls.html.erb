@@ -1,3 +1,7 @@
 <% if allow_action? :companies, :edit %>
   <%= link_to "Editer", edit_company_url(company), class: "button is-small" %>
 <% end %>
+
+<% if allow_action? :employments, :create %>
+  <%= link_to "Gérer les membres", company_employments_url(company), class: "button is-small" %>
+<% end %>
