@@ -26,6 +26,12 @@ class User < ApplicationRecord
       .where('assignments.id IS NULL')
   end
 
+  def self.unemployed_by_company(company_id)
+    User
+      .joins("LEFT OUTER JOIN employments ON employments.user_id = users.id AND employments.company_id = #{company_id}")
+      .where('employments.id IS NULL')
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
