@@ -1,29 +1,29 @@
 <nav class="tabs is-boxed">
   <ul>
-    <li>
+    <li class=<%= "is-active" if controller?("activities") %>>
       <%= link_to 'Accueil', root_url %>
     </li>
 
     <% if allow_action? :users, :index %>
-      <li>
+      <li class=<%= "is-active" if controller?("users") %>>
         <%= link_to 'Comptes utilisateurs', users_url %>
       </li>
     <% end %>
 
     <% if allow_action? :companies, :index %>
-      <li>
+      <li class=<%= "is-active" if controller?("companies", "employments") %>>
         <%= link_to 'Groupes', companies_url %>
       </li>
     <% end %>
 
     <% if allow_action? :projects, :index %>
-      <li>
+      <li class=<%= "is-active" if controller?("projects", "assignments") %>>
         <%= link_to 'Projets', projects_url %>
       </li>
     <% end %>
 
     <% if allow_action? :archives, :index %>
-      <li>
+      <li class=<%= "is-active" if controller?("archives") %>>
         <%= link_to 'Archives', archives_url %>
       </li>
     <% end %>
