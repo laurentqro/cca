@@ -1,28 +1,31 @@
-<div class="container">
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
+<nav class="tabs is-boxed">
+  <ul>
+    <li>
+      <%= link_to 'Accueil', root_url %>
+    </li>
 
-      <div class="navbar-menu">
-        <div class="navbar-start">
-          <%= link_to 'Accueil', root_url, class: "navbar-item" %>
+    <% if allow_action? :users, :index %>
+      <li>
+        <%= link_to 'Comptes utilisateurs', users_url %>
+      </li>
+    <% end %>
 
-          <% if allow_action? :users, :index %>
-            <%= link_to 'Comptes utilisateurs', users_url, class: "navbar-item" %>
-          <% end %>
+    <% if allow_action? :companies, :index %>
+      <li>
+        <%= link_to 'Groupes', companies_url %>
+      </li>
+    <% end %>
 
-          <% if allow_action? :companies, :index %>
-            <%= link_to 'Groupes', companies_url, class: "navbar-item" %>
-          <% end %>
+    <% if allow_action? :projects, :index %>
+      <li>
+        <%= link_to 'Projets', projects_url %>
+      </li>
+    <% end %>
 
-          <% if allow_action? :projects, :index %>
-            <%= link_to 'Projets', projects_url, class: "navbar-item" %>
-          <% end %>
-
-          <% if allow_action? :archives, :index %>
-            <%= link_to 'Archives', archives_url, class: "navbar-item" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </nav>
-</div>
+    <% if allow_action? :archives, :index %>
+      <li>
+        <%= link_to 'Archives', archives_url %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

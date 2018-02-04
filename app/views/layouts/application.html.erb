@@ -13,15 +13,9 @@
 
   <body>
     <%= render 'header' %>
-    <%= render 'navbar' if current_user.present? %>
-
-    <section class="section">
-      <div class="container">
-        <%= tag.p notice, id: 'notice' %>
-        <%= tag.p alert, id: 'alert' %>
-        <%= yield %>
-      </div>
-    </section>
+    <%= tag.p notice, id: 'notice' %>
+    <%= tag.p alert, id: 'alert' %>
+    <%= yield %>
 
     <%= render partial: 'footer' %>
   </body>
