@@ -1,122 +1,126 @@
-<% unless @folder.root? %>
-  <nav class="breadcrumb has-succeeds-separator">
-    <ul>
-      <% @folder.ancestors.each do |folder| %>
-        <li>
-          <%= link_to folder.name, project_folder_path(@project, folder) %>
-        </li>
-      <% end %>
-      <li class="is-active">
-        <%= link_to @folder.name, project_folder_path(@project, @folder) %>
-      </li>
-    </ul>
-  </nav>
-<% end %>
-
-<h2 class="title is-2"><%= @folder.name %></h2>
-
-<div class="content">
-  <table class="table">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Nom</th>
-        <th>Déposé le</th>
-        <th>Taille</th>
-        <th>Type</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% if @folder.children.exists? %>
-        <% @folder.children.each do |folder| %>
-          <tr>
-            <td class="is-narrow">
-              <span class="icon">
-                <i class="far fa-folder"></i>
-              </span>
-            </td>
-            <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
-            <td>-</td>
-            <td>-</td>
-            <td>Dossier</td>
-          </tr>
-        <% end %>
-      <% end %>
-
-      <% if @folder.documents.exists? %>
-        <% @folder.documents.each do |document| %>
-          <tr>
-            <td class="is-narrow">
-              <span class="icon">
-                <i class="far fa-file"></i>
-              </span>
-            </td>
-            <td>
-              <%= link_to document.file.original_filename, document.file.url(download: true) %>
-            </td>
-            <td>
-              <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
-            </td>
-            <td>
-              <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
-            </td>
-            <td>
-              <%= document.file.mime_type %>
-            </td>
-          </tr>
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-
-<hr />
-
-<div class="content">
-  <h3 class="title is-3">Créer un nouveau dossier</h3>
-
-  <%= form_with(model: [@project, @subfolder], local: true) do |f| %>
-    <% if @subfolder.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
-
+<section class="section">
+  <div class="container">
+    <% unless @folder.root? %>
+      <nav class="breadcrumb has-succeeds-separator">
         <ul>
-          <% @subfolder.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+          <% @folder.ancestors.each do |folder| %>
+            <li>
+              <%= link_to folder.name, project_folder_path(@project, folder) %>
+            </li>
           <% end %>
+          <li class="is-active">
+            <%= link_to @folder.name, project_folder_path(@project, @folder) %>
+          </li>
         </ul>
-      </div>
+      </nav>
     <% end %>
 
-    <div class="field has-addons">
-      <div class="control">
-        <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
-        <%= f.hidden_field :parent_id, value: @folder.id %>
-        <%= f.hidden_field :project_id, value: @folder.project_id %>
-        <%= f.hidden_field :id, value: @folder.id %>
-      </div>
+    <h2 class="title is-2"><%= @folder.name %></h2>
 
-      <div class="control">
-        <%= f.submit 'Créer', class: "button is-primary" %>
-      </div>
+    <div class="content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Nom</th>
+            <th>Déposé le</th>
+            <th>Taille</th>
+            <th>Type</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% if @folder.children.exists? %>
+            <% @folder.children.each do |folder| %>
+              <tr>
+                <td class="is-narrow">
+                  <span class="icon">
+                    <i class="far fa-folder"></i>
+                  </span>
+                </td>
+                <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
+                <td>-</td>
+                <td>-</td>
+                <td>Dossier</td>
+              </tr>
+            <% end %>
+          <% end %>
+
+          <% if @folder.documents.exists? %>
+            <% @folder.documents.each do |document| %>
+              <tr>
+                <td class="is-narrow">
+                  <span class="icon">
+                    <i class="far fa-file"></i>
+                  </span>
+                </td>
+                <td>
+                  <%= link_to document.file.original_filename, document.file.url(download: true) %>
+                </td>
+                <td>
+                  <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
+                </td>
+                <td>
+                  <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+                </td>
+                <td>
+                  <%= document.file.mime_type %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
     </div>
-  <% end %>
-</div>
 
-<hr />
+    <hr />
 
-<div class="content">
-  <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
+    <div class="content">
+      <h3 class="title is-3">Créer un nouveau dossier</h3>
 
-  <%= form_with(model: @document, local: true) do |f| %>
-    <%= f.hidden_field :folder_id, value: @folder.id %>
-    <div class="field">
-      <div class="control">
-        <%= file_field_tag 'document[file]', multiple: true %>
-      </div>
+      <%= form_with(model: [@project, @subfolder], local: true) do |f| %>
+        <% if @subfolder.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
+
+            <ul>
+              <% @subfolder.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field has-addons">
+          <div class="control">
+            <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
+            <%= f.hidden_field :parent_id, value: @folder.id %>
+            <%= f.hidden_field :project_id, value: @folder.project_id %>
+            <%= f.hidden_field :id, value: @folder.id %>
+          </div>
+
+          <div class="control">
+            <%= f.submit 'Créer', class: "button is-primary" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
 
-<div class="js-progress-component"></div>
+    <hr />
+
+    <div class="content">
+      <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
+
+      <%= form_with(model: @document, local: true) do |f| %>
+        <%= f.hidden_field :folder_id, value: @folder.id %>
+        <div class="field">
+          <div class="control">
+            <%= file_field_tag 'document[file]', multiple: true %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="js-progress-component"></div>
+  </div>
+</section

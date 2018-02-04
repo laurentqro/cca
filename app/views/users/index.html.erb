@@ -1,33 +1,37 @@
-<h2 class="title is-2">Comptes</h2>
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2">Comptes</h2>
 
-<div class="content">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Groupes</th>
-        <th>Email</th>
-        <th>Niveau d'acces</th>
-        <th>Statut</th>
-        <th></th>
-      </tr>
-    </thead>
+    <div class="content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Groupes</th>
+            <th>Email</th>
+            <th>Niveau d'acces</th>
+            <th>Statut</th>
+            <th></th>
+          </tr>
+        </thead>
 
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= link_to user.full_name, user %></td>
-          <td><%= user.companies_names %></td>
-          <td><%= user.email %></td>
-          <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
-          <td><%= user.account_status %></td>
-          <td>
-            <% if allow_action?(:users, :edit, user) %>
-              <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.full_name, user %></td>
+              <td><%= user.companies_names %></td>
+              <td><%= user.email %></td>
+              <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
+              <td><%= user.account_status %></td>
+              <td>
+                <% if allow_action?(:users, :edit, user) %>
+                  <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section

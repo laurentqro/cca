@@ -1,9 +1,18 @@
-<%= tag.h2 @user.full_name, class: "title is-2" %>
+<section class="section">
+  <div class="container">
+    <%= tag.h2 @user.full_name, class: "title is-2" %>
 
-<div class="content">
-  <p>Statut du compte: <%= @user.account_status %></p>
-  <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
-  <p>Email: <%= @user.email %></p>
-  <p>Groupes: <%= @user.companies_names %></p>
-  <p>Ville: <%= @user.city %></p>
-</div>
+    <div class="content">
+      <p>Statut du compte: <%= @user.account_status %></p>
+      <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
+      <p>Email: <%= @user.email %></p>
+      <p>Ville: <%= @user.city %></p>
+      <p>Groupes:</p>
+      <ul>
+        <% @user.employments.each do |employment| %>
+          <li><%= link_to employment.company.name, employment.company %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</section

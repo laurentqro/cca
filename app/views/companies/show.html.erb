@@ -1,37 +1,41 @@
-<%= tag.h2 @company.name, class: "title is-2" %>
+<section class="section">
+  <div class="container">
+    <%= tag.h2 @company.name, class: "title is-2" %>
 
-<div class="content">
-  <%= render 'controls', company: @company %>
+    <div class="content">
+      <%= render 'controls', company: @company %>
 
-  <% if @company.users.any? %>
-    <hr />
+      <% if @company.users.any? %>
+        <hr />
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nom</th>
-          <th>Email</th>
-          <th>Niveau d'acces</th>
-          <th>Statut</th>
-          <th></th>
-        </tr>
-      </thead>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Niveau d'acces</th>
+              <th>Statut</th>
+              <th></th>
+            </tr>
+          </thead>
 
-      <tbody>
-        <% @company.users.each do |user| %>
-          <tr>
-            <td><%= link_to user.full_name, user %></td>
-            <td><%= user.email %></td>
-            <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
-            <td><%= user.account_status %></td>
-            <td>
-              <% if allow_action?(:users, :edit, user) %>
-                <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</div>
+          <tbody>
+            <% @company.users.each do |user| %>
+              <tr>
+                <td><%= link_to user.full_name, user %></td>
+                <td><%= user.email %></td>
+                <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
+                <td><%= user.account_status %></td>
+                <td>
+                  <% if allow_action?(:users, :edit, user) %>
+                    <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</section

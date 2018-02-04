@@ -1,30 +1,34 @@
-<h2 class="title is-2">Projets</h2>
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2">Projets</h2>
 
-<div class="content">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th></th>
-      </tr>
-    </thead>
+    <div class="content">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th></th>
+          </tr>
+        </thead>
 
-    <tbody>
-      <% @projects.each do |project| %>
-        <tr>
-          <td>
-            <%= link_to project.name, project %>
-          </td>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td>
+                <%= link_to project.name, project %>
+              </td>
 
-          <td>
-            <%= render 'controls', project: project %>
-          </td>
-        </tr>
+              <td>
+                <%= render 'controls', project: project %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <% if allow_action? :projects, :new %>
+        <%= link_to 'Créer un nouveau projet', new_project_url, class:"button is-primary" %>
       <% end %>
-    </tbody>
-  </table>
-
-  <% if allow_action? :projects, :new %>
-    <%= link_to 'Créer un nouveau projet', new_project_url, class:"button is-primary" %>
-  <% end %>
-</div>
+    </div>
+  </div>
+</section
