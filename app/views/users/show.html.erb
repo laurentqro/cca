@@ -2,17 +2,53 @@
   <div class="container">
     <%= tag.h2 @user.full_name, class: "title is-2" %>
 
-    <div class="content">
-      <p>Statut du compte: <%= @user.account_status %></p>
-      <p>Niveau d'accès: <%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
-      <p>Email: <%= @user.email %></p>
-      <p>Ville: <%= @user.city %></p>
-      <p>Groupes:</p>
-      <ul>
-        <% @user.employments.each do |employment| %>
-          <li><%= link_to employment.company.name, employment.company %></li>
-        <% end %>
-      </ul>
-    </div>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>
+            Statut du compte
+          </th>
+          <td>
+            <%= @user.account_status %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Niveau d'accès
+          </th>
+          <td>
+            <%= t "activerecord.attributes.user.group.#{@user.group}" %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Email
+          </th>
+          <td>
+            <%= @user.email %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Ville
+          </th>
+          <td>
+            <%= @user.city %>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Groupes
+          </th>
+          <td>
+            <ul>
+              <% @user.employments.each do |employment| %>
+                <li><%= link_to employment.company.name, employment.company %></li>
+              <% end %>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </section
