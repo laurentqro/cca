@@ -33,8 +33,8 @@ class Permission
         allow_action :documents,   :create
         allow_action :companies,   [:index, :show, :new, :create, :edit, :update]
         allow_action :archives,    :index
-        allow_action :assignments, [:create, :destroy]
-        allow_action :employments, [:create, :destroy]
+        allow_action :assignments, [:index, :create, :destroy]
+        allow_action :employments, [:index, :create, :destroy]
         allow_action :projects,    [:index, :show]
         allow_action :users,       [:index, :show]
         allow_action :users,       [:edit, :update] do |another_user|

@@ -92,6 +92,9 @@ class UserTest < ActiveSupport::TestCase
     # can assign a user to a project
     assert permission.allow_action?(:assignments, :create)
 
+    # can view the list of users assigned to a project
+    assert permission.allow_action?(:assignments, :index)
+
     # can unassign a user from a project
     assert permission.allow_action?(:assignments, :destroy)
 
@@ -119,6 +122,9 @@ class UserTest < ActiveSupport::TestCase
     # can edit a company
     assert permission.allow_action?(:companies, :edit)
     assert permission.allow_action?(:companies, :update)
+
+    # can view the list of users employed by a company
+    assert permission.allow_action?(:employments, :index)
 
     # can add a user to company
     assert permission.allow_action?(:employments, :create)
