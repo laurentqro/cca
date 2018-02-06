@@ -72,54 +72,58 @@
       </table>
     </div>
 
-    <hr />
+    <% if allow_action? :subfolders, :create %>
+      <hr />
 
-    <div class="content">
-      <h3 class="title is-3">Créer un nouveau dossier</h3>
+      <div class="content">
+        <h3 class="title is-3">Créer un nouveau dossier</h3>
 
-      <%= form_with(model: [@project, @subfolder], local: true) do |f| %>
-        <% if @subfolder.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
+        <%= form_with(model: [@project, @subfolder], local: true) do |f| %>
+          <% if @subfolder.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
 
-            <ul>
-              <% @subfolder.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+              <ul>
+                <% @subfolder.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field has-addons">
+            <div class="control">
+              <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
+              <%= f.hidden_field :parent_id, value: @folder.id %>
+              <%= f.hidden_field :project_id, value: @folder.project_id %>
+              <%= f.hidden_field :id, value: @folder.id %>
+            </div>
+
+            <div class="control">
+              <%= f.submit 'Créer', class: "button is-primary" %>
+            </div>
           </div>
         <% end %>
+      </div>
 
-        <div class="field has-addons">
-          <div class="control">
-            <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
-            <%= f.hidden_field :parent_id, value: @folder.id %>
-            <%= f.hidden_field :project_id, value: @folder.project_id %>
-            <%= f.hidden_field :id, value: @folder.id %>
+      <hr />
+    <% end %>
+
+    <% if allow_action? :documents, :create %>
+      <div class="content">
+        <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
+
+        <%= form_with(model: @document, local: true) do |f| %>
+          <%= f.hidden_field :folder_id, value: @folder.id %>
+          <div class="field">
+            <div class="control">
+              <%= file_field_tag 'document[file]', multiple: true %>
+            </div>
           </div>
+        <% end %>
+      </div>
 
-          <div class="control">
-            <%= f.submit 'Créer', class: "button is-primary" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <hr />
-
-    <div class="content">
-      <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
-
-      <%= form_with(model: @document, local: true) do |f| %>
-        <%= f.hidden_field :folder_id, value: @folder.id %>
-        <div class="field">
-          <div class="control">
-            <%= file_field_tag 'document[file]', multiple: true %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="js-progress-component"></div>
+      <div class="js-progress-component"></div>
+    <% end %>
   </div>
 </section
