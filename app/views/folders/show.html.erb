@@ -1,21 +1,20 @@
 <section class="section">
   <div class="container">
-    <% unless @folder.root? %>
-      <nav class="breadcrumb has-succeeds-separator">
-        <ul>
-          <% @folder.ancestors.each do |folder| %>
-            <li>
-              <%= link_to folder.name, project_folder_path(@project, folder) %>
-            </li>
-          <% end %>
-          <li class="is-active">
-            <%= link_to @folder.name, project_folder_path(@project, @folder) %>
+    <nav class="breadcrumb has-succeeds-separator">
+      <ul>
+        <li>
+          <%= link_to @project.name, project_path(@project) %>
+        </li>
+        <% @folder.ancestors.each do |folder| %>
+          <li>
+            <%= link_to folder.name, project_folder_path(@project, folder) %>
           </li>
-        </ul>
-      </nav>
-    <% end %>
-
-    <h2 class="title is-2"><%= @folder.name %></h2>
+        <% end %>
+        <li class="is-active">
+          <%= link_to @folder.name, project_folder_path(@project, @folder) %>
+        </li>
+      </ul>
+    </nav>
 
     <div class="content">
       <table class="table">
