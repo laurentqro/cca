@@ -21,6 +21,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to users_url, notice: "Compte utilisateur supprimé."
+  end
+
   def impersonate
     user = User.find(params[:id])
     impersonate_user(user)

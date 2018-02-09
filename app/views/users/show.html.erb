@@ -4,14 +4,21 @@
       <%= @user.full_name %>
     </h2>
 
-    <div class="content">
-      <% if allow_action?(:users, :edit, @user) %>
-        <%= link_to "Editer", edit_user_url(@user), class: "button is-small" %>
-      <% end %>
+    <div class="field is-grouped">
+      <p class="control">
+        <% if allow_action?(:users, :edit, @user) %>
+          <%= link_to "Editer", edit_user_url(@user), class: "button" %>
+        <% end %>
+      </p>
 
-      <% if allow_action?(:users, :impersonate) %>
-        <%= link_to "Se connecter en tant que #{@user.first_name}", impersonate_user_path(@user), method: :post, class: "button is-small" %>
-      <% end %>
+      <p class="control">
+        <% if allow_action?(:users, :impersonate) %>
+          <%= link_to "Se connecter en tant que #{@user.first_name}", impersonate_user_path(@user), method: :post, class: "button" %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="content">
     </div>
 
     <table class="table">
@@ -62,5 +69,9 @@
         </tr>
       </tbody>
     </table>
+
+    <% if allow_action?(:users, :destroy, @user) %>
+      <%= link_to "Supprimer", @user, method: :delete, data: { confirm: "Etes-vous sur de vouloir supprimer ce compte ?" }, class: "button is-danger" %>
+    <% end %>
   </div>
 </section

@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   resources :users,
     path: 'utilisateurs',
     path_names: { new: 'creer', edit: 'editer' },
-    only: [:index, :show, :edit, :update] do
+    except: [:create] do
       post :impersonate, on: :member, path: 'imitation'
       post :stop_impersonating, on: :collection, path: 'stop-imitation'
     end
