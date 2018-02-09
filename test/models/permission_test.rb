@@ -33,6 +33,9 @@ class UserTest < ActiveSupport::TestCase
     user = users(:one)
     permission = Permission.new(user)
 
+    # can stop impersonating a user
+    assert permission.allow_action?('users', :stop_impersonating)
+
     # can visit activities page (home) - avoids redirect loop after sign in
     assert permission.allow_action?('activities', :index)
 

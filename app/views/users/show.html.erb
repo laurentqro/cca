@@ -1,6 +1,18 @@
 <section class="section">
   <div class="container">
-    <%= tag.h2 @user.full_name, class: "title is-2" %>
+    <h2 class="title is-2">
+      <%= @user.full_name %>
+    </h2>
+
+    <div class="content">
+      <% if allow_action?(:users, :edit, @user) %>
+        <%= link_to "Editer", edit_user_url(@user), class: "button is-small" %>
+      <% end %>
+
+      <% if allow_action?(:users, :impersonate) %>
+        <%= link_to "Se connecter en tant que #{@user.first_name}", impersonate_user_path(@user), method: :post, class: "button is-small" %>
+      <% end %>
+    </div>
 
     <table class="table">
       <tbody>

@@ -5,10 +5,10 @@ class Permission
     allow_action 'users/passwords',     [:new, :create, :edit, :update]
 
     if user.present?
-      allow_all               if user.admin?
-      allow_action :users,    :show
-      allow_action :projects, :index
-      allow_action 'users/sessions', :destroy
+      allow_all                           if user.admin?
+      allow_action :users,                [:show, :stop_impersonating]
+      allow_action :projects,             :index
+      allow_action 'users/sessions',      :destroy
       allow_action 'users/registrations', [:edit, :update]
       allow_action 'activities', :index
 

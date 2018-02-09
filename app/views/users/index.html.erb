@@ -11,7 +11,6 @@
             <th>Email</th>
             <th>Niveau d'acces</th>
             <th>Statut</th>
-            <th></th>
           </tr>
         </thead>
 
@@ -23,11 +22,6 @@
               <td><%= user.email %></td>
               <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
               <td><%= user.account_status %></td>
-              <td>
-                <% if allow_action?(:users, :edit, user) %>
-                  <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
-                <% end %>
-              </td>
             </tr>
           <% end %>
         </tbody>

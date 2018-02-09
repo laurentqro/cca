@@ -24,6 +24,7 @@ gem 'jquery-fileupload-rails', '0.4'
 gem 'tzinfo-data'
 gem 'devise', '~> 4.4'
 gem 'devise_invitable', '~> 1.7.0'
+gem 'pretender', '~> 0.3.2'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2.1'
