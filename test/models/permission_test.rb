@@ -64,11 +64,11 @@ class UserTest < ActiveSupport::TestCase
     assert !permission.allow_action?(:projects, :show, other_project)
 
     # can view folders inside a project he is assigned to
-    folder = user_project.folders.first
+    folder = user_project.root_folder
     assert permission.allow_action?(:folders, :show, folder)
 
     # cannot view folders inside a project he is not assigned to
-    other_folder = other_project.folders.first
+    other_folder = other_project.root_folder
     assert !permission.allow_action?(:folders, :show, other_folder)
 
     # can upload a document to a folder inside a project he is assigned to

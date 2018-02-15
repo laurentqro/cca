@@ -23,7 +23,8 @@ class ProjectsTest < ApplicationSystemTestCase
   end
 
   test 'deleting a project' do
-    visit project_url(projects(:pyramid))
+    project = projects(:pyramid)
+    visit project_folder_url(project, project.root_folder)
     click_on 'Supprimer'
 
     assert_text "Projet #{projects(:pyramid).name} supprimé."
@@ -31,7 +32,7 @@ class ProjectsTest < ApplicationSystemTestCase
 
   test 'adding a project to the archives' do
     project = projects(:pyramid)
-    visit project_url(project)
+    visit project_folder_url(project, project.root_folder)
     click_on 'Archiver'
 
     assert_text "Projet #{project.name} archivé."
@@ -42,7 +43,7 @@ class ProjectsTest < ApplicationSystemTestCase
   test 'removing a project from the archives' do
     project = projects(:pyramid)
     project.archived!
-    visit project_url(project)
+    visit project_folder_url(project, project.root_folder)
     click_on 'Désarchiver'
 
     assert_text "Projet #{project.name} désarchivé."

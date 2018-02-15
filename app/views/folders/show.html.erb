@@ -1,20 +1,23 @@
 <section class="section">
   <div class="container">
-    <nav class="breadcrumb has-succeeds-separator">
-      <ul>
-        <li>
-          <%= link_to @project.name, project_path(@project) %>
-        </li>
-        <% @folder.ancestors.each do |folder| %>
-          <li>
-            <%= link_to folder.name, project_folder_path(@project, folder) %>
+    <% if @folder.root? %>
+      <%= tag.h1 @project.root_folder.name, class: "title is-1" %>
+      <%= render 'projects/controls', project: @project %>
+      <hr />
+    <% else %>
+      <nav class="breadcrumb has-succeeds-separator">
+        <ul>
+          <% @folder.ancestors.each do |folder| %>
+            <li>
+              <%= link_to folder.name, project_folder_path(@project, folder) %>
+            </li>
+          <% end %>
+          <li class="is-active">
+            <%= link_to @folder.name, project_folder_path(@project, @folder) %>
           </li>
-        <% end %>
-        <li class="is-active">
-          <%= link_to @folder.name, project_folder_path(@project, @folder) %>
-        </li>
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    <% end %>
 
     <div class="content">
       <table class="table">

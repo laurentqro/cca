@@ -4,5 +4,5 @@
   dans
   <%= link_to activity.trackable.folder.name, project_folder_path(activity.trackable.folder.project, activity.trackable.folder) %>
   pour le projet
-  <%= link_to activity.trackable.folder.project.name, activity.trackable.folder.project %>,
+  <%= link_to activity.trackable.folder.project.name, project_folder_url(activity.trackable.folder.project, activity.trackable.folder.root) %>,
   le <%= activity.created_at.strftime("%d %b %Y à %H:%M") %>

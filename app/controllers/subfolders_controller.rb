@@ -5,7 +5,7 @@ class SubfoldersController < ApplicationController
     @subfolder = Subfolder.new(subfolder_params)
 
     if @subfolder.save
-      redirect_to project_folder_path(@project, @folder), notice: 'Sous-dossier créé avec succès.'
+      redirect_to project_folder_path(@project, @folder), notice: 'Dossier créé avec succès.'
     else
       redirect_to project_folder_path(@project, @folder), notice: 'Erreur'
     end

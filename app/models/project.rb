@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   has_many :assignments
   has_many :users, through: :assignments
-  has_many :folders
+  has_one :root_folder, ->{ where(ancestry: nil) }, class_name: "Folder"
 
   validates :name, presence: true
 

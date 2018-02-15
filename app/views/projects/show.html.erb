@@ -9,7 +9,7 @@
 
       <table class="table">
         <tbody>
-          <% @project.folders.roots.each do |folder| %>
+          <% @project.root_folder.children.each do |folder| %>
             <tr>
               <td class="is-narrow">
                 <span class="icon">
@@ -47,9 +47,7 @@
           <div class="field">
             <div class="control">
               <%= f.text_field :name, class: "input", placeholder: "Nom de dossier" %>
-              <%= f.hidden_field :parent_id, value: @folder.id %>
-              <%= f.hidden_field :project_id, value: @folder.project_id %>
-              <%= f.hidden_field :id, value: @folder.id %>
+              <%= f.hidden_field :project_id, value: @project.id %>
             </div>
           </div>
 

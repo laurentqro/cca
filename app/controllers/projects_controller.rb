@@ -3,12 +3,6 @@ class ProjectsController < ApplicationController
     @projects = show_all_projects? ? Project.active : current_user.projects.active
   end
 
-  def show
-    @project = current_resource
-    @folder = Folder.new
-    @assignments = @project.assignments
-  end
-
   def new
     @project = Project.new
   end
@@ -17,7 +11,8 @@ class ProjectsController < ApplicationController
     project = Project.new(project_params)
 
     if project.save
-      redirect_to project, notice: 'Projet créé avec succès.'
+      Folder.create(name: "#{project.name}", project_id: project.id)
+      redirect_to projects_url, notice: 'Projet créé avec succès.'
     else
       render :new
     end
@@ -31,7 +26,8 @@ class ProjectsController < ApplicationController
     project = current_resource
 
     if project.update(project_params)
-      redirect_to project, notice: 'Modifications enregistrées.'
+      project.root_folder.update(name: project.name)
+      redirect_to projects_url, notice: 'Modifications enregistrées.'
     else
       render :edit
     end

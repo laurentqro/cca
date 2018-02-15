@@ -15,7 +15,7 @@
           <% @projects.each do |project| %>
             <tr>
               <td>
-                <%= link_to project.name, project %>
+                <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
               </td>
 
               <td>

@@ -20,11 +20,11 @@ class Permission
         end
 
         allow_action :folders, :show do |folder|
-          user.folder_ids.include?(folder.id)
+          Assignment.exists?(project_id: folder.project_id, user_id: user.id)
         end
 
         allow_action :documents, :create do |document|
-          user.folder_ids.include?(document.folder_id)
+          Assignment.exists?(project_id: document.folder.project_id, user_id: user.id)
         end
       end
 
