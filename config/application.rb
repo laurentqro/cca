@@ -11,7 +11,7 @@ module Cca
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
     config.i18n.default_locale = :fr
-    config.action_mailer.default_url_options = { host: Rails.application.secrets[:host] }
+    config.action_mailer.default_url_options = { host: ENV['HOST'] }
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
