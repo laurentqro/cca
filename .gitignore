@@ -21,7 +21,6 @@
 /yarn-error.log
 
 .byebug_history
-/config/database.yml
 
 # Ignore encrypted secrets key file.
 /config/secrets.yml.key
@@ -33,3 +32,8 @@
 
 # Ignore dotenv
 /.env
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
