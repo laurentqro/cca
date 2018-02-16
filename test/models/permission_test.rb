@@ -70,13 +70,41 @@ class UserTest < ActiveSupport::TestCase
     # cannot view folders inside a project he is not assigned to
     other_folder = other_project.root_folder
     assert !permission.allow_action?(:folders, :show, other_folder)
+  end
 
-    # can upload a document to a folder inside a project he is assigned to
-    document = documents(:pyramid_plan)
+  test 'partner can upload a document to a folder inside a project he is assigned to' do
+    partner = users(:partner)
+    project = projects(:pyramid)
+    project.users << partner
+
+    permission = Permission.new(partner)
+
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    document = Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: project.root_folder
+    )
+
     assert permission.allow_action?(:documents, :create, document)
+  end
 
-    # cannot upload a document to a folder outside a project he is assigned to
-    document = documents(:colossus_plan)
+  test 'partner cannot upload a document to a folder outside a project he is assigned to' do
+    partner = users(:partner)
+    project = projects(:pyramid)
+    project.users << partner
+
+    permission = Permission.new(partner)
+
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    document = Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: projects(:colossus).root_folder
+    )
+
     assert !permission.allow_action?(:documents, :create, document)
   end
 
