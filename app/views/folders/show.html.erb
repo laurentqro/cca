@@ -22,59 +22,7 @@
 
     <div class="content">
       <% if @folder.has_content? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Nom</th>
-              <th>Déposé le</th>
-              <th>Taille</th>
-              <th>Type</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% if @folder.children.exists? %>
-              <% @folder.children.each do |folder| %>
-                <tr>
-                  <td class="is-narrow">
-                    <span class="icon">
-                      <i class="far fa-folder"></i>
-                    </span>
-                  </td>
-                  <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>Dossier</td>
-                </tr>
-              <% end %>
-            <% end %>
-
-            <% if @folder.documents.exists? %>
-              <% @folder.documents.each do |document| %>
-                <tr>
-                  <td class="is-narrow">
-                    <span class="icon">
-                      <i class="far fa-file"></i>
-                    </span>
-                  </td>
-                  <td>
-                    <%= link_to document.file.original_filename, document.file.url(download: true) %>
-                  </td>
-                  <td>
-                    <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
-                  </td>
-                  <td>
-                    <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
-                  </td>
-                  <td>
-                    <%= document.file.mime_type %>
-                  </td>
-                </tr>
-              <% end %>
-            <% end %>
-          </tbody>
-        </table>
+        <%= render 'folder_contents' %>
       <% end %>
     </div>
 
