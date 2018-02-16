@@ -12,7 +12,7 @@ class UserMailerTest < ActionMailer::TestCase
     end
 
     # Test the body of the sent email contains what we expect it to
-    assert_equal ['no-reply@example.com'], email.from
+    assert_equal 'Cabinet CCA admin@archicc.com', email.from
     assert_equal [user.email], email.to
     assert_equal 'Bienvenue sur CCA', email.subject
     assert_includes email.html_part.body.to_s, user.first_name
