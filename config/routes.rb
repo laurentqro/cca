@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   root to: 'activities#index'
 
+  get ':status', to: 'errors#show', constraints: { status: /\d{3}/ }
+
   resources :users,
     path: 'utilisateurs',
     path_names: { new: 'creer', edit: 'editer' },
