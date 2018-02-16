@@ -1,7 +1,8 @@
 <section class="section">
   <div class="container">
     <% if @folder.root? %>
-      <%= tag.h1 @project.root_folder.name, class: "title is-1" %>
+      <h3 class="subtitle is-6">Projet</h3>
+      <%= tag.h2 @project.root_folder.name, class: "title is-2" %>
       <%= render 'projects/controls', project: @project %>
       <hr />
     <% else %>
@@ -20,66 +21,70 @@
     <% end %>
 
     <div class="content">
-      <table class="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Nom</th>
-            <th>Déposé le</th>
-            <th>Taille</th>
-            <th>Type</th>
-          </tr>
-        </thead>
+      <% if @folder.has_content? %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nom</th>
+              <th>Déposé le</th>
+              <th>Taille</th>
+              <th>Type</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          <% if @folder.children.exists? %>
-            <% @folder.children.each do |folder| %>
-              <tr>
-                <td class="is-narrow">
-                  <span class="icon">
-                    <i class="far fa-folder"></i>
-                  </span>
-                </td>
-                <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
-                <td>-</td>
-                <td>-</td>
-                <td>Dossier</td>
-              </tr>
+          <tbody>
+            <% if @folder.children.exists? %>
+              <% @folder.children.each do |folder| %>
+                <tr>
+                  <td class="is-narrow">
+                    <span class="icon">
+                      <i class="far fa-folder"></i>
+                    </span>
+                  </td>
+                  <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>Dossier</td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <% if @folder.documents.exists? %>
-            <% @folder.documents.each do |document| %>
-              <tr>
-                <td class="is-narrow">
-                  <span class="icon">
-                    <i class="far fa-file"></i>
-                  </span>
-                </td>
-                <td>
-                  <%= link_to document.file.original_filename, document.file.url(download: true) %>
-                </td>
-                <td>
-                  <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
-                </td>
-                <td>
-                  <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
-                </td>
-                <td>
-                  <%= document.file.mime_type %>
-                </td>
-              </tr>
+            <% if @folder.documents.exists? %>
+              <% @folder.documents.each do |document| %>
+                <tr>
+                  <td class="is-narrow">
+                    <span class="icon">
+                      <i class="far fa-file"></i>
+                    </span>
+                  </td>
+                  <td>
+                    <%= link_to document.file.original_filename, document.file.url(download: true) %>
+                  </td>
+                  <td>
+                    <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
+                  </td>
+                  <td>
+                    <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+                  </td>
+                  <td>
+                    <%= document.file.mime_type %>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      <% end %>
     </div>
 
     <% if allow_action? :subfolders, :create %>
       <hr />
 
       <div class="content">
-        <h3 class="title is-3">Créer un nouveau dossier</h3>
+        <h3 class="title is-4">
+          Créer un nouveau dossier dans le dossier <em><%= @folder.name %></em>
+        </h3>
 
         <%= form_with(model: [@project, @subfolder], local: true) do |f| %>
           <% if @subfolder.errors.any? %>
@@ -114,7 +119,7 @@
 
     <% if allow_action? :documents, :create %>
       <div class="content">
-        <h3 class="title is-3">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h2>
+        <h4 class="title is-4">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h4>
 
         <%= form_with(model: @document, local: true) do |f| %>
           <%= f.hidden_field :folder_id, value: @folder.id %>
