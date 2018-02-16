@@ -31,16 +31,11 @@
 
     <% if allow_action? :documents, :create %>
       <div class="content">
-        <h4 class="title is-4">Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em></h4>
+        <h4 class="title is-4">
+          Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em>
+        </h4>
 
-        <%= form_with(model: @document, local: true) do |f| %>
-          <%= f.hidden_field :folder_id, value: @folder.id %>
-          <div class="field">
-            <div class="control">
-              <%= file_field_tag 'document[file]', multiple: true %>
-            </div>
-          </div>
-        <% end %>
+        <%= render 'document_upload_form' %>
       </div>
 
       <div class="js-progress-component"></div>
