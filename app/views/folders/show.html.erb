@@ -6,18 +6,7 @@
       <%= render 'projects/controls', project: @project %>
       <hr />
     <% else %>
-      <nav class="breadcrumb has-succeeds-separator">
-        <ul>
-          <% @folder.ancestors.each do |folder| %>
-            <li>
-              <%= link_to folder.name, project_folder_path(@project, folder) %>
-            </li>
-          <% end %>
-          <li class="is-active">
-            <%= link_to @folder.name, project_folder_path(@project, @folder) %>
-          </li>
-        </ul>
-      </nav>
+      <%= render 'breadcrumbs' %>
     <% end %>
 
     <div class="content">
