@@ -7,7 +7,6 @@ class FoldersTest < ApplicationSystemTestCase
 
   test 'creating a folder' do
     folder = folders(:folder_one)
-    folder.documents = []
 
     visit project_folder_url(folder.project, folder)
     fill_in 'folder[name]', with: 'Folder name'
@@ -15,5 +14,6 @@ class FoldersTest < ApplicationSystemTestCase
 
     assert_text 'Dossier créé avec succès.'
     assert_text 'Folder name'
+    assert folder.children.exists?
   end
 end
