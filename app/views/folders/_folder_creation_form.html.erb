@@ -1,10 +1,10 @@
-<%= form_with(model: [@project, @subfolder], local: true) do |f| %>
-  <% if @subfolder.errors.any? %>
+<%= form_with(model: [@project, @child_folder], local: true) do |f| %>
+  <% if @child_folder.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@subfolder.errors.count, "erreur", "erreurs") %>:</h2>
+      <h2><%= pluralize(@child_folder.errors.count, "erreur", "erreurs") %>:</h2>
 
       <ul>
-        <% @subfolder.errors.full_messages.each do |message| %>
+        <% @child_folder.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

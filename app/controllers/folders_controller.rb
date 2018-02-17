@@ -3,25 +3,26 @@ class FoldersController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @folder = Folder.find(params[:id])
-    @subfolder = Subfolder.new
+    @child_folder = Folder.new
     @document = Document.new
   end
 
   def create
     @project = Project.find(params[:project_id])
-    @folder = @project.root_folder.children.create(folder_params)
+    @parent_folder = Folder.find(folder_params[:parent_id])
+    @child_folder = Folder.new(folder_params)
 
-    if @folder.save
-      redirect_to @project, notice: 'Dossier créé avec succès.'
+    if @child_folder.save
+      redirect_to project_folder_path(@project, @child_folder), notice: 'Dossier créé avec succès.'
     else
-      redirect_to @project, notice: 'Erreur'
+      redirect_to project_folder_path(@project, @folder), notice: 'Erreur'
     end
   end
 
   private
 
   def folder_params
-    params.require(:folder).permit(:name, :project_id)
+    params.require(:folder).permit(:name, :project_id, :parent_id)
   end
 
   def current_resource

@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
     resources :assignments, only: [:index, :create, :destroy], path: 'membres'
     resources :folders, path: 'dossiers'
-    resources :subfolders
   end
 
   resources :documents

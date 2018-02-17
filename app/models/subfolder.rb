@@ -1,2 +1,0 @@
-class Subfolder < Folder
-end

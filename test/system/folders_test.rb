@@ -5,15 +5,15 @@ class FoldersTest < ApplicationSystemTestCase
     sign_in_as(users(:admin))
   end
 
-  test 'creating a subfolder' do
+  test 'creating a folder' do
     folder = folders(:folder_one)
     folder.documents = []
 
     visit project_folder_url(folder.project, folder)
-    fill_in 'subfolder[name]', with: 'Subfolder name'
+    fill_in 'folder[name]', with: 'Folder name'
     click_button 'Créer'
 
     assert_text 'Dossier créé avec succès.'
-    assert_text 'Subfolder name'
+    assert_text 'Folder name'
   end
 end

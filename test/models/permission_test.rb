@@ -166,14 +166,8 @@ class UserTest < ActiveSupport::TestCase
     # can view a folder
     assert permission.allow_action?(:folders, :show)
 
-    # can view a subfolder
-    assert permission.allow_action?(:subfolders, :show)
-
     # can create a folder
     assert permission.allow_action?(:folders, :create)
-
-    # can create a subfolder
-    assert permission.allow_action?(:subfolders, :create)
 
     # can create a folder
     assert permission.allow_action?(:folders, :create)
