@@ -13,7 +13,7 @@ class FoldersController < ApplicationController
     @child_folder = Folder.new(folder_params)
 
     if @child_folder.save
-      redirect_to project_folder_path(@project, @child_folder), notice: 'Dossier créé avec succès.'
+      redirect_to project_folder_path(@project, @folder), notice: 'Dossier créé avec succès.'
     else
       render :show
     end
