@@ -9,13 +9,13 @@ class FoldersController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @parent_folder = Folder.find(folder_params[:parent_id])
+    @folder = Folder.find(folder_params[:parent_id])
     @child_folder = Folder.new(folder_params)
 
     if @child_folder.save
       redirect_to project_folder_path(@project, @child_folder), notice: 'Dossier créé avec succès.'
     else
-      redirect_to project_folder_path(@project, @folder), notice: 'Erreur'
+      render :show
     end
   end
 
