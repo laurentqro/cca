@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_many :assignments
+  has_many :assignments, dependent: :destroy
   has_many :users, through: :assignments
   has_one :root_folder, ->{ where(ancestry: nil) }, class_name: "Folder"
 
