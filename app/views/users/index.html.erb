@@ -26,6 +26,10 @@
           <% end %>
         </tbody>
       </table>
+
+      <% if allow_action? :users, :create %>
+        <%= link_to 'Créer un nouvel utilisateur', new_user_url, class:"button is-primary" %>
+      <% end %>
     </div>
   </div>
 </section>

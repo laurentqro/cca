@@ -3,6 +3,22 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new
+    @user = User.new
+  end
+
+  def create
+    password = SecureRandom.hex
+    password_params = { password: password }
+    @user = User.new(user_params.merge(password_params))
+
+    if @user.save
+      redirect_to users_url, notice: 'Utilisateur créé avec succès.'
+    else
+      render :new
+    end
+  end
+
   def show
     @user = User.find(params[:id])
   end
