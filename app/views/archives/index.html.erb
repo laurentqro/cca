@@ -3,29 +3,6 @@
     <h2 class="title is-2">Archives</h2>
 
     <div class="content">
-      <% if @archived_projects.exists? %>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Nom</th>
-              <th></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @archived_projects.each do |project| %>
-              <tr>
-                <td><%= link_to project.name, project_folder_url(project, project.root_folder) %></td>
-                <% if allow_action? :projects, :edit %>
-                  <td><%= link_to "Editer", edit_project_url(project), class: "button is-small" %></td>
-                <% end %>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% else %>
-        <p>Aucun projet en archive.</p>
-      <% end %>
     </div>
   </div>
 </section>
