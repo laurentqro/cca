@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+
+    4.times do
+      @user.employments.build
+    end
   end
 
   def create
@@ -62,6 +66,7 @@ class UsersController < ApplicationController
                                  :last_name,
                                  :city,
                                  :active,
-                                 :group)
+                                 :group,
+                                 employments_attributes: [:company_id, :user_id])
   end
 end

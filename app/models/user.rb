@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :folders,   through: :projects
   has_many :companies, through: :employments
 
+  accepts_nested_attributes_for :employments, reject_if: lambda { |e| e[:company_id].blank? }, allow_destroy: true
+
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
             uniqueness: { case_sensitive: false },

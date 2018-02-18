@@ -1,6 +1,7 @@
 <section class="section">
   <div class="container">
     <h2 class="title is-2">Creer un nouveau compte utilisateur</h2>
+
     <% if @user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@user.errors.count, "erreur", "erreurs") %>:</h2>
@@ -14,68 +15,84 @@
     <% end %>
 
     <%= form_with(model: @user, local: true) do |form| %>
-      <% if allow_param? :user, :active %>
-        <div class="field">
-          <div class="control">
-            <label class="label" name="user[active]">Actif
-              <%= form.check_box :active, id: :user_active, class: "checkbox" %>
-            </label>
-          </div>
-        </div>
-      <% end %>
-
-      <% if allow_param? :user, :group %>
-        <div class="field">
-          <%= form.label :group, "Niveau d'accès", class: "label" %>
-          <div class="control">
-            <div class="select">
-              <%= form.select :group do %>
-                <%= options_for_select(user_groups_for_select, @user.group) %>
-              <% end %>
+      <div class="columns is-variable is-6">
+        <div class="column is-one-third">
+          <% if allow_param? :user, :first_name %>
+            <div class="field">
+              <%= form.label :first_name, 'Prénom', class: "label" %>
+              <div class="control">
+                <%= form.text_field :first_name, class: "input" %>
+              </div>
             </div>
+          <% end %>
+
+          <% if allow_param? :user, :last_name %>
+            <div class="field">
+              <%= form.label :last_name, 'Nom', class: "label" %>
+              <div class="control">
+                <%= form.text_field :last_name, class: "input" %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if allow_param? :user, :email %>
+            <div class="field">
+              <%= form.label :email, class: "label" %>
+              <div class="control">
+                <%= form.email_field :email, autocomplete: "email", class: "input" %>
+              </div>
+            </div>
+          <% end %>
+
+          <% if allow_param? :user, :city %>
+            <div class="field">
+              <%= form.label :city, 'Ville', class: "label" %>
+              <div class="control">
+                <%= form.text_field :city, class: "input" %>
+              </div>
+            </div>
+          <% end %>
+          <div class="actions">
+            <%= form.submit "Valider", class: "button is-primary" %>
           </div>
         </div>
-      <% end %>
 
-      <% if allow_param? :user, :first_name %>
-        <div class="field">
-          <%= form.label :first_name, 'Prénom', class: "label" %>
-          <div class="control">
-            <%= form.text_field :first_name, class: "input" %>
-          </div>
+        <div class="column is-one-quarter">
+          <% if allow_param? :user, :active %>
+            <div class="field">
+              <div class="control">
+                <label class="label" name="user[active]">Actif
+                  <%= form.check_box :active, id: :user_active, class: "checkbox" %>
+                </label>
+              </div>
+            </div>
+          <% end %>
+
+          <% if allow_param? :user, :group %>
+            <div class="field">
+              <%= form.label :group, "Niveau d'accès", class: "label" %>
+              <div class="control">
+                <div class="select">
+                  <%= form.select :group do %>
+                    <%= options_for_select(user_groups_for_select, @user.group) %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% if allow_action? :employments, :create %>
+            <div class="field">
+              <div class="control">
+                <%= form.label :company_id, "Groupes", class: "label" %>
+                <%= form.fields_for :employments do |ef| %>
+                  <%= render "employment_fields", f: ef %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
         </div>
       <% end %>
-
-      <% if allow_param? :user, :last_name %>
-        <div class="field">
-          <%= form.label :last_name, 'Nom', class: "label" %>
-          <div class="control">
-            <%= form.text_field :last_name, class: "input" %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if allow_param? :user, :email %>
-        <div class="field">
-          <%= form.label :email, class: "label" %>
-          <div class="control">
-            <%= form.email_field :email, autocomplete: "email", class: "input" %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if allow_param? :user, :city %>
-        <div class="field">
-          <%= form.label :city, 'Ville', class: "label" %>
-          <div class="control">
-            <%= form.text_field :city, class: "input" %>
-          </div>
-        </div>
-      <% end %>
-
-      <div class="actions">
-        <%= form.submit "Valider", class: "button" %>
-      </div>
-    <% end %>
+    </div>
   </div>
 </section>

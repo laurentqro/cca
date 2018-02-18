@@ -1,0 +1,7 @@
+<div class="field">
+  <div class="control">
+    <div class="select">
+      <%= f.collection_select(:company_id, Company.all, :id, :name, prompt: true) %>
+    </div>
+  </div>
+</div>
