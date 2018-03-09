@@ -1,6 +1,6 @@
 class Folder < ApplicationRecord
   belongs_to :project
-  has_many :documents, dependent: :destroy
+  has_many_attached :documents
 
   validates :name, presence: true
   validate :name_is_unique_inside_parent_folder

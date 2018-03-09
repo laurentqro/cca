@@ -37,6 +37,6 @@ Rails.application.routes.draw do
     resources :folders, path: 'dossiers'
   end
 
-  resources :documents
   resources :archives, only: [:index, :create, :destroy]
+  resources :uploads, only: :create
 end

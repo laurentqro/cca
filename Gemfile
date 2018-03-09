@@ -4,7 +4,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.2.0.rc1'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
@@ -18,7 +18,7 @@ gem 'mailgun-ruby', '~> 1.1.8'
 gem 'shrine', '~> 2.8.0'
 gem 'ancestry', '~> 3.0.1'
 gem 'webpacker', '~> 3.0'
-gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-s3', '~> 1', require: false
 gem 'jquery-rails', '~> 4.3'
 gem 'jquery-fileupload-rails', '0.4'
 gem 'tzinfo-data'
