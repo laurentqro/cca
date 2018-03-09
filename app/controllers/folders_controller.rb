@@ -4,7 +4,6 @@ class FoldersController < ApplicationController
     @project = Project.find(params[:project_id])
     @folder = Folder.find(params[:id])
     @child_folder = Folder.new
-    @document = Document.new
   end
 
   def create

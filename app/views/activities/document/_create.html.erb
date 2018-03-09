@@ -1,6 +1,6 @@
   <%= link_to activity.user.full_name, activity.user %>
   a déposé
-  <%= link_to activity.trackable.file.original_filename, activity.trackable.file.url %>
+  <%= link_to activity.trackable.file.blob.filename, rails_blob_path(activity.trackable.file, disposition: :attachment) %>
   dans
   <%= link_to activity.trackable.folder.name, project_folder_path(activity.trackable.folder.project, activity.trackable.folder) %>
   pour le projet

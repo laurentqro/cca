@@ -96,4 +96,6 @@ Rails.application.configure do
     api_key:    Rails.application.secrets[:mailgun_api_key],
     domain:     Rails.application.secrets[:smtp_domain]
   }
+
+  config.active_storage.service = :amazon
 end

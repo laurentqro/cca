@@ -15,4 +15,5 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jquery-fileupload/basic
+//= require activestorage
 //= require_tree .

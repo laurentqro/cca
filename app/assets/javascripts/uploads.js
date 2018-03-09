@@ -1,62 +1,38 @@
 $(document).on("turbolinks:load", function() {
-  $("input[type=file]").fileupload({
-    add: function(e, data) {
-      console.log("add", data);
-      var fileName = data.files[0]['name'];
-      var $progressBar = $('<progress class="progress is-success" max="100"></progress>');
-      var $progressComponent = $('<div class="container"></div>').append(fileName).append($progressBar);
-      $(".js-progress-component").append($progressComponent);
-      data.progressComponent = $progressComponent;
+  addEventListener("direct-upload:initialize", event => {
+    const { target, detail } = event
+    const { id, file } = detail
+    target.insertAdjacentHTML("beforebegin", `
+    <div id="direct-upload-${id}" class="direct-upload direct-upload--pending">
+      <div id="direct-upload-progress-${id}" class="direct-upload__progress" style="width: 0%"></div>
+      <span class="direct-upload__filename">${file.name}</span>
+    </div>
+  `)
+  })
 
-      var options = {
-        extension: data.files[0].name.match(/(\.\w+)?$/)[0], // set the file extension
-        _: Date.now() // prevent caching
-      };
+  addEventListener("direct-upload:start", event => {
+    const { id } = event.detail
+    const element = document.getElementById(`direct-upload-${id}`)
+    element.classList.remove("direct-upload--pending")
+  })
 
-      $.getJSON("/presign", options, function(result) {
-        console.log("presign", result);
-        data.formData = result.fields;
-        data.url = result.url;
-        data.paramName = 'file';
-        data.submit();
-      })
-    },
+  addEventListener("direct-upload:progress", event => {
+    const { id, progress } = event.detail
+    const progressElement = document.getElementById(`direct-upload-progress-${id}`)
+    progressElement.style.width = `${progress}%`
+  })
 
-    progress: function(e, data) {
-      console.log("progress", data);
-      var progress = parseInt(data.loaded / data.total * 100, 10);
-      var percentage = progress.toString() + '%';
-      data.progressComponent.find(".progress").attr("value", progress);
-    },
+  addEventListener("direct-upload:error", event => {
+    event.preventDefault()
+    const { id, error } = event.detail
+    const element = document.getElementById(`direct-upload-${id}`)
+    element.classList.add("direct-upload--error")
+    element.setAttribute("title", error)
+  })
 
-    done: function(e, data) {
-      console.log("done", data);
-      data.progressComponent.remove();
-
-      var document = {
-        id:       data.formData.key.match(/cache\/(.+)/)[1], // we have to remove the prefix part
-        storage:  'cache',
-        metadata: {
-          size:      data.files[0].size,
-          filename:  data.files[0].name.match(/[^\/\\]+$/)[0], // IE return full path
-          mime_type: data.files[0].type
-        }
-      };
-
-      var form = $(this).closest("form");
-      var formData = new FormData(form[0]);
-
-      formData.append($(this).attr("name"), JSON.stringify(document));
-
-      $.ajax(form.attr("action"), {
-        contentType: false,
-        processData: false,
-        data: formData,
-        method: form.attr("method"),
-        dataType: "script"
-      }).done(function(data) {
-        console.log("done from Rails", data);
-      });
-    }
-  });
+  addEventListener("direct-upload:end", event => {
+    const { id } = event.detail
+    const element = document.getElementById(`direct-upload-${id}`)
+    element.classList.add("direct-upload--complete")
+  })
 });
