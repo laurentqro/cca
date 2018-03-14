@@ -19,6 +19,15 @@ class FoldersController < ApplicationController
     end
   end
 
+  def destroy
+    project = Project.find(params[:project_id])
+    folder = Folder.find(params[:id])
+    parent_folder = folder.parent
+
+    folder.destroy
+    redirect_to project_folder_path(project, parent_folder), notice: 'Dossier supprimé avec succès.'
+  end
+
   private
 
   def folder_params

@@ -6,6 +6,7 @@
       <th>Déposé le</th>
       <th>Taille</th>
       <th>Type</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -22,6 +23,11 @@
           <td>-</td>
           <td>-</td>
           <td>Dossier</td>
+          <td class="is-narrow">
+            <% if allow_action? :folders, :destroy, folder %>
+              <%= link_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "button is-small is-danger" %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     <% end %>
@@ -45,6 +51,8 @@
           </td>
           <td>
             <%= document.file.mime_type %>
+          </td>
+          <td>
           </td>
         </tr>
       <% end %>
