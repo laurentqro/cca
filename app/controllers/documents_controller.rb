@@ -1,14 +1,27 @@
 class DocumentsController < ApplicationController
   def create
     respond_to do |format|
-      if @current_resource.save
+      folder = Folder.find(document_params[:folder_id])
+      document = folder.documents.build(document_params)
+
+      if document.save
         current_user.activities.create(action: "create",
-                                       trackable: @current_resource,
+                                       trackable: document,
                                        project_id: folder.project_id,
                                        folder_id: folder.id)
         format.js
       end
     end
+  end
+
+  def destroy
+    document = Document.find(params[:id])
+    folder = document.folder
+    project = folder.project
+
+    document.destroy
+
+    redirect_to project_folder_path(project, folder), notice: 'Document supprimé avec succès.'
   end
 
   private
@@ -18,10 +31,6 @@ class DocumentsController < ApplicationController
   end
 
   def current_resource
-    @current_resource ||= folder.documents.build(document_params)
-  end
-
-  def folder
-    @folder ||= Folder.find(document_params[:folder_id])
+    @current_resource ||= Document.find(params[:id]) if params[:id]
   end
 end
