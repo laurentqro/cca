@@ -25,7 +25,9 @@ class ApplicationController < ActionController::Base
     if current_permission.allow_action?(params[:controller], params[:action], current_resource)
       current_permission.permit_params!(params)
     else
-      redirect_back(fallback_location: root_url, notice: "Accès non autorisé")
+      flash[:notice] = "Accès non autorisé"
+      flash[:class] = 'danger'
+      redirect_back(fallback_location: root_url)
     end
   end
 end

@@ -21,7 +21,9 @@ class DocumentsController < ApplicationController
 
     document.destroy
 
-    redirect_to project_folder_path(project, folder), notice: 'Document supprimé avec succès.'
+    flash[:notice] = 'Document supprimé avec succès.'
+    flash[:class] = 'success'
+    redirect_to project_folder_path(project, folder)
   end
 
   private

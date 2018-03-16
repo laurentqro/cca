@@ -16,3 +16,9 @@
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require_tree .
+
+$(document).on("turbolinks:load", function() {
+  $(".notification").delay(1000).slideUp(500, function() {
+    $("notification").alert('close');
+  });
+});

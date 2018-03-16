@@ -7,12 +7,16 @@ class ArchivesController < ApplicationController
   def create
     project = Project.find(params[:project_id])
     project.archived!
-    redirect_to archives_url, notice: "Projet #{project.name} archivé."
+    flash[:notice] = "Projet #{project.name} archivé."
+    flash[:class] = 'success'
+    redirect_to archives_url
   end
 
   def destroy
     project = Project.find(params[:id])
     project.active!
-    redirect_to projects_url, notice: "Projet #{project.name} désarchivé."
+    flash[:notice] = "Projet #{project.name} désarchivé."
+    flash[:class] = 'success'
+    redirect_to projects_url
   end
 end

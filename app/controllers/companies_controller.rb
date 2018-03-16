@@ -15,7 +15,9 @@ class CompaniesController < ApplicationController
     company = Company.new(company_params)
 
     if company.save
-      redirect_to company, notice: 'Groupe créé avec succès.'
+      flash[:notice] = 'Groupe créé avec succès.'
+      flash[:class] = 'success'
+      redirect_to company
     else
       render :new
     end
@@ -29,7 +31,9 @@ class CompaniesController < ApplicationController
     company = current_resource
 
     if company.update(company_params)
-      redirect_to company, notice: 'Modifications enregistrées.'
+      flash[:notice] = 'Modifications enregistrées.'
+      flash[:class] = 'success'
+      redirect_to company
     else
       render :edit
     end

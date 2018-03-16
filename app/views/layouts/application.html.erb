@@ -12,8 +12,10 @@
 
   <body>
     <%= render 'header' %>
-    <%= tag.p notice, id: 'notice' %>
-    <%= tag.p alert, id: 'alert' %>
+
+    <% if notice.present? %>
+      <%= render partial: 'notification' %>
+    <% end %>
 
     <div class="content-wrapper">
       <%= yield %>
