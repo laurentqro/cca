@@ -14,7 +14,10 @@
     <%= render 'header' %>
     <%= tag.p notice, id: 'notice' %>
     <%= tag.p alert, id: 'alert' %>
-    <%= yield %>
+
+    <div class="content-wrapper">
+      <%= yield %>
+    </div>
 
     <%= render partial: 'footer' %>
   </body>
