@@ -325,7 +325,7 @@ DEPENDENCIES
   devise (~> 4.4)
   devise_invitable (~> 1.7.0)
   dotenv-rails (~> 2.2.1)
-  font-awesome-rails (~> 4.7.0.3)
+  font-awesome-rails (~> 4.7)
   jbuilder (~> 2.5)
   jquery-fileupload-rails (= 0.4)
   jquery-rails (~> 4.3)
