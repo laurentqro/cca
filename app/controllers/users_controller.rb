@@ -17,9 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params.merge(password_params))
 
     if @user.save
-      flash[:notice] = 'Utilisateur créé avec succès.'
-      flash[:class] = 'success'
-      redirect_to users_url
+      redirect_to users_url, notice: 'Utilisateur créé avec succès.'
     else
       render :new
     end
@@ -37,9 +35,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     if user.update(user_params)
-      flash[:class] = 'success'
-      flash[:notice] = 'Modifications enregistrées.'
-      redirect_to user
+      redirect_to user, notice: 'Modifications enregistrées.'
     else
       render :edit
     end
@@ -48,9 +44,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    flash[:class] = 'success'
-    flash[:notice] = 'Compte utilisateur supprimé.'
-    redirect_to users_url
+    redirect_to users_url, notice: "Compte utilisateur supprimé."
   end
 
   def impersonate

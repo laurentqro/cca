@@ -12,9 +12,7 @@ class ProjectsController < ApplicationController
 
     if project.save
       Folder.create(name: "#{project.name}", project_id: project.id)
-      flash[:notice] = 'Projet créé avec succès.'
-      flash[:class] = 'success'
-      redirect_to projects_url
+      redirect_to projects_url, notice: 'Projet créé avec succès.'
     else
       render :new
     end
@@ -29,9 +27,7 @@ class ProjectsController < ApplicationController
 
     if project.update(project_params)
       project.root_folder.update(name: project.name)
-      flash[:class] = 'success'
-      flash[:notice] = 'Modifications enregistrées.'
-      redirect_to projects_url
+      redirect_to projects_url, notice: 'Modifications enregistrées.'
     else
       render :edit
     end
@@ -40,9 +36,7 @@ class ProjectsController < ApplicationController
   def destroy
     project = current_resource
     project.destroy
-    flash[:class] = 'success'
-    flash[:notice] = "Projet #{project.name} supprimé."
-    redirect_to projects_url
+    redirect_to projects_url, notice: "Projet #{project.name} supprimé."
   end
 
   private

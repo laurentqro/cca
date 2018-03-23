@@ -13,9 +13,7 @@ class FoldersController < ApplicationController
     @child_folder = Folder.new(folder_params)
 
     if @child_folder.save
-      flash[:notice] = 'Dossier créé avec succès.'
-      flash[:class] = 'success'
-      redirect_to project_folder_path(@project, @folder)
+      redirect_to project_folder_path(@project, @folder), notice: 'Dossier créé avec succès.'
     else
       render :show
     end
@@ -27,10 +25,7 @@ class FoldersController < ApplicationController
     parent_folder = folder.parent
 
     folder.destroy
-
-    flash[:class] = 'success'
-    flash[:notice] = 'Dossier supprimé avec succès.'
-    redirect_to project_folder_path(project, parent_folder)
+    redirect_to project_folder_path(project, parent_folder), notice: 'Dossier supprimé avec succès.'
   end
 
   private
