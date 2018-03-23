@@ -21,7 +21,7 @@ jobs:
       # Restore Cached Dependencies
       - type: cache-restore
         name: Restore bundle cache
-        key: cca-{{ checksum "Gemfile.lock" }}
+        key: cca-bundle-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run:
@@ -31,9 +31,24 @@ jobs:
       # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
-        key: cca-{{ checksum "Gemfile.lock" }}
+        key: cca-bundle-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
+
+      - type: cache-restore
+        name: Restore Yarn cache
+        key: cca-yarn-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
+      # Store yarn / webpacker cache
+      - type: cache-save
+        name: Store Yarn cache
+        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
 
       # Wait for DB
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
