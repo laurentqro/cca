@@ -56,6 +56,9 @@ jobs:
       # Setup the database
       - run: bin/rails db:setup
 
+      # Compile assets
+      - run: bin/rails webpacker:compile
+
       # Run the tests
       - run: bin/rails test
       - run: bin/rails test:system
