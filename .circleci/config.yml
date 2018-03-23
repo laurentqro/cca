@@ -1,0 +1,46 @@
+---
+version: 2
+jobs:
+  build:
+    working_directory: ~/cca
+    docker:
+      - image: circleci/ruby:2.5.0-node-browsers
+        environment:
+          PGHOST: localhost
+          PGUSER: cca
+          RAILS_ENV: test
+      - image: postgres:9.6
+        environment:
+          POSTGRES_USER: cca
+          POSTGRES_DB: cca_test
+          POSTGRES_PASSWORD: ""
+
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: cca-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run:
+          name: Bundle install
+          command: bundle check || bundle install
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: cca-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the database
+      - run: bin/rails db:setup
+
+      # Run the tests
+      - run: bin/rails test
+      - run: bin/rails test:system
