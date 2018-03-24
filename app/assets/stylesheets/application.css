@@ -13,24 +13,3 @@
  *= require font-awesome
  *= require_self
  */
-
-/** START Sticky footer **/
-
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.content-wrapper {
-  flex: 1 0 auto;
-}
-
-.footer {
-  flex-shrink: 0;
-}
-
-/** END Sticky footer **/
