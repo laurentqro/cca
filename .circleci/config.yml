@@ -18,17 +18,14 @@ jobs:
     steps:
       - checkout
 
-      # Restore Cached Dependencies
       - type: cache-restore
         name: Restore bundle cache
         key: cca-bundle-{{ checksum "Gemfile.lock" }}
 
-      # Bundle install dependencies
       - run:
           name: Bundle install
           command: bundle check || bundle install
 
-      # Cache Dependencies
       - type: cache-save
         name: Store bundle cache
         key: cca-bundle-{{ checksum "Gemfile.lock" }}
@@ -43,22 +40,55 @@ jobs:
           name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
 
-      # Store yarn / webpacker cache
       - type: cache-save
         name: Store Yarn cache
         key: rails-demo-yarn-{{ checksum "yarn.lock" }}
         paths:
           - ~/.cache/yarn
 
-      # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
 
-      # Setup the database
-      - run: bin/rails db:setup
+      - run:
+          name: Set up database
+          command: bin/rails db:setup
 
-      # Compile assets
-      - run: bin/rails webpacker:compile
+      - run:
+          name: Compile assets
+          command: bin/rails webpacker:compile
 
-      # Run the tests
-      - run: bin/rails test
+      - run:
+          name: Run unit tests
+          command: bin/rails test
+
       - run: bin/rails test:system
+
+  deploy:
+    docker:
+      - image: circleci/ruby:2.5.0
+    working_directory: /tmp/cca
+    steps:
+      - run:
+          name: Install deployment dependencies
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install python-pip python-dev build-essential
+            sudo pip install awsebcli --upgrade
+      - run:
+          name: Deploy
+          command: |
+            eb use cca-staging --profile default
+            eb deploy --profile default
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
