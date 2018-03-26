@@ -305,7 +305,7 @@ DEPENDENCIES
   pg
   pretender (~> 0.3.2)
   puma (~> 3.7)
-  rails (~> 5.2.0.rc1)
+  rails (~> 5.2.0.rc2)
   sass-rails (~> 5.0)
   selenium-webdriver
   shrine (~> 2.8.0)
