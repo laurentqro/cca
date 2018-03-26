@@ -3,17 +3,21 @@
   <head>
     <title>CCA</title>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', nonce: true %>
+
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
   </head>
 
   <body>
     <%= render 'header' %>
+
     <%= tag.p notice, id: 'notice' %>
-    <%= tag.p alert, id: 'alert' %>
+    <%= tag.p alert,  id: 'alert' %>
+
     <%= yield %>
 
     <%= render partial: 'footer' %>
