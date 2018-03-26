@@ -78,7 +78,6 @@ jobs:
       - run:
           name: Deploy
           command: |
-            eb use cca-staging --profile default
             eb deploy --profile default
 
 workflows:
