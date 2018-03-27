@@ -48,6 +48,31 @@ class UserTest < ActiveSupport::TestCase
     assert permission.allow_action?(:documents, :destroy, document)
   end
 
+  test 'logged in user can delete a folder provided they are the owner' do
+    project = projects(:pyramid)
+    user_1 = users(:one)
+    user_2 = users(:two)
+    permission = Permission.new(user_1)
+
+    folder_1 = Folder.create(name: "Folder 1", user: user_1, project: project)
+    folder_2 = Folder.create(name: "Folder 2", user: user_2, project: project)
+
+    assert permission.allow_action?(:folders, :destroy, folder_1)
+    assert !permission.allow_action?(:folders, :destroy, folder_2)
+  end
+
+  test 'logged in user can delete a folder provided it contains only folders they own' do
+    project = projects(:pyramid)
+    user_1 = users(:one)
+    user_2 = users(:two)
+    permission = Permission.new(user_1)
+
+    folder = Folder.create(name: "Parent folder", user: user_1, project: project)
+    folder.children.create(name: "Child folder",  user: user_2, project: project)
+
+    assert !permission.allow_action?(:folders, :destroy, folder)
+  end
+
   test 'any logged in user permissions' do
     user = users(:one)
     permission = Permission.new(user)

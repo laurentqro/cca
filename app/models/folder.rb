@@ -1,4 +1,5 @@
 class Folder < ApplicationRecord
+  belongs_to :user
   belongs_to :project
   has_many :documents, dependent: :destroy
 
@@ -15,5 +16,16 @@ class Folder < ApplicationRecord
     if siblings.pluck(:name).include?(name)
       errors.add(:name, "indisponible. Merci d'en choisir un autre.")
     end
+  end
+
+  def contains_only_resources_owned_by_user?(user)
+    subtree.all? do |folder|
+       folder.owned_by_user?(user) &&
+       folder.documents.all? { |document| document.owned_by_user?(user) }
+    end
+  end
+
+  def owned_by_user?(user)
+    user_id == user.id
   end
 end
