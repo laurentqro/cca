@@ -12,6 +12,10 @@ class Permission
       allow_action 'users/registrations', [:edit, :update]
       allow_action 'activities', :index
 
+      allow_action :documents, :destroy do |document|
+        document.owned_by_user?(user)
+      end
+
       if user.partner?
         allow_action :projects, :index
 

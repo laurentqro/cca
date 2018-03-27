@@ -2,12 +2,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :documents
+
   has_many :assignments, dependent: :destroy
   has_many :employments, dependent: :destroy
   has_many :activities,  dependent: :destroy
 
   has_many :projects,  through: :assignments
-  has_many :folders,   through: :projects
   has_many :companies, through: :employments
 
   accepts_nested_attributes_for :employments, reject_if: lambda { |e| e[:company_id].blank? }, allow_destroy: true

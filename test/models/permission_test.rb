@@ -29,6 +29,25 @@ class UserTest < ActiveSupport::TestCase
     assert permission.allow_action?('users/passwords', :update)
   end
 
+  test 'logged in user can delete a document he owns' do
+    user = users(:one)
+    project = projects(:pyramid)
+    project.users << user
+
+    permission = Permission.new(user)
+
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    document = Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: project.root_folder,
+      user: user
+    )
+
+    assert permission.allow_action?(:documents, :destroy, document)
+  end
+
   test 'any logged in user permissions' do
     user = users(:one)
     permission = Permission.new(user)
