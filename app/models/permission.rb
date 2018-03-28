@@ -32,7 +32,7 @@ class Permission
         end
 
         allow_action :documents, :create do |project|
-          Assignment.exists?(project_id: project.id, user_id: user.id)
+          Assignment.exists?(project: project, user: user)
         end
       end
 
