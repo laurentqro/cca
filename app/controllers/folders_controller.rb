@@ -10,7 +10,7 @@ class FoldersController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @folder = Folder.find(folder_params[:parent_id])
-    @child_folder = Folder.new(folder_params)
+    @child_folder = current_user.folders.build(folder_params)
 
     if @child_folder.save
       redirect_to project_folder_path(@project, @folder), notice: 'Dossier créé avec succès.'

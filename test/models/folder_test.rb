@@ -19,4 +19,34 @@ class FolderTest < ActiveSupport::TestCase
     folder.valid?
     assert_includes(folder.errors[:project], "doit exister")
   end
+
+  test '#has_resources_not_owned_by_user? returns true if folder contains subfolders owned by another user' do
+    project = projects(:pyramid)
+    user_1 = users(:one)
+    user_2 = users(:two)
+
+    parent_folder = Folder.create(name: "Parent folder", user: user_1, project: project)
+    parent_folder.children.create(name: "Child folder",  user: user_2, project: project)
+
+    assert_not parent_folder.contains_only_resources_owned_by_user?(user_1)
+  end
+
+  test '#has_resources_not_owned_by_user? returns true if folder contains documents owned by another user' do
+    project = projects(:pyramid)
+    user_1 = users(:one)
+    user_2 = users(:two)
+
+    parent_folder = Folder.create(name: "Parent folder", user: user_1, project: project)
+
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: parent_folder,
+      user: user_2
+    )
+
+    assert_not parent_folder.contains_only_resources_owned_by_user?(user_1)
+  end
 end

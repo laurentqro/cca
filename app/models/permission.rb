@@ -16,6 +16,10 @@ class Permission
         document.owned_by_user?(user)
       end
 
+      allow_action :folders, :destroy do |folder|
+        folder.owned_by_user?(user) && folder.contains_only_resources_owned_by_user?(user)
+      end
+
       if user.partner?
         allow_action :projects, :index
 

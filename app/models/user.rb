@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :documents
+  has_many :folders
 
   has_many :assignments, dependent: :destroy
   has_many :employments, dependent: :destroy

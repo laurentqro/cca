@@ -2,7 +2,9 @@
 folder_one:
   name: Folder One
   project: pyramid
+  user: one
 
 folder_two:
   name: Folder Two
   project: colossus
+  user: two
