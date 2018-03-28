@@ -9,13 +9,18 @@ class ProjectsController < ApplicationController
 
   def create
     project = Project.new(project_params)
+    folder = Folder.new(
+      name: "#{project.name}",
+      project: project,
+      user: current_user
+    )
 
-    if project.save
-      Folder.create(name: "#{project.name}", project_id: project.id)
-      redirect_to projects_url, notice: 'Projet créé avec succès.'
-    else
-      render :new
+    ActiveRecord::Base.transaction do
+      project.save!
+      folder.save!
     end
+
+    redirect_to projects_url, notice: 'Projet créé avec succès.'
   end
 
   def edit
