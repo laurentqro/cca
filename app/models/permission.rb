@@ -31,8 +31,8 @@ class Permission
           Assignment.exists?(project_id: folder.project_id, user_id: user.id)
         end
 
-        allow_action :documents, :create do |document|
-          Assignment.exists?(project_id: document.folder.project_id, user_id: user.id)
+        allow_action :documents, :create do |project|
+          Assignment.exists?(project_id: project.id, user_id: user.id)
         end
       end
 
