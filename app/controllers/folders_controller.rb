@@ -35,6 +35,6 @@ class FoldersController < ApplicationController
   end
 
   def current_resource
-    @current_resource ||= Folder.find(params[:id]) if params[:id]
+    @current_resource ||= Project.find(params[:project_id]) if params[:project_id]
   end
 end
