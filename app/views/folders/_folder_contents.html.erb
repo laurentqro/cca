@@ -4,6 +4,7 @@
       <th></th>
       <th>Nom</th>
       <th>Déposé le</th>
+      <th>Propriétaire</th>
       <th>Taille</th>
       <th>Type</th>
       <th></th>
@@ -21,6 +22,7 @@
           </td>
           <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
           <td>-</td>
+          <td><%= folder.user.full_name %></td>
           <td>-</td>
           <td>Dossier</td>
           <td class="is-narrow">
@@ -45,6 +47,9 @@
           </td>
           <td>
             <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
+          </td>
+          <td>
+            <%= document.user.full_name %>
           </td>
           <td>
             <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
