@@ -2,7 +2,12 @@ class DocumentsController < ApplicationController
   def create
     respond_to do |format|
       folder = Folder.find(document_params[:folder_id])
-      document = folder.documents.build(document_params)
+
+      document = current_user.documents.build(
+        file: document_params[:file],
+        user: current_user,
+        folder: folder
+      )
 
       if document.save
         current_user.activities.create(action: "create",
