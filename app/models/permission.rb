@@ -24,11 +24,11 @@ class Permission
         allow_action :projects, :index
 
         allow_action :projects, :show do |project|
-          project.user_ids.include?(user.id)
+          Assignment.exists?(project: project, user: user)
         end
 
-        allow_action :folders, :show do |folder|
-          Assignment.exists?(project_id: folder.project_id, user_id: user.id)
+        allow_action :folders, [:show, :create] do |project|
+          Assignment.exists?(project: project, user: user)
         end
 
         allow_action :documents, :create do |project|

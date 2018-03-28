@@ -73,6 +73,16 @@ class UserTest < ActiveSupport::TestCase
     assert !permission.allow_action?(:folders, :destroy, folder)
   end
 
+  test 'partner can create folder in project he is assigned to' do
+    project = projects(:pyramid)
+    user = users(:partner)
+    permission = Permission.new(user)
+
+    Assignment.create(user: user, project: project)
+
+    assert permission.allow_action?(:folders, :create, project)
+  end
+
   test 'any logged in user permissions' do
     user = users(:one)
     permission = Permission.new(user)
@@ -108,8 +118,7 @@ class UserTest < ActiveSupport::TestCase
     assert !permission.allow_action?(:projects, :show, other_project)
 
     # can view folders inside a project he is assigned to
-    folder = user_project.root_folder
-    assert permission.allow_action?(:folders, :show, folder)
+    assert permission.allow_action?(:folders, :show, user_project)
 
     # cannot view folders inside a project he is not assigned to
     other_folder = other_project.root_folder
@@ -194,11 +203,8 @@ class UserTest < ActiveSupport::TestCase
     # can view a folder
     assert permission.allow_action?(:folders, :show)
 
-    # can create a folder
-    assert permission.allow_action?(:folders, :create)
-
-    # can create a folder
-    assert permission.allow_action?(:folders, :create)
+    # can create a folder in any project
+    assert permission.allow_action?(:folders, :create, any_project)
 
     # can upload a document to any folder
     assert permission.allow_action?(:documents, :create)
