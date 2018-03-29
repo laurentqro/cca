@@ -4,6 +4,6 @@ class HomepageTest < ApplicationSystemTestCase
   test 'visiting the homepage' do
     sign_in_as(users(:admin))
     visit root_url
-    assert_text 'Activités récentes'
+    assert_text 'Projets'
   end
 end

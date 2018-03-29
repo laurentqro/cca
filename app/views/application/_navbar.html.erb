@@ -1,12 +1,8 @@
 <nav class="tabs is-boxed">
   <ul>
-    <li class=<%= "is-active" if controller?("activities") %>>
-      <%= link_to 'Accueil', root_url %>
-    </li>
-
-    <% if allow_action? :users, :index %>
-      <li class=<%= "is-active" if controller?("users") %>>
-        <%= link_to 'Comptes utilisateurs', users_url %>
+    <% if allow_action? :projects, :index %>
+      <li class=<%= "is-active" if controller?("projects", "assignments") %>>
+        <%= link_to 'Projets', projects_url %>
       </li>
     <% end %>
 
@@ -16,9 +12,9 @@
       </li>
     <% end %>
 
-    <% if allow_action? :projects, :index %>
-      <li class=<%= "is-active" if controller?("projects", "assignments") %>>
-        <%= link_to 'Projets', projects_url %>
+    <% if allow_action? :users, :index %>
+      <li class=<%= "is-active" if controller?("users") %>>
+        <%= link_to 'Comptes utilisateurs', users_url %>
       </li>
     <% end %>
 
