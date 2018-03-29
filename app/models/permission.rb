@@ -31,8 +31,8 @@ class Permission
           Assignment.exists?(project: folder.project, user: user)
         end
 
-        allow_action :documents, :create do |project|
-          Assignment.exists?(project: project, user: user)
+        allow_action :documents, :create do |document|
+          Assignment.exists?(project: document.folder.project, user: user)
         end
       end
 

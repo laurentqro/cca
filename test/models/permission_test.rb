@@ -132,7 +132,16 @@ class UserTest < ActiveSupport::TestCase
 
     permission = Permission.new(partner)
 
-    assert permission.allow_action?(:documents, :create, project)
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    document = Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: project.root_folder,
+      user: partner
+    )
+
+    assert permission.allow_action?(:documents, :create, document)
   end
 
   test 'partner cannot upload a document to a folder outside a project he is assigned to' do
@@ -142,7 +151,16 @@ class UserTest < ActiveSupport::TestCase
 
     permission = Permission.new(partner)
 
-    assert !permission.allow_action?(:documents, :create, projects(:colossus))
+    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
+    stub_request(:put, s3_url).to_return(body: '', status: 200)
+
+    document = Document.create(
+      file: File.open('test/fixtures/files/pdf-sample.pdf'),
+      folder: projects(:colossus).root_folder,
+      user: partner
+    )
+
+    assert !permission.allow_action?(:documents, :create, document)
   end
 
   test 'employee permissions' do

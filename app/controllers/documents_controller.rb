@@ -3,30 +3,21 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       folder = Folder.find(document_params[:folder_id])
 
-      document = current_user.documents.build(
-        file: document_params[:file],
-        user: current_user,
-        folder: folder
-      )
-
-      if document.save
-        current_user.activities.create(action: "create",
-                                       trackable: document,
-                                       project_id: folder.project_id,
-                                       folder_id: folder.id)
+      if @current_resource.save
+        current_user.activities.create(action:    "create",
+                                       trackable: @current_resource,
+                                       project:   folder.project,
+                                       folder:    folder)
         format.js
       end
     end
   end
 
   def destroy
-    document = Document.find(params[:id])
-    folder = document.folder
-    project = folder.project
+    folder = @current_resource.folder
+    @current_resource.destroy
 
-    document.destroy
-
-    redirect_to project_folder_path(project, folder), notice: 'Document supprimé avec succès.'
+    redirect_to project_folder_path(folder.project, folder), notice: 'Document supprimé avec succès.'
   end
 
   private
@@ -36,6 +27,14 @@ class DocumentsController < ApplicationController
   end
 
   def current_resource
-    @current_resource ||= Project.find(params[:project_id]) if params[:project_id]
+    if params[:id].present?
+      @current_resource = Document.find(params[:id])
+    else
+      @current_resource = current_user.documents.build(
+        file: document_params[:file],
+        folder: Folder.find(document_params[:folder_id]),
+        user: current_user
+      )
+    end
   end
 end
