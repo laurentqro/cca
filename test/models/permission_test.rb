@@ -80,7 +80,7 @@ class UserTest < ActiveSupport::TestCase
 
     Assignment.create(user: user, project: project)
 
-    assert permission.allow_action?(:folders, :create, project)
+    assert permission.allow_action?(:folders, :create, project.root_folder)
   end
 
   test 'any logged in user permissions' do
@@ -118,7 +118,7 @@ class UserTest < ActiveSupport::TestCase
     assert !permission.allow_action?(:projects, :show, other_project)
 
     # can view folders inside a project he is assigned to
-    assert permission.allow_action?(:folders, :show, user_project)
+    assert permission.allow_action?(:folders, :show, user_project.root_folder)
 
     # cannot view folders inside a project he is not assigned to
     other_folder = other_project.root_folder

@@ -9,8 +9,13 @@ class FoldersController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @folder = Folder.find(folder_params[:parent_id])
-    @child_folder = current_user.folders.build(folder_params)
+    @folder = Folder.find(params[:id])
+    @child_folder = current_user.folders.build(
+      name: folder_params[:name],
+      user: current_user,
+      project: @project,
+      parent: @folder
+    )
 
     if @child_folder.save
       redirect_to project_folder_path(@project, @folder), notice: 'Dossier créé avec succès.'
@@ -31,10 +36,10 @@ class FoldersController < ApplicationController
   private
 
   def folder_params
-    params.require(:folder).permit(:name, :project_id, :parent_id)
+    params.require(:folder).permit(:name)
   end
 
   def current_resource
-    @current_resource ||= Project.find(params[:project_id]) if params[:project_id]
+    @current_resource ||= Folder.find(params[:id]) if params[:id]
   end
 end
