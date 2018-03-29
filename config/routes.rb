@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   mount Shrine.presign_endpoint(:cache) => '/presign'
 
-  root to: 'activities#index'
+  root to: 'projects#index'
 
   get ':status', to: 'errors#show', constraints: { status: /\d{3}/ }
 
