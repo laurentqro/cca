@@ -16,4 +16,17 @@ class FoldersTest < ApplicationSystemTestCase
     assert_text 'Folder name'
     assert folder.children.exists?
   end
+
+  test 'deleting a folder' do
+    project = projects(:pyramid)
+
+    visit project_folder_url(project, project.root_folder)
+
+    fill_in 'folder[name]', with: 'Folder name'
+    click_button 'Créer'
+
+    find_link(title: 'Supprimer ce dossier').click
+
+    assert_text 'Dossier supprimé avec succès.'
+  end
 end
