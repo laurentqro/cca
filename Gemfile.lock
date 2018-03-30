@@ -229,7 +229,7 @@ GEM
       rubyzip (~> 1.2)
     shrine (2.10.0)
       down (~> 4.1)
-    sidekiq (5.1.1)
+    sidekiq (5.1.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
@@ -310,7 +310,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   selenium-webdriver
   shrine (~> 2.10.0)
-  sidekiq (~> 5.1.1)
+  sidekiq (~> 5.1.2)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
