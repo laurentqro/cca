@@ -23,6 +23,21 @@ class FoldersController < ApplicationController
     end
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @folder = Folder.find(params[:id])
+  end
+
+  def update
+    folder = current_resource
+
+     if folder.update(folder_params)
+       redirect_to project_folder_path(folder.project, folder.parent), notice: 'Dossier deplace !'
+     else
+       render :edit
+     end
+  end
+
   def destroy
     project = Project.find(params[:project_id])
     folder = Folder.find(params[:id])
@@ -35,7 +50,7 @@ class FoldersController < ApplicationController
   private
 
   def folder_params
-    params.require(:folder).permit(:name)
+    params.require(:folder).permit(:name, :parent_id)
   end
 
   def current_resource
