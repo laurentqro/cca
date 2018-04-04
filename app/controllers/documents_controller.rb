@@ -13,6 +13,21 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def edit
+    @document = current_resource
+  end
+
+  def update
+    document = current_resource
+    destination_folder = Folder.find(document_params[:folder_id])
+
+    if document.update(document_params)
+      redirect_to project_folder_path(destination_folder.project, destination_folder), notice: 'Document déplacé avec succès'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     folder = @current_resource.folder
     @current_resource.destroy

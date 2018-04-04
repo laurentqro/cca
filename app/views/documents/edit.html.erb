@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container">
+    <% if allow_action? :folders, :edit, @folder %>
+      <div class="content">
+        <h3 class="title is-4">
+          Deplacer le document <em><%= @document.file.original_filename %></em> vers ...
+        </h3>
+
+        <%= form_with(model: @document, local: true) do |form| %>
+          <div class="field">
+            <div class="control">
+              <% @document.errors.full_messages.each do |message| %>
+                <p class="help is-danger"><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= render 'tree', node: @document.folder.root, current_folder: @document.folder, current_document: @document, form: form %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.submit 'Deplacer', class: "button is-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>

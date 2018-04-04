@@ -8,6 +8,7 @@
       <th>Taille</th>
       <th>Type</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -25,6 +26,11 @@
           <td><%= folder.user.full_name %></td>
           <td>-</td>
           <td>Dossier</td>
+          <td class="is-narrow">
+            <% if allow_action? :folders, :edit, folder %>
+              <%= link_to "Déplacer vers ...", edit_project_folder_path(@project, folder), title: "Déplacer ce dossier", class: "button is-small is-info" %>
+            <% end %>
+          </td>
           <td class="is-narrow">
             <% if allow_action? :folders, :destroy, folder %>
               <%= link_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "button is-small is-danger" %>
@@ -56,6 +62,11 @@
           </td>
           <td>
             <%= document.file.mime_type %>
+          </td>
+          <td class="is-narrow">
+            <% if allow_action? :documents, :edit, document %>
+              <%= link_to "Déplacer vers ...", edit_document_path(document), title: "Déplacer ce document", class: "button is-small is-info" %>
+            <% end %>
           </td>
           <td class="is-narrow">
             <% if allow_action? :documents, :destroy, document %>

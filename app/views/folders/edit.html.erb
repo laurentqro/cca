@@ -1,0 +1,35 @@
+<section class="section">
+  <div class="container">
+    <%= render 'breadcrumbs' %>
+
+    <% if allow_action? :folders, :edit, @folder %>
+      <div class="content">
+        <h3 class="title is-4">
+          Deplacer le dossier <em><%= @folder.name %></em> vers ...
+        </h3>
+
+        <%= form_with(model: [@project, @folder], local: true) do |form| %>
+          <div class="field">
+            <div class="control">
+              <% @folder.errors.full_messages.each do |message| %>
+                <p class="help is-danger"><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= render 'tree', node: @folder.root, current_folder: @folder, form: form %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= form.submit 'Deplacer', class: "button is-primary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</section>
