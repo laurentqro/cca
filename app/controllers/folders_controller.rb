@@ -32,7 +32,7 @@ class FoldersController < ApplicationController
     folder = current_resource
 
      if folder.update(folder_params)
-       redirect_to project_folder_path(folder.project, folder.parent), notice: 'Dossier deplace !'
+       redirect_to project_folder_path(folder.project, folder.parent), notice: 'Dossier déplacé avec succès'
      else
        render :edit
      end

@@ -1,0 +1,11 @@
+<ul>
+  <% node.subtree.arrange.each do |parent, child| %>
+    <% parent.children.each do |folder| %>
+        <li>
+          <%= form.radio_button(:folder_id, folder.id, checked: folder.id == current_folder.id) %>
+          <%= folder.name %>
+        </li>
+      <%= render 'tree', node: folder, current_folder: current_folder, current_document: current_document, form: form %>
+    <% end %>
+  <% end %>
+</ul>
