@@ -19,6 +19,13 @@ Rails.application.routes.draw do
 
   root to: 'projects#index'
 
+  namespace :api do
+    resources :projects, path: 'projets' do
+      resources :assignments, only: [:index, :create, :destroy], path: 'membres'
+      get 'assignable-users', to: 'assignments#assignable_users'
+    end
+  end
+
   resources :users,
     path: 'utilisateurs',
     path_names: { new: 'creer', edit: 'editer' } do
@@ -31,7 +38,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
-    resources :assignments, only: [:index, :create, :destroy], path: 'membres'
+    resources :assignments, only: :index, path: 'membres'
     resources :folders, path: 'dossiers'
   end
 

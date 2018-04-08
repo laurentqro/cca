@@ -1,57 +1,23 @@
+<% content_for :tail_scripts do %>
+  <%= javascript_pack_tag "assignments", nonce: true %>
+<% end %>
+
 <section class="section">
   <div class="container">
     <h2 class="title is-2">Gestion des membres du projet '<%= @project.name %>'</h2>
     <div class="content">
-
       <div class="columns">
         <div class="column">
-          <h2 class="title is-4">Non-membres</h1>
-          <table class="table is-fullwidth is-hoverable">
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Groupes</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% User.unassigned_to_project(@project.id).each do |user| %>
-                <tr>
-                  <td><%= link_to user.full_name, user %></td>
-                  <td><%= user.companies_names %></td>
-                  <td>
-                    <%= button_to 'ajouter', [@project, Assignment.new], params: { assignment: { project_id: @project.id, user_id: user.id }}, remote: true, id: "add_#{dom_id(user)}", class: "button is-small is-success" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="column">
-          <h2 class="title is-4">Membres</h1>
-          <table class="table is-fullwidth is-hoverable">
-            <thead>
-              <tr>
-                <th>Nom</th>
-                <th>Groupes</th>
-                <th></th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <% @project.assignments.each do |assignment| %>
-                <tr>
-                  <td><%= link_to assignment.user.full_name, assignment.user %></td>
-                  <td><%= assignment.user.companies_names %></td>
-                  <td>
-                    <%= button_to 'retirer', project_assignment_url(assignment.project, assignment), remote: true, method: :delete, id: "remove_#{dom_id(assignment.user)}", class: "button is-small is-danger" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+          <%= content_tag :div,
+            id: "assignments-elm-app",
+            data: {
+              assignments_endpoint: api_project_assignments_url(@project),
+              assignable_users_endpoint: api_project_assignable_users_url(@project),
+              project_id: @project.id,
+              assignments: @project_assignments_json,
+              users: @assignable_users_json
+            }.to_json do %>
+          <% end %>
         </div>
       </div>
     </div>

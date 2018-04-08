@@ -1,29 +1,17 @@
 class AssignmentsController < ApplicationController
   def index
     @project = Project.find(params[:project_id])
-  end
 
-  def create
-    @assignment = Assignment.new(assignment_params)
+    @assignable_users_json =
+      ActiveModelSerializers::SerializableResource.new(
+        User.unassigned_to_project(@project.id),
+        each_serializer: UserSerializer
+    ).as_json
 
-    respond_to do |format|
-      if @assignment.save
-        format.js
-      end
-    end
-  end
-
-  def destroy
-    Assignment.find(params[:id]).destroy
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  private
-
-  def assignment_params
-    params.require(:assignment).permit(:project_id, :user_id)
+    @project_assignments_json =
+      ActiveModelSerializers::SerializableResource.new(
+        @project.assignments,
+        each_serializer: AssignmentSerializer
+    ).as_json
   end
 end
