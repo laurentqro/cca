@@ -30,7 +30,7 @@ gem 'font-awesome-rails', '~> 4.7'
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2.1'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
   gem 'webmock', '~> 3.1'
