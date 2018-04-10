@@ -23,7 +23,7 @@ gem 'jquery-rails', '~> 4.3'
 gem 'jquery-fileupload-rails', '0.4.7'
 gem 'tzinfo-data'
 gem 'devise', '~> 4.4'
-gem 'devise_invitable', '~> 1.7.0'
+gem 'devise_invitable', '~> 1.7.4'
 gem 'pretender', '~> 0.3.2'
 gem 'font-awesome-rails', '~> 4.7'
 
