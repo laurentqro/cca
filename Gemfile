@@ -28,7 +28,7 @@ gem 'pretender', '~> 0.3.2'
 gem 'font-awesome-rails', '~> 4.7'
 
 group :development, :test do
-  gem 'dotenv-rails', '~> 2.2.1'
+  gem 'dotenv-rails', '~> 2.2.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
