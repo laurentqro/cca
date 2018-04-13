@@ -166,7 +166,7 @@ GEM
     pretender (0.3.2)
       actionpack
     public_suffix (3.0.2)
-    puma (3.11.3)
+    puma (3.11.4)
     rack (2.0.4)
     rack-protection (2.0.1)
       rack
@@ -305,7 +305,7 @@ DEPENDENCIES
   mailgun-ruby (~> 1.1.8)
   pg
   pretender (~> 0.3.2)
-  puma (~> 3.7)
+  puma (~> 3.11)
   rails (~> 5.2.0)
   sass-rails (~> 5.0)
   selenium-webdriver
