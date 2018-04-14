@@ -26,6 +26,7 @@ gem 'devise', '~> 4.4'
 gem 'devise_invitable', '~> 1.7.4'
 gem 'pretender', '~> 0.3.2'
 gem 'font-awesome-rails', '~> 4.7'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'dotenv-rails', '~> 2.2.2'

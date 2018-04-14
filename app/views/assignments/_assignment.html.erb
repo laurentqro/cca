@@ -1,4 +1,0 @@
-<li>
-  <%= button_to 'retirer', project_assignment_url(assignment.project, assignment), remote: true, method: :delete, id: "remove_#{dom_id(assignment.user)}", class: "button is-small is-danger" %>
-  <%= assignment.user.first_name %> <%= assignment.user.last_name %>
-</li>

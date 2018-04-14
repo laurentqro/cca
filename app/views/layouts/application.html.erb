@@ -19,6 +19,7 @@
     <%= tag.p alert,  id: 'alert' %>
 
     <%= yield %>
+    <%= yield :tail_scripts %>
 
     <%= render partial: 'footer' %>
   </body>
