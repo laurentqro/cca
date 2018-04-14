@@ -176,13 +176,13 @@ class UserTest < ActiveSupport::TestCase
     assert permission.allow_action?(:projects, :show, any_project)
 
     # can assign a user to a project
-    assert permission.allow_action?(:assignments, :create)
+    assert permission.allow_action?('api/assignments', :create)
+
+    # can unassign a user from a project
+    assert permission.allow_action?('api/assignments', :destroy)
 
     # can view the list of users assigned to a project
     assert permission.allow_action?(:assignments, :index)
-
-    # can unassign a user from a project
-    assert permission.allow_action?(:assignments, :destroy)
 
     # can view the archives
     assert permission.allow_action?(:archives, :index)
