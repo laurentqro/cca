@@ -72,7 +72,7 @@ viewTableAssignmentItem assignment =
         [ td [] [ text assignment.user.full_name ]
         , td [] [ text (String.join ", " (List.map .name assignment.user.companies)) ]
         , td []
-            [ button [ class "button is-small is-danger", onClick (DeleteAssignment assignment) ] [ text "Retirer" ]
+            [ button [ id ("remove_user_" ++ toString assignment.user.id), class "button is-small is-danger", onClick (DeleteAssignment assignment) ] [ text "Retirer" ]
             ]
         ]
 
@@ -83,7 +83,7 @@ viewTableUserItem user =
         [ td [] [ text user.full_name ]
         , td [] [ text (String.join ", " (List.map .name user.companies)) ]
         , td []
-            [ button [ class "button is-small is-success", onClick (CreateAssignment user) ] [ text "Ajouter" ]
+            [ button [ id ("add_user_" ++ toString user.id), class "button is-small is-success", onClick (CreateAssignment user) ] [ text "Ajouter" ]
             ]
         ]
 
