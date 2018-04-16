@@ -17,10 +17,10 @@ Devise.setup do |config|
   config.mailer_sender = Rails.application.secrets[:system_from_email]
 
   # Configure the class responsible to send e-mails.
-  # config.mailer = 'Devise::Mailer'
+  config.mailer = 'DeviseMailer'
 
   # Configure the parent class responsible to send e-mails.
-  # config.parent_mailer = 'ActionMailer::Base'
+  config.parent_mailer = 'ActionMailer::Base'
 
   require 'devise/orm/active_record'
 
