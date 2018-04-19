@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   def index
     @users = User.includes(:projects, :companies)
+
+    @users_json =
+      ActiveModelSerializers::SerializableResource.new(
+        @users,
+        each_serializer: UserSerializer
+    ).as_json
   end
 
   def new

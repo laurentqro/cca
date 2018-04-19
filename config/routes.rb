@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   root to: 'projects#index'
 
   namespace :api do
+    resources :users, only: :index
     resources :projects, path: 'projets' do
       resources :assignments, only: [:index, :create, :destroy], path: 'membres'
       get 'assignable-users', to: 'assignments#assignable_users'

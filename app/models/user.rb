@@ -23,6 +23,27 @@ class User < ApplicationRecord
 
   enum group: [ :partner, :employee, :admin ]
 
+  scope :search, ->(query) {
+    if query.present?
+      includes(:projects, :companies)
+        .where("first_name ILIKE ? OR last_name ILIKE ?", "%#{query}%", "%#{query}%")
+    end
+  }
+
+  scope :assigned_to_project, ->(query) {
+    if query.present?
+      joins(:projects)
+        .where("projects.name ILIKE ?", "%#{query}%")
+    end
+  }
+
+  scope :employed_by_company, ->(query) {
+    if query.present?
+      joins(:companies)
+        .where("companies.name ILIKE ?", "%#{query}%")
+    end
+  }
+
   def self.unassigned_to_project(project_id)
     User
       .joins("LEFT OUTER JOIN assignments ON assignments.user_id = users.id AND assignments.project_id = #{project_id}")
