@@ -43,6 +43,10 @@ class User < ApplicationRecord
     companies.pluck(:name).join(", ")
   end
 
+  def projects_names
+    projects.pluck(:name).join(", ")
+  end
+
   def account_status
     self.active? ? "actif" : "inactif"
   end
