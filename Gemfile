@@ -29,7 +29,7 @@ gem 'font-awesome-rails', '~> 4.7'
 gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
-  gem 'dotenv-rails', '~> 2.2.2'
+  gem 'dotenv-rails', '~> 2.4.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.0'
   gem 'selenium-webdriver'
