@@ -26,21 +26,21 @@ class User < ApplicationRecord
   scope :search, ->(query) {
     if query.present?
       includes(:projects, :companies)
-        .where("first_name ILIKE ? OR last_name ILIKE ?", "%#{query}%", "%#{query}%")
+        .where("unaccent(first_name) ILIKE unaccent(?) OR unaccent(last_name) ILIKE unaccent(?)", "%#{query}%", "%#{query}%")
     end
   }
 
   scope :assigned_to_project, ->(query) {
     if query.present?
       joins(:projects)
-        .where("projects.name ILIKE ?", "%#{query}%")
+        .where("unaccent(projects.name) ILIKE unaccent(?)", "%#{query}%")
     end
   }
 
   scope :employed_by_company, ->(query) {
     if query.present?
       joins(:companies)
-        .where("companies.name ILIKE ?", "%#{query}%")
+        .where("unaccent(companies.name) ILIKE unaccent(?)", "%#{query}%")
     end
   }
 
