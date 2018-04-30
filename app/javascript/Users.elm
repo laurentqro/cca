@@ -262,7 +262,7 @@ viewUsersTable model =
                 [ th [] [ text "Nom" ]
                 , th [] [ text "Projets" ]
                 , th [] [ text "Groupes" ]
-                , th [] [ text "Niveau d'acces" ]
+                , th [] [ text "Niveau d'accès" ]
                 , th [] [ text "Statut" ]
                 ]
             , tbody [] (List.map viewUserTableItem model.users)
