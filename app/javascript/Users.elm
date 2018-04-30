@@ -28,6 +28,7 @@ type alias Model =
 type alias User =
     { id : Int
     , full_name : String
+    , url : String
     , projects : List Project
     , companies : List Company
     , status : String
@@ -139,9 +140,10 @@ decodeProject =
 
 decodeUser : Decoder User
 decodeUser =
-    Decode.map6 User
+    Decode.map7 User
         (field "id" Decode.int)
         (field "full_name" Decode.string)
+        (field "url" Decode.string)
         (field "projects" (Decode.list decodeProject))
         (field "companies" (Decode.list decodeCompany))
         (field "status" Decode.string)
@@ -273,7 +275,7 @@ viewUsersTable model =
 viewUserTableItem : User -> Html Msg
 viewUserTableItem user =
     tr []
-        [ td [] [ text user.full_name ]
+        [ td [] [ a [ href user.url ] [ text user.full_name ] ]
         , td [] [ text (String.join ", " (List.map .name user.projects)) ]
         , td [] [ text (String.join ", " (List.map .name user.companies)) ]
         , td [] [ text user.group ]
