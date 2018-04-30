@@ -1,5 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :full_name, :projects, :companies, :status, :group
+  include Rails.application.routes.url_helpers
+
+  attributes :id, :full_name, :url, :projects, :companies, :status, :group
 
   def full_name
     object.full_name
@@ -11,5 +13,9 @@ class UserSerializer < ActiveModel::Serializer
 
   def group
     I18n.t("activerecord.attributes.user.group.#{object.group}")
+  end
+
+  def url
+    user_path(object)
   end
 end
