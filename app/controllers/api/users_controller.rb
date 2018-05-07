@@ -6,7 +6,7 @@ class Api::UsersController < Api::ApiController
                   .search(params[:filter])
 
     else
-      users = User.includes(:projects, :companies)
+      users = User.includes(:projects, :company)
     end
 
     render json: users

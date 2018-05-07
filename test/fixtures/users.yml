@@ -5,6 +5,7 @@ one:
   first_name: Jon
   last_name: Snow
   city: Castle Black
+  company: hbo
 
 two:
   email: denaerys@got.com
@@ -12,6 +13,7 @@ two:
   first_name: Denaerys
   last_name: Targaryen
   city: Dragonstone
+  company: hbo
 
 partner:
   email: mike@got.com
@@ -20,6 +22,7 @@ partner:
   first_name: Mike
   last_name: Tyson
   city: New York
+  company: hbo
 
 employee:
   email: bob@got.com
@@ -28,6 +31,7 @@ employee:
   first_name: Bob
   last_name: Smith
   city: Houston
+  company: cca
 
 admin:
   email: christian@example.com
@@ -36,3 +40,4 @@ admin:
   first_name: Christian
   last_name: BigBoss
   city: Monaco
+  company: cca
