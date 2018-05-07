@@ -9,4 +9,15 @@ class UserMailer < ApplicationMailer
       subject: 'Bienvenue sur CCA'
     )
   end
+
+  def new_document(activity)
+    @activity = activity
+    @document = activity.trackable
+    @user = activity.user
+
+    mail(
+      to: activity.project.subscribers.pluck(:email),
+      subject: "Opération #{activity.project.name} - nouveau document"
+    )
+  end
 end

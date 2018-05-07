@@ -4,10 +4,14 @@ class DocumentsController < ApplicationController
       folder = Folder.find(document_params[:folder_id])
 
       if @current_resource.save
-        current_user.activities.create(action:    "create",
-                                       trackable: @current_resource,
-                                       project:   folder.project,
-                                       folder:    folder)
+        activity = current_user.activities.build(action:    "create",
+                                                 trackable: @current_resource,
+                                                 project:   folder.project,
+                                                 folder:    folder)
+        activity.save
+
+        UserMailer.new_document(activity).deliver_now
+
         format.js
       end
     end
