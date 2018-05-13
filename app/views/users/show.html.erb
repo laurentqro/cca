@@ -57,14 +57,10 @@
         </tr>
         <tr>
           <th>
-            Groupes
+            Groupe
           </th>
           <td>
-            <ul>
-              <% @user.employments.each do |employment| %>
-                <li><%= link_to employment.company.name, employment.company %></li>
-              <% end %>
-            </ul>
+            <%= link_to @user.company.name, @user.company %>
           </td>
         </tr>
       </tbody>

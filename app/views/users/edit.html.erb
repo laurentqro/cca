@@ -26,6 +26,15 @@
         </div>
       <% end %>
 
+      <div class="field">
+        <%= form.label :company, "Groupe", class: "label" %>
+        <div class="control">
+          <div class="select">
+            <%= form.collection_select(:company_id, Company.all, :id, :name, prompt: true) %>
+          </div>
+        </div>
+      </div>
+
       <% if allow_param? :user, :first_name %>
         <div class="field">
           <%= form.label :first_name, 'Prénom', class: "label" %>
