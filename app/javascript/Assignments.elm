@@ -30,7 +30,7 @@ type alias Assignment =
 type alias User =
     { id : Int
     , full_name : String
-    , company : Company
+    , companies : List Company
     }
 
 
@@ -70,7 +70,7 @@ viewTableAssignmentItem : Assignment -> Html Message
 viewTableAssignmentItem assignment =
     tr []
         [ td [] [ text assignment.user.full_name ]
-        , td [] [ text (assignment.user.company.name) ]
+        , td [] [ text (String.join ", " (List.map .name assignment.user.companies)) ]
         , td []
             [ button [ id ("remove_user_" ++ toString assignment.user.id), class "button is-small is-danger", onClick (DeleteAssignment assignment) ] [ text "Retirer" ]
             ]
@@ -81,7 +81,7 @@ viewTableUserItem : User -> Html Message
 viewTableUserItem user =
     tr []
         [ td [] [ text user.full_name ]
-        , td [] [ text (user.company.name) ]
+        , td [] [ text (String.join ", " (List.map .name user.companies)) ]
         , td []
             [ button [ id ("add_user_" ++ toString user.id), class "button is-small is-success", onClick (CreateAssignment user) ] [ text "Ajouter" ]
             ]
@@ -91,7 +91,7 @@ viewTableUserItem user =
 view : Model -> Html Message
 view model =
     table [ class "table is-fullwidth is-hoverable" ]
-        [ thead [] [ th [] [ text "Nom" ], th [] [ text "Groupe" ], th [] [] ]
+        [ thead [] [ th [] [ text "Nom" ], th [] [ text "Groupes" ], th [] [] ]
         , tbody []
             (List.append
                 (List.map viewTableAssignmentItem model.assignments)
@@ -238,7 +238,7 @@ decodeUser =
     Decode.map3 User
         (field "id" Decode.int)
         (field "full_name" Decode.string)
-        (field "company" decodeCompany)
+        (field "companies" (Decode.list decodeCompany))
 
 
 decodeCompany : Decoder Company

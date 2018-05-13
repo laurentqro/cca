@@ -2,8 +2,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :company
-
   has_many :documents
   has_many :folders
 
@@ -12,6 +10,7 @@ class User < ApplicationRecord
   has_many :activities,  dependent: :destroy
 
   has_many :projects,  through: :assignments
+  has_many :companies, through: :employments
 
   accepts_nested_attributes_for :employments, reject_if: lambda { |e| e[:company_id].blank? }, allow_destroy: true
 
@@ -26,7 +25,7 @@ class User < ApplicationRecord
 
   scope :search, ->(query) {
     if query.present?
-      includes(:projects, :company)
+      includes(:projects, :companies)
         .where("unaccent(first_name) ILIKE unaccent(?) OR unaccent(last_name) ILIKE unaccent(?)", "%#{query}%", "%#{query}%")
     end
   }
@@ -40,7 +39,7 @@ class User < ApplicationRecord
 
   scope :employed_by_company, ->(query) {
     if query.present?
-      joins(:company)
+      joins(:companies)
         .where("unaccent(companies.name) ILIKE unaccent(?)", "%#{query}%")
     end
   }
@@ -59,6 +58,10 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def companies_names
+    companies.pluck(:name).join(", ")
   end
 
   def projects_names

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.includes(:projects, :company)
+    @users = User.includes(:projects, :companies)
 
     @users_json =
       ActiveModelSerializers::SerializableResource.new(
@@ -11,6 +11,10 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+
+    4.times do
+      @user.employments.build
+    end
   end
 
   def create
@@ -69,7 +73,6 @@ class UsersController < ApplicationController
                                  :city,
                                  :active,
                                  :group,
-                                 :company_id
-                                )
+                                 employments_attributes: [:company_id, :user_id])
   end
 end
