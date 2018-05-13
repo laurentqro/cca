@@ -16,10 +16,4 @@ module UsersHelper
       [t("activerecord.attributes.user.group.#{group.first}"), group.first]
     end
   end
-
-  def employments_for_select
-    Company.all.map do |company|
-      [company.name, company.id]
-    end
-  end
 end
