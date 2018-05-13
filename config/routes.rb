@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     path_names: {
       sign_in: 'connexion',
       sign_out: 'deconnexion',
+      sign_up: 'inscription'
     },
     path: 'auth'
 

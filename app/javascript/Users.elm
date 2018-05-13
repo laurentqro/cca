@@ -30,7 +30,7 @@ type alias User =
     , full_name : String
     , url : String
     , projects : List Project
-    , company : Company
+    , companies : List Company
     , status : String
     , group : String
     }
@@ -145,7 +145,7 @@ decodeUser =
         (field "full_name" Decode.string)
         (field "url" Decode.string)
         (field "projects" (Decode.list decodeProject))
-        (field "company" decodeCompany)
+        (field "companies" (Decode.list decodeCompany))
         (field "status" Decode.string)
         (field "group" Decode.string)
 
@@ -263,7 +263,7 @@ viewUsersTable model =
             [ thead []
                 [ th [] [ text "Nom" ]
                 , th [] [ text "Projets" ]
-                , th [] [ text "Groupe" ]
+                , th [] [ text "Groupes" ]
                 , th [] [ text "Niveau d'accès" ]
                 , th [] [ text "Statut" ]
                 ]
@@ -277,7 +277,7 @@ viewUserTableItem user =
     tr []
         [ td [] [ a [ href user.url ] [ text user.full_name ] ]
         , td [] [ text (String.join ", " (List.map .name user.projects)) ]
-        , td [] [ text (user.company.name) ]
+        , td [] [ text (String.join ", " (List.map .name user.companies)) ]
         , td [] [ text user.group ]
         , td [] [ text user.status ]
         ]

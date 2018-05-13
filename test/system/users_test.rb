@@ -23,6 +23,9 @@ class UsersTest < ApplicationSystemTestCase
     sign_in_as(users(:admin))
     visit users_url
 
+    Employment.create(user: users(:one), company: companies(:hbo))
+    Employment.create(user: users(:two), company: companies(:cca))
+
     fill_in "company_filter", with: "HBO"
 
     wait_for_ajax
