@@ -14,10 +14,11 @@ class UserMailer < ApplicationMailer
     @activity = activity
     @document = activity.trackable
     @user = activity.user
+    recipients = activity.project.subscribers.pluck(:email).reject { |email| email == @user.email }
 
     mail(
       to: ENV['SYSTEM_FROM_EMAIL'],
-      bcc: activity.project.subscribers.pluck(:email),
+      bcc: recipients,
       subject: "Opération #{activity.project.name} - nouveau document"
     )
   end

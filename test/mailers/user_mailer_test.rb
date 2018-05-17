@@ -37,6 +37,7 @@ class UserMailerTest < ActionMailer::TestCase
                                      project:   folder.project,
                                      folder:    folder)
 
+    folder.project.subscribers << users(:one)
     folder.project.subscribers << users(:two)
 
     email = UserMailer.new_document(activity)
