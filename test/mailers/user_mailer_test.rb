@@ -46,7 +46,8 @@ class UserMailerTest < ActionMailer::TestCase
     end
 
     assert_equal 'Cabinet CCA admin@archicc.com', email.from
-    assert_equal [users(:two).email], email.to
+    assert_equal ['admin@archicc.com'], email.to
+    assert_equal [users(:two).email], email.bcc
     assert_equal "Opération #{activity.project.name} - nouveau document", email.subject
     assert_includes email.html_part.body.to_s, "#{activity.user.full_name}"
     assert_includes email.html_part.body.to_s, "#{activity.user.company.name}"

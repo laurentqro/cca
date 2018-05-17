@@ -16,7 +16,8 @@ class UserMailer < ApplicationMailer
     @user = activity.user
 
     mail(
-      to: activity.project.subscribers.pluck(:email),
+      to: ENV['SYSTEM_FROM_EMAIL'],
+      bcc: activity.project.subscribers.pluck(:email),
       subject: "Opération #{activity.project.name} - nouveau document"
     )
   end
