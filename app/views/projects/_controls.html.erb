@@ -1,8 +1,24 @@
 <% if project.active? %>
   <% if subscription.present? %>
-    <%= link_to "Arreter de suivre", project_subscription_url(project, subscription), class: "button is-small", method: :delete %>
+    <%= link_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
+      <span>
+        (<%= project.subscribers.count %>)
+      </span>
+      <span class="icon is-small has-text-danger">
+        <i class="fa fa-users"></i>
+      </span>
+      <span>Arreter de suivre</span>
+    <% end %>
   <% else %>
-    <%= link_to "Suivre", project_subscriptions_url(project), class: "button is-small", method: :post %>
+    <%= link_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
+      <span>
+        (<%= project.subscribers.count %>)
+      </span>
+      <span class="icon is-small has-text-success">
+        <i class="fa fa-users"></i>
+      </span>
+      <span>Suivre</span>
+    <% end %>
   <% end %>
 
   <% if allow_action? :projects, :edit %>
