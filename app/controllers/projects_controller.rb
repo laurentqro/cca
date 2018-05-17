@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
     @projects = show_all_projects? ? Project.active : current_user.projects.active
   end
 
+  def show
+    redirect_to project_folder_path(current_resource, current_resource.root_folder)
+  end
+
   def new
     @project = Project.new
   end

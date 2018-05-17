@@ -1,6 +1,9 @@
 class Project < ApplicationRecord
   has_many :assignments, dependent: :destroy
   has_many :users, through: :assignments
+  has_many :subscriptions, as: :subscribeable
+  has_many :subscribers, through: :subscriptions
+
   has_one :root_folder, ->{ where(ancestry: nil) }, class_name: "Folder", dependent: :destroy
 
   validates :name, presence: true

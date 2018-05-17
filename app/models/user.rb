@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :documents
   has_many :folders
 
+  has_many :subscriptions, dependent: :destroy
   has_many :assignments, dependent: :destroy
   has_many :employments, dependent: :destroy
   has_many :activities,  dependent: :destroy

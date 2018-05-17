@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 2018_05_07_182656) do
     t.integer "status", default: 0
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string "subscribeable_type"
+    t.bigint "subscribeable_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subscribeable_type", "subscribeable_id"], name: "index_subscriptions_on_subscribeable_type_and_subscribeable_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"

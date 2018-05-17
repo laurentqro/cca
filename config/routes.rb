@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   resources :projects, path: 'projets', path_names: { new: 'creer', edit: 'editer' } do
     resources :assignments, only: :index, path: 'membres'
     resources :folders, path: 'dossiers'
+    resources :subscriptions
   end
 
   resources :documents

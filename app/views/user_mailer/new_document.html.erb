@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Bonjour,</p>
+
+    <p><%= @user.full_name %> de la société <%= @user.company.name %> a déposé le <%= l @activity.created_at, format: :long %> le document <%= link_to @document.file.original_filename, @document.file.url(download: true) %> dans le dossier <%= link_to @activity.folder.name, project_folder_url(@activity.project, @activity.folder) %>.</p>
+
+    <p>Nous vous invitons à télécharger et consulter ce document dans les meilleurs délais.</p>
+
+    <p>Cordialement,</p>
+
+    <p>Cabinet CCA</p>
+  </body>
+</html>
