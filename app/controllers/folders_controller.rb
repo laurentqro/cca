@@ -3,8 +3,8 @@ class FoldersController < ApplicationController
   def show
     @project = Project.find(params[:project_id])
     @subscription = Subscription.find_by(subscribeable_type: "Project",
-                                       subscribeable_id: current_resource.id,
-                                       user_id: current_user.id)
+                                       subscribeable_id: @project,
+                                       subscriber: current_user)
     @folder = Folder.find(params[:id])
     @child_folder = Folder.new
   end

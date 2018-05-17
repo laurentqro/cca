@@ -1,6 +1,6 @@
 <% if project.active? %>
-  <% if @subscription.present? %>
-    <%= link_to "Arreter de suivre", project_subscription_url(project, @subscription), class: "button is-small", method: :delete %>
+  <% if subscription.present? %>
+    <%= link_to "Arreter de suivre", project_subscription_url(project, subscription), class: "button is-small", method: :delete %>
   <% else %>
     <%= link_to "Suivre", project_subscriptions_url(project), class: "button is-small", method: :post %>
   <% end %>
