@@ -29,7 +29,7 @@ class UsersTest < ApplicationSystemTestCase
 
     results = page.all('tbody tr')
 
-    assert_equal(1, results.count)
+    assert_equal(3, results.count)
     assert_text "Jon Snow"
   end
 
