@@ -1,9 +1,19 @@
 branch-defaults:
   master:
-    environment: cca-staging
+    environment: Staging
+environment-defaults:
+  Staging:
+    branch: null
+    repository: null
 global:
   application_name: cca
-  default_ec2_keyname: null
-  default_platform: 64bit Amazon Linux 2017.09 v2.7.1 running Ruby 2.4 (Puma)
+  default_ec2_keyname: aws-eb-cca
+  default_platform: Ruby 2.5 (Puma)
   default_region: eu-central-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
   sc: git
+  workspace_type: Application
