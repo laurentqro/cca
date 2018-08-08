@@ -22,4 +22,14 @@ class UserMailer < ApplicationMailer
       subject: "Opération #{activity.project.name} - nouveau document"
     )
   end
+
+  def invitation_accepted(invitee)
+    @invitee = invitee
+
+    mail(
+      from: ENV['SYSTEM_FROM_EMAIL'],
+      to: User.admin,
+      subject: "#{invitee.full_name} a accepté votre invitation"
+    )
+  end
 end

@@ -3,6 +3,7 @@ fr:
   activerecord:
     models:
       user: Utilisateur
+      company: Groupe
       folder: Dossier
     attributes:
       user:

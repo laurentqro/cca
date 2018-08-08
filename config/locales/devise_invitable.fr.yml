@@ -1,0 +1,31 @@
+fr:
+  devise:
+    failure:
+      invited: "Vous avez une invitation en attente. Veuillez l'accepter pour terminer la création de votre compte."
+    invitations:
+      send_instructions: "Une invitation a ete envoyée à %{email}"
+      invitation_token_invalid: "Le jeton de l'invitation est invalide."
+      updated: "Votre mot de passe est enregistré. Vous êtes maintenant connecté."
+      updated_not_active: "Votre mot de passe est enregistré."
+      no_invitations_remaining: "Aucune invitation en attente."
+      invitation_removed: "Votre invitation a été supprimée."
+      new:
+        header: "Envoyer une invitation"
+        submit_button: "Envoyer"
+      edit:
+        header: "Choisissez votre mot de passe"
+        submit_button: "Enregistrer mon mot de passe"
+    mailer:
+      invitation_instructions:
+        subject: "Votre invitation a CCA"
+        hello: "Bonjour,"
+        someone_invited_you: "Vous avez ete invité(e) à %{url}. Pour accepter l'invitation, cliquez sur le lien ci-dessous."
+        accept: "Accepter l'invitation"
+        accept_until: "Cette invitation est valide jusqu'au %{due_date}."
+        ignore: "Si vous ne souhaitez pas accepter cette invitation, il vous suffit d'ignorer le présent email."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

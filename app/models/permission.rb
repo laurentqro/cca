@@ -3,6 +3,7 @@ class Permission
     allow_action 'users/sessions',      [:new, :create]
     allow_action 'users/registrations', [:new, :create]
     allow_action 'users/passwords',     [:new, :create, :edit, :update]
+    allow_action 'users/invitations',   [:edit, :update]
 
     if user.present?
       allow_all                           if user.admin?
