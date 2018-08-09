@@ -2,9 +2,12 @@
   "name": "cca",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "4.0.0-pre.2",
+    "@rails/webpacker": "4.0.0-pre.2"
+  },
+  "devDependencies": {
     "babel-eslint": "^8.2.6",
     "elm": "^0.18.0",
+    "elm-hot-loader": "^0.5.4",
     "elm-webpack-loader": "^4.5.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb-base": "^13.0.0",
@@ -17,10 +20,7 @@
     "prettier": "^1.14.2",
     "stylelint": "^9.4.0",
     "stylelint-config-standard": "^18.2.0",
-    "webpack": "^4.16.5"
-  },
-  "devDependencies": {
-    "elm-hot-loader": "^0.5.4",
+    "webpack": "^4.16.5",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "3.1.5"
   }
