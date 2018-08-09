@@ -2,7 +2,7 @@
   "name": "cca",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.4.0",
+    "@rails/webpacker": "^3.5.5",
     "caniuse-lite": "^1.0.30000697",
     "coffeescript": "1.12.7",
     "elm": "^0.18.0",
