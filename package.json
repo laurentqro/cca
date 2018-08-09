@@ -5,6 +5,29 @@
     "@rails/webpacker": "4.0.0-pre.2",
     "normalize.css": "^8.0.0"
   },
+  "scripts": {
+    "lint-staged": "$(yarn bin)/lint-staged"
+  },
+  "lint-staged": {
+    "config/webpack/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.js": [
+      "prettier --write",
+      "eslint",
+      "git add"
+    ],
+    "frontend/**/*.css": [
+      "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "pre-commit": [
+    "lint-staged"
+  ],
   "devDependencies": {
     "babel-eslint": "^8.2.6",
     "elm": "^0.18.0",
