@@ -8,4 +8,5 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import "./application.css";
-console.log('Hello World from Webpacker')
+
+console.log("Hello World from Webpacker");
