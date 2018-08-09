@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "4.0.0-pre.2",
-    "normalize.css": "^8.0.0"
+    "normalize.css": "^8.0.0",
+    "tailwindcss": "^0.6.4"
   },
   "scripts": {
     "lint-staged": "$(yarn bin)/lint-staged"

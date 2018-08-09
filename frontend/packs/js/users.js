@@ -2,10 +2,10 @@
 // head of your layout file, like app/views/layouts/application.html.erb.
 // It will render "Hello Elm!" within the page.
 
-import Elm from '../Users'
+import Elm from "../elm/Users.elm";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   const node = document.getElementById("users-elm-app");
-  const data = JSON.parse(node.getAttribute('data'))
-  Elm.Users.embed(node, data)
-})
+  const data = JSON.parse(node.getAttribute("data"));
+  Elm.Users.embed(node, data);
+});
