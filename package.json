@@ -2,14 +2,9 @@
   "name": "cca",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.5.5",
-    "caniuse-lite": "^1.0.30000697",
-    "coffeescript": "1.12.7",
+    "@rails/webpacker": "4.0.0-pre.2",
     "elm": "^0.18.0",
     "elm-webpack-loader": "^4.5.0",
-    "npm": "^5.8.0",
-    "to": "^0.2.9",
-    "update": "^0.7.4",
     "webpack": "^4.16.5"
   },
   "devDependencies": {
