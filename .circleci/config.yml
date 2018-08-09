@@ -87,7 +87,7 @@ jobs:
       - run:
           name: Deploy
           command: |
-            eb deploy --profile default
+            eb deploy
 
 workflows:
   version: 2
