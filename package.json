@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.4.0",
-    "bulma": "^0.6.2",
     "caniuse-lite": "^1.0.30000697",
     "coffeescript": "1.12.7",
     "elm": "^0.18.0",
