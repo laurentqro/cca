@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
-      passwords: 'users/passwords'
+      passwords: 'users/passwords',
+      invitations: 'users/invitations'
     },
     path_names: {
       sign_in: 'connexion',
