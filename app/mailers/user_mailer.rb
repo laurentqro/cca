@@ -27,8 +27,7 @@ class UserMailer < ApplicationMailer
     @invitee = invitee
 
     mail(
-      from: ENV['SYSTEM_FROM_EMAIL'],
-      to: User.admin,
+      to: ENV['SYSTEM_FROM_EMAIL'],
       subject: "#{invitee.full_name} a accepté votre invitation"
     )
   end

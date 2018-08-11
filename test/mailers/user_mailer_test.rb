@@ -54,4 +54,19 @@ class UserMailerTest < ActionMailer::TestCase
     assert_includes email.html_part.body.to_s, "#{activity.user.company.name}"
     assert_includes email.html_part.body.to_s, "#{activity.trackable.file.original_filename}"
   end
+
+  test "invitation accepted" do
+    invitee = users(:one)
+    email = UserMailer.invitation_accepted(invitee)
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    assert_equal 'Cabinet CCA admin@archicc.com', email.from
+    assert_equal "#{invitee.full_name} a accepté votre invitation", email.subject
+    assert_equal ['admin@archicc.com'], email.to
+    assert_includes email.html_part.body.to_s, "#{invitee.full_name}"
+    assert_includes email.html_part.body.to_s, "#{invitee.company.name}"
+  end
 end
