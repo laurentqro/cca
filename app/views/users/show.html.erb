@@ -13,7 +13,7 @@
 
       <p class="control">
         <% if allow_action?(:users, :impersonate) %>
-          <%= link_to "Se connecter en tant que #{@user.first_name}", impersonate_user_path(@user), method: :post, class: "button" %>
+          <%= button_to "Se connecter en tant que #{@user.first_name}", user_impersonation_path(@user), method: :post, class: "button" %>
         <% end %>
       </p>
     </div>

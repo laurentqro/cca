@@ -7,7 +7,7 @@
           <div class="navbar-item">
             <div class="field is-grouped is-grouped-multiline">
               <p class="control">
-                <%= link_to "Redevenir #{true_user.first_name}", stop_impersonating_users_path, method: :post, class: "button is-primary" %>
+                <%= button_to "Redevenir #{true_user.first_name}", user_impersonation_path(current_user), method: :delete, class: "button is-primary" %>
               </p>
             </div>
           </div>
