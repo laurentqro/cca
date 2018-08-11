@@ -172,17 +172,19 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "columns" ]
-        [ div [ class "column is-one-quarter" ]
-            [ h3 [ class "title is-4" ] [ text "Filtrer par" ]
-            , viewUserFilter model
-            , viewProjectFilter model
-            , viewCompanyFilter model
-            , viewResetFiltersButton
-            ]
-        , div [ class "column" ]
-            [ viewUsersTable model
-            ]
+    div [ class "flex" ]
+        [ div [ class "w-1/4" ] [ userFilters model ]
+        , div [ class "w-3/4" ] [ usersList model ]
+        ]
+
+userFilters : Model -> Html Msg
+userFilters model =
+    div [ ]
+        [ h3 [ class "mb-4" ] [ text "Filtrer par" ]
+        , viewUserFilter model
+        , viewProjectFilter model
+        , viewCompanyFilter model
+        , viewResetFiltersButton
         ]
 
 
@@ -196,7 +198,7 @@ viewResetFiltersButton =
             }
             (Decode.succeed ResetFilters)
         , href "#"
-        , class "is-pulled-right"
+        , class ""
         ]
         [ text "Supprimer les filtres" ]
 
@@ -256,30 +258,33 @@ viewCompanyFilter model =
         ]
 
 
-viewUsersTable : Model -> Html Msg
-viewUsersTable model =
-    div [ class "table-container" ]
-        [ table [ class "table is-fullwidth is-hoverable" ]
-            [ thead []
-                [ th [] [ text "Nom" ]
-                , th [] [ text "Projets" ]
-                , th [] [ text "Groupe" ]
-                , th [] [ text "Niveau d'accès" ]
-                , th [] [ text "Statut" ]
-                ]
-            , tbody [] (List.map viewUserTableItem model.users)
-            ]
+usersListHeader : Html Msg
+usersListHeader =
+  div [ class "flex justify-center text-grey" ] [
+      div [ class "w-1/5 h-12" ] [ text "Nom" ]
+      , div [ class "w-1/5 h-12" ] [ text "Projets" ]
+      , div [ class "w-1/5 h-12" ] [ text "Groupe" ]
+      , div [ class "w-1/5 h-12" ] [ text "Niveau d'accès" ]
+      , div [ class "w-1/5 h-12" ] [ text "Statut" ]
+      ]
+
+
+usersList : Model -> Html Msg
+usersList model =
+    div [ ]
+        [ div [ ] [ usersListHeader ]
+        , div [ ] (List.map usersListItem model.users)
         ]
 
 
-viewUserTableItem : User -> Html Msg
-viewUserTableItem user =
-    tr []
-        [ td [] [ a [ href user.url ] [ text user.full_name ] ]
-        , td [] [ text (String.join ", " (List.map .name user.projects)) ]
-        , td [] [ text (user.company.name) ]
-        , td [] [ text user.group ]
-        , td [] [ text user.status ]
+usersListItem : User -> Html Msg
+usersListItem user =
+    div [ class "flex justify-center" ]
+        [ div [ class "w-1/5 h-8" ] [ a [ href user.url ] [ text user.full_name ] ]
+        , div [ class "w-1/5 h-8" ] [ text (String.join ", " (List.map .name user.projects)) ]
+        , div [ class "w-1/5 h-8" ] [ text (user.company.name) ]
+        , div [ class "w-1/5 h-8" ] [ text user.group ]
+        , div [ class "w-1/5 h-8" ] [ text user.status ]
         ]
 
 

@@ -1,27 +1,19 @@
-<nav class="tabs is-boxed">
-  <ul>
-    <% if allow_action? :projects, :index %>
-      <li class=<%= "is-active" if controller?("projects", "assignments") %>>
-        <%= link_to 'Projets', projects_url %>
-      </li>
-    <% end %>
+<nav class="flex justify-center mb-8">
+  <% if allow_action? :projects, :index %>
+    <div class="mr-4 py-2 <%= "border-b-2 border-blue" if controller?("projects", "assignments") %>">
+      <%= link_to 'Projets', projects_url, class: "no-underline text-black" %>
+    </div>
+  <% end %>
 
-    <% if allow_action? :companies, :index %>
-      <li class=<%= "is-active" if controller?("companies", "employments") %>>
-        <%= link_to 'Groupes', companies_url %>
-      </li>
-    <% end %>
+  <% if allow_action? :companies, :index %>
+    <div class="mr-4 py-2 <%= "border-b-2 border-blue" if controller?("companies", "employments") %>">
+      <%= link_to 'Groupes', companies_url, class: "no-underline text-black" %>
+    </div>
+  <% end %>
 
-    <% if allow_action? :users, :index %>
-      <li class=<%= "is-active" if controller?("users") %>>
-        <%= link_to 'Utilisateurs', users_url %>
-      </li>
-    <% end %>
-
-    <% if allow_action? :archives, :index %>
-      <li class=<%= "is-active" if controller?("archives") %>>
-        <%= link_to 'Archives', archives_url %>
-      </li>
-    <% end %>
-  </ul>
+  <% if allow_action? :users, :index %>
+    <div class="mr-4 py-2 <%= "border-b-2 border-blue" if controller?("users") %>">
+      <%= link_to 'Utilisateurs', users_url, class: "no-underline text-black" %>
+    </div>
+  <% end %>
 </nav>

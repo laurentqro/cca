@@ -2,27 +2,22 @@
   <%= javascript_pack_tag "js/users" %>
 <% end %>
 
-<section class="section">
-  <div class="container">
-    <h2 class="title is-2">Utilisateurs</h2>
+<h2 class="mb-8">Utilisateurs</h2>
 
-    <%= content_tag :div,
-      id: "users-elm-app",
-      data: {
-        users: @users_json,
-        projectsEndpoint: api_projects_url,
-        usersEndpoint: api_users_url
-      }.to_json do %>
-    <% end %>
+<% if allow_action? :users, :create %>
+  <%= link_to 'Créer un nouvel utilisateur', new_user_url, class:"btn btn-blue" %>
+<% end %>
 
-    <hr />
+<% if allow_action? :invitations, :create %>
+  <%= link_to 'Créer une invitation', new_user_invitation_url, class:"btn btn-blue" %>
+<% end %>
 
-    <% if allow_action? :users, :create %>
-      <%= link_to 'Créer un nouvel utilisateur', new_user_url, class:"button is-primary" %>
-    <% end %>
-
-    <% if allow_action? :invitations, :create %>
-      <%= link_to 'Créer une invitation', new_user_invitation_url, class:"button is-primary" %>
-    <% end %>
-  </div>
-</section>
+<%= content_tag :div,
+  id: "users-elm-app",
+  class: "py-8",
+  data: {
+    users: @users_json,
+    projectsEndpoint: api_projects_url,
+    usersEndpoint: api_users_url
+  }.to_json do %>
+<% end %>

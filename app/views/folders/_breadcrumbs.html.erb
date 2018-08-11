@@ -1,12 +1,13 @@
-<nav class="breadcrumb has-succeeds-separator">
-  <ul>
+<nav class="bg-grey-lightest p-3 rounded w-full text-sm">
+  <ul class="list-reset flex text-grey-dark">
     <% @folder.ancestors.each do |folder| %>
-      <li>
+      <li class="text-blue font-bold">
         <%= link_to folder.name, project_folder_path(@project, folder) %>
       </li>
+      <li><span class="mx-2">/</span></li>
     <% end %>
-    <li class="is-active">
-      <%= link_to @folder.name, project_folder_path(@project, @folder) %>
+    <li>
+      <%= @folder.name %>
     </li>
   </ul>
 </nav>

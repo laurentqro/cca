@@ -1,44 +1,32 @@
-<section class="section">
-  <div class="container">
-    <% if @folder.root? %>
-      <h3 class="subtitle is-6">Projet</h3>
-      <%= tag.h2 @project.root_folder.name, class: "title is-2" %>
-      <%= render 'projects/controls', project: @project, subscription: @subscription %>
-      <hr />
-    <% else %>
-      <%= render 'breadcrumbs' %>
-    <% end %>
+<div class="mb-8">
+  <% if @folder.root? %>
+    <h2>Projet <%= @project.root_folder.name %></h2>
+    <%= render 'projects/controls', project: @project, subscription: @subscription %>
+  <% else %>
+    <%= render 'breadcrumbs' %>
+  <% end %>
+</div>
 
-    <div class="content">
-      <% if @folder.has_content? %>
-        <%= render 'folder_contents' %>
-      <% end %>
-    </div>
+<div class="p-3 w-full mb-8">
+  <%= render 'folder_contents' if @folder.has_content? %>
+</div>
 
-    <% if allow_action? :folders, :create, @folder %>
-      <hr />
+<% if allow_action? :folders, :create, @folder %>
+  <h3>
+    Créer un nouveau dossier dans le dossier <em><%= @folder.name %></em>
+  </h3>
 
-      <div class="content">
-        <h3 class="title is-4">
-          Créer un nouveau dossier dans le dossier <em><%= @folder.name %></em>
-        </h3>
-
-        <%= render 'folder_creation_form' %>
-      </div>
-
-      <hr />
-    <% end %>
-
-    <% if allow_action? :documents, :create, @folder.documents.build %>
-      <div class="content">
-        <h4 class="title is-4">
-          Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em>
-        </h4>
-
-        <%= render 'document_upload_form' %>
-      </div>
-
-      <div class="js-progress-component"></div>
-    <% end %>
+  <div class="mb-10">
+    <%= render 'folder_creation_form' %>
   </div>
-</section>
+<% end %>
+
+<% if allow_action? :documents, :create, @folder.documents.build %>
+  <h4 class="mb-4">
+    Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em>
+  </h4>
+
+  <%= render 'document_upload_form' %>
+
+  <div class="js-progress-component"></div>
+<% end %>

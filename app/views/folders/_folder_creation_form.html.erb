@@ -1,15 +1,7 @@
-<%= form_with(model: [@project, @child_folder], local: true) do |f| %>
-  <div class="field has-addons">
-    <div class="control">
-      <%= f.text_field :name, class: "input #{"is-danger" if @child_folder.errors.any?}", placeholder: "Nom de dossier" %>
-      <% @child_folder.errors.full_messages.each do |message| %>
-        <p class="help is-danger"><%= message %></p>
-      <% end %>
-      <%= hidden_field_tag :id, @folder.id %>
-    </div>
+<%= form_with(model: [@project, @child_folder], local: true, class: "w-full max-w-sm") do |f| %>
+  <div class="flex items-center border-b border-b-2 border-blue py-2">
+    <%= f.text_field :name, class: "appearance-none bg-transparent border-none w-full text-grey-darker mr-3 py-1 px-2 leading-tight focus:outline-none #{"color-red" if @child_folder.errors.any?}", placeholder: "Nom de dossier" %>
 
-    <div class="control">
-      <%= f.submit 'Créer', class: "button is-primary" %>
-    </div>
+    <%= f.submit 'Créer', class: "flex-no-shrink bg-blue hover:bg-blue-dark border-blue hover:border-blue-dark text-sm border-4 text-white py-1 px-2 rounded" %>
   </div>
 <% end %>

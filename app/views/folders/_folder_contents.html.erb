@@ -1,80 +1,85 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Nom</th>
-      <th>Déposé le</th>
-      <th>Propriétaire</th>
-      <th>Taille</th>
-      <th>Type</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="flex mb-6 text-xs">
+  <div class="w-1/3">Nom</div>
+  <div class="w-1/6">Déposé le</div>
+  <div class="w-1/6">Propriétaire</div>
+  <div class="w-1/6">Taille</div>
+  <div class="w-1/6">Type</div>
+  <div class="w-1/6"></div>
+  <div class="w-1/6"></div>
+</div>
 
-  <tbody>
-    <% if @folder.children.exists? %>
-      <% @folder.children.each do |folder| %>
-        <tr>
-          <td class="is-narrow">
-            <span class="icon">
-              <i class="fa fa-folder-o"></i>
-            </span>
-          </td>
-          <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
-          <td>-</td>
-          <td><%= folder.user.full_name %></td>
-          <td>-</td>
-          <td>Dossier</td>
-          <td class="is-narrow">
-            <% if allow_action? :folders, :edit, folder %>
-              <%= link_to "Déplacer vers ...", edit_project_folder_path(@project, folder), title: "Déplacer ce dossier", class: "button is-small is-info" %>
-            <% end %>
-          </td>
-          <td class="is-narrow">
-            <% if allow_action? :folders, :destroy, folder %>
-              <%= link_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "button is-small is-danger" %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    <% end %>
+<% if @folder.children.exists? %>
+  <% @folder.children.each do |folder| %>
+    <div class="flex text-sm mb-4">
+      <div class="w-1/3">
+        [f] <%= link_to folder.name, project_folder_path(@project, folder) %>
+    </div>
 
-    <% if @folder.documents.exists? %>
-      <% @folder.documents.each do |document| %>
-        <tr>
-          <td class="is-narrow">
-            <span class="icon">
-              <i class="fa fa-file-o"></i>
-            </span>
-          </td>
-          <td>
-            <%= link_to document.file.original_filename, document.file.url(download: true) %>
-          </td>
-          <td>
-            <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
-          </td>
-          <td>
-            <%= document.user.full_name %>
-          </td>
-          <td>
-            <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
-          </td>
-          <td>
-            <%= document.file.mime_type %>
-          </td>
-          <td class="is-narrow">
-            <% if allow_action? :documents, :edit, document %>
-              <%= link_to "Déplacer vers ...", edit_document_path(document), title: "Déplacer ce document", class: "button is-small is-info" %>
-            <% end %>
-          </td>
-          <td class="is-narrow">
-            <% if allow_action? :documents, :destroy, document %>
-              <%= link_to "Supprimer", document, method: :delete, title: "Supprimer ce document", class: "button is-small is-danger" %>
-            <% end %>
-          </td>
-        </tr>
+    <div class="w-1/6">
+      -
+    </div>
+
+    <div class="w-1/6">
+      <%= folder.user.full_name %>
+    </div>
+
+    <div class="w-1/6">
+      -
+    </div>
+
+    <div class="w-1/6">
+      Dossier
+    </div>
+
+    <div class="w-1/6">
+      <% if allow_action? :folders, :edit, folder %>
+        <%= link_to "Déplacer vers ...", edit_project_folder_path(@project, folder), title: "Déplacer ce dossier", class: "text-xs" %>
       <% end %>
-    <% end %>
-  </tbody>
-</table>
+    </div>
+
+    <div class="w-1/6">
+      <% if allow_action? :folders, :destroy, folder %>
+        <%= link_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "text-xs" %>
+      <% end %>
+    </div>
+    </div>
+
+  <% end %>
+<% end %>
+
+<% if @folder.documents.exists? %>
+  <% @folder.documents.each do |document| %>
+    <div class="flex text-sm mb-4">
+      <div class="w-1/3">
+        [d] <%= link_to document.file.original_filename, document.file.url(download: true) %>
+    </div>
+
+    <div class="w-1/6">
+      <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
+    </div>
+
+    <div class="w-1/6">
+      <%= document.user.full_name %>
+    </div>
+
+    <div class="w-1/6">
+      <%= number_to_human_size(document.file.size, precision: 2, separator: ',') %>
+    </div>
+
+    <div class="w-1/6">
+      <%= document.file.mime_type %>
+    </div>
+
+    <div class="w-1/6" class="is-narrow">
+      <% if allow_action? :documents, :edit, document %>
+        <%= link_to "Déplacer vers ...", edit_document_path(document), title: "Déplacer ce document", class: "text-xs" %>
+      <% end %>
+    </div>
+    <div class="w-1/6" class="is-narrow">
+      <% if allow_action? :documents, :destroy, document %>
+        <%= link_to "Supprimer", document, method: :delete, title: "Supprimer ce document", class: "text-xs" %>
+      <% end %>
+    </div>
+    </div>
+  <% end %>
+<% end %>

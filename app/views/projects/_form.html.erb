@@ -1,4 +1,4 @@
-<%= form_with(model: project, local: true) do |form| %>
+<%= form_with(model: project, local: true, class: "w-full") do |form| %>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "erreur", "erreurs") %>:</h2>
@@ -11,14 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name, 'Nom', class: "label" %>
-    <div class="control">
-      <%= form.text_field :name, class: "input", autofocus: true %>
+  <div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/8">
+      <%= form.label :name, 'Nom', class: "block text-grey mb-1 md:mb-0 pr-4" %>
+    </div>
+
+    <div class="md:w-1/3 mr-4">
+      <%= form.text_field :name, class: "bg-grey-lighter appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-blue", autofocus: true %>
+    </div>
+
+    <div class="md:w-1/3">
+      <%= form.submit action_name == 'new' ? 'Créer' : 'Valider', class: "shadow bg-blue hover:bg-blue-light focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" %>
     </div>
   </div>
 
-  <div class="control">
-    <%= form.submit action_name == 'new' ? 'Créer' : 'Valider', class: "button is-primary" %>
-  </div>
 <% end %>

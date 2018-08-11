@@ -1,34 +1,30 @@
-<section class="section">
-  <div class="container">
-    <h2 class="title is-2">Groupes</h2>
+<h2 class="mb-8">Groupes</h2>
 
-    <div class="content">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th></th>
-          </tr>
-        </thead>
+<div class="content">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th></th>
+      </tr>
+    </thead>
 
-        <tbody>
-          <% @companies.each do |company| %>
-            <tr>
-              <td>
-                <%= link_to company.name, company %>
-              </td>
+    <tbody>
+      <% @companies.each do |company| %>
+        <tr>
+          <td>
+            <%= link_to company.name, company %>
+          </td>
 
-              <td>
-                <%= render 'controls', company: company %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% if allow_action? :companies, :create %>
-        <%= link_to 'Créer un nouveau groupe', new_company_url, class:"button is-primary" %>
+          <td>
+            <%= render 'controls', company: company %>
+          </td>
+        </tr>
       <% end %>
-    </div>
-  </div>
-</section>
+    </tbody>
+  </table>
+
+  <% if allow_action? :companies, :create %>
+    <%= link_to 'Créer un nouveau groupe', new_company_url, class:"button is-primary" %>
+  <% end %>
+</div>

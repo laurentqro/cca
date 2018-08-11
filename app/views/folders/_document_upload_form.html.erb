@@ -1,8 +1,4 @@
 <%= form_with(model: @folder.documents.build, local: true) do |f| %>
   <%= f.hidden_field :folder_id, value: @folder.id %>
-  <div class="field">
-    <div class="control">
-      <%= file_field_tag 'document[file]', multiple: true %>
-    </div>
-  </div>
+  <%= file_field_tag 'document[file]', multiple: true %>
 <% end %>

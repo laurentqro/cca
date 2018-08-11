@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title>CCA</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-  </head>
-
-  <body>
-    <%= render 'header' %>
-
-    <%= tag.p notice, id: 'notice' %>
-    <%= tag.p alert,  id: 'alert' %>
-
-    <%= yield %>
-    <%= yield :tail_scripts %>
-
-    <%= render partial: 'footer' %>
 
     <%= javascript_pack_tag 'application' %>
     <%= stylesheet_pack_tag 'application' %>
+  </head>
+
+  <body class="flex flex-col h-full font-sans">
+    <%= render 'header' %>
+    <div class="flex-1 container mx-auto">
+      <%= tag.p notice, id: 'notice' %>
+      <%= tag.p alert,  id: 'alert' %>
+
+      <div class="container mx-auto p-4">
+        <%= render 'navbar' %>
+        <%= yield %>
+        <%= yield :tail_scripts %>
+      </div>
+    </div>
+    <%= render partial: 'footer' %>
   </body>
 </html>

@@ -1,15 +1,11 @@
-<section class="section">
-  <div class="container">
-    <h2 class="title is-2">Activités récentes</h2>
+<h2 class="py-4">Activités récentes</h2>
 
-    <% if @activities.exists? %>
-      <ul>
-      <% @activities.each do |activity| %>
-        <li><%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %></li>
-      <% end %>
-      </ul>
-    <% else %>
-      <p>Aucune activité.</p>
+<% if @activities.exists? %>
+  <ul>
+    <% @activities.each do |activity| %>
+      <li><%= render "activities/#{activity.trackable_type.underscore}/#{activity.action}", activity: activity %></li>
     <% end %>
-  </div>
-</section>
+  </ul>
+<% else %>
+  <p>Aucune activité.</p>
+<% end %>

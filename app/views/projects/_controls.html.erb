@@ -1,45 +1,61 @@
 <% if project.active? %>
-  <% if subscription.present? %>
-    <%= link_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
-      <span>
-        (<%= project.subscribers.count %>)
-      </span>
-      <span class="icon is-small has-text-danger">
-        <i class="fa fa-users"></i>
-      </span>
-      <span>Arreter de suivre</span>
+  <ul class="flex list-reset text-sm py-3">
+    <% if subscription.present? %>
+      <li class="mr-4">
+        <%= link_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
+          <span>
+            (<%= project.subscribers.count %>)
+          </span>
+          <span class="icon is-small has-text-danger">
+            <i class="fa fa-users"></i>
+          </span>
+          <span>
+            Arrêter de suivre
+          </span>
+        <% end %>
+      </li>
+    <% else %>
+      <li class="mr-4">
+        <%= link_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
+          <span>
+            (<%= project.subscribers.count %>)
+          </span>
+
+          <span class="icon is-small has-text-success">
+            <i class="fa fa-users"></i>
+          </span>
+
+          <span>
+            Suivre
+          </span>
+        <% end %>
+      </li>
     <% end %>
-  <% else %>
-    <%= link_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
-      <span>
-        (<%= project.subscribers.count %>)
-      </span>
-      <span class="icon is-small has-text-success">
-        <i class="fa fa-users"></i>
-      </span>
-      <span>Suivre</span>
+
+    <% if allow_action? :projects, :edit %>
+      <li class="mr-4">
+        <%= link_to "Editer", edit_project_url(project), class: "button is-small" %>
+      </li>
+    <% end %>
+
+    <% if allow_action? :assignments, :create %>
+      <li class="mr-4">
+        <%= link_to "Gérer les membres", project_assignments_path(project), class: "button is-small" %>
+      </li>
     <% end %>
   <% end %>
 
-  <% if allow_action? :projects, :edit %>
-    <%= link_to "Editer", edit_project_url(project), class: "button is-small" %>
+  <% if project.archived? %>
+    <% if allow_action? :archives, :destroy %>
+      <li class="mr-4">
+        <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "button is-small" %>
+      </li>
+    <% end %>
   <% end %>
 
-  <% if allow_action? :assignments, :create %>
-    <%= link_to "Gérer les membres", project_assignments_path(project), class: "button is-small" %>
+  <% if allow_action? :projects, :delete %>
+    <li class="mr-4">
+      <%= link_to "Supprimer", project, method: :delete, class: "button is-small is-danger" %>
+    </li>
   <% end %>
-
-  <% if allow_action? :archives, :create %>
-    <%= link_to "Archiver", archives_path(project_id: project.id), method: :post, class: "button is-small" %>
-  <% end %>
-<% end %>
-
-<% if project.archived? %>
-  <% if allow_action? :archives, :destroy %>
-    <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "button is-small" %>
-  <% end %>
-<% end %>
-
-<% if allow_action? :projects, :delete %>
-  <%= link_to "Supprimer", project, method: :delete, class: "button is-small is-danger" %>
-<% end %>
+  </ul>
