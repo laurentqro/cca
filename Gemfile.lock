@@ -114,7 +114,7 @@ GEM
     dotenv-rails (2.5.0)
       dotenv (= 2.5.0)
       railties (>= 3.2, < 6.0)
-    down (4.4.0)
+    down (4.5.0)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -237,7 +237,7 @@ GEM
     selenium-webdriver (3.14.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    shrine (2.11.0)
+    shrine (2.12.0)
       down (~> 4.1)
     sidekiq (5.2.1)
       connection_pool (~> 2.2, >= 2.2.2)
@@ -319,7 +319,7 @@ DEPENDENCIES
   rails (~> 5.2.1)
   sass-rails (~> 5.0)
   selenium-webdriver
-  shrine (~> 2.11.0)
+  shrine (~> 2.12.0)
   sidekiq (~> 5.2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
