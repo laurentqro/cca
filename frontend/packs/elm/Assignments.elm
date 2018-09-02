@@ -30,11 +30,20 @@ type alias Assignment =
 type alias User =
     { id : Int
     , full_name : String
+    , url : String
+    , projects : List Project
     , company : Company
+    , status : String
+    , group : String
     }
 
 
 type alias Company =
+    { id : Int
+    , name : String
+    }
+
+type alias Project =
     { id : Int
     , name : String
     }
@@ -65,38 +74,52 @@ init flags =
 
 -- VIEW
 
+usersListHeader : Html Message
+usersListHeader =
+  div [ class "flex justify-center text-grey" ] [
+      div [ class "w-1/5 h-12" ] [ text "Nom" ]
+      , div [ class "w-1/5 h-12" ] [ text "Projets" ]
+      , div [ class "w-1/5 h-12" ] [ text "Groupe" ]
+      , div [ class "w-1/5 h-12" ] [ text "Niveau d'accès" ]
+      , div [ class "w-1/5 h-12" ] [ text "Statut" ]
+      , div [ class "w-1/5 h-12" ] [ text "" ]
+      ]
 
-viewTableAssignmentItem : Assignment -> Html Message
-viewTableAssignmentItem assignment =
-    tr []
-        [ td [] [ text assignment.user.full_name ]
-        , td [] [ text (assignment.user.company.name) ]
-        , td []
-            [ button [ id ("remove_user_" ++ toString assignment.user.id), class "button is-small is-danger", onClick (DeleteAssignment assignment) ] [ text "Retirer" ]
-            ]
+
+assignmentsListItem : Assignment -> Html Message
+assignmentsListItem assignment =
+    div [ class "flex justify-center" ]
+        [ div [ class "w-1/5 h-8" ] [ a [ href assignment.user.url ] [ text assignment.user.full_name ] ]
+        , div [ class "w-1/5 h-8" ] [ text (String.join ", " (List.map .name assignment.user.projects)) ]
+        , div [ class "w-1/5 h-8" ] [ text (assignment.user.company.name) ]
+        , div [ class "w-1/5 h-8" ] [ text assignment.user.group ]
+        , div [ class "w-1/5 h-8" ] [ text assignment.user.status ]
+        , a [ id ("remove_user_" ++ toString assignment.user.id), class "text-red underline cursor-pointer w-1/5 h-8", onClick (DeleteAssignment assignment) ] [ text "Retirer" ]
+              ]
+
+usersListItem : User -> Html Message
+usersListItem user =
+    div [ class "flex justify-center" ]
+        [ div [ class "w-1/5 h-8" ] [ a [ href user.url ] [ text user.full_name ] ]
+        , div [ class "w-1/5 h-8" ] [ text (String.join ", " (List.map .name user.projects)) ]
+        , div [ class "w-1/5 h-8" ] [ text (user.company.name) ]
+        , div [ class "w-1/5 h-8" ] [ text user.group ]
+        , div [ class "w-1/5 h-8" ] [ text user.status ]
+        , a [ id ("add_user_" ++ toString user.id), class "text-green underline cursor-pointer w-1/5 h-8", onClick (CreateAssignment user) ] [ text "Ajouter" ]
+              ]
+
+usersList : Model -> Html Message
+usersList model =
+    div [ ]
+        [ div [ ] [ usersListHeader ]
+        , div [ ] (List.map assignmentsListItem model.assignments)
+        , div [ ] (List.map usersListItem model.users)
         ]
-
-
-viewTableUserItem : User -> Html Message
-viewTableUserItem user =
-    tr []
-        [ td [] [ text user.full_name ]
-        , td [] [ text (user.company.name) ]
-        , td []
-            [ button [ id ("add_user_" ++ toString user.id), class "button is-small is-success", onClick (CreateAssignment user) ] [ text "Ajouter" ]
-            ]
-        ]
-
 
 view : Model -> Html Message
 view model =
-    table [ class "table is-fullwidth is-hoverable" ]
-        [ thead [] [ th [] [ text "Nom" ], th [] [ text "Groupe" ], th [] [] ]
-        , tbody []
-            (List.append
-                (List.map viewTableAssignmentItem model.assignments)
-                (List.map viewTableUserItem model.users)
-            )
+    div [ class "flex" ] [
+        div [ class "w-full" ] [ usersList model ]
         ]
 
 
@@ -235,11 +258,20 @@ decodeAssignment =
 
 decodeUser : Decoder User
 decodeUser =
-    Decode.map3 User
+    Decode.map7 User
         (field "id" Decode.int)
         (field "full_name" Decode.string)
+        (field "url" Decode.string)
+        (field "projects" (Decode.list decodeProject))
         (field "company" decodeCompany)
+        (field "status" Decode.string)
+        (field "group" Decode.string)
 
+decodeProject : Decoder Project
+decodeProject =
+    Decode.map2 Project
+        (field "id" Decode.int)
+        (field "name" Decode.string)
 
 decodeCompany : Decoder Company
 decodeCompany =
