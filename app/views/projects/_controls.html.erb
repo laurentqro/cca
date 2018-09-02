@@ -2,7 +2,7 @@
   <ul class="flex list-reset text-sm py-3">
     <% if subscription.present? %>
       <li class="mr-4">
-        <%= link_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
+        <%= button_to project_subscription_url(project, subscription), class: "btn btn-blue", method: :delete do %>
           <span>
             (<%= project.subscribers.count %>)
           </span>
@@ -16,7 +16,7 @@
       </li>
     <% else %>
       <li class="mr-4">
-        <%= link_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
+        <%= button_to project_subscriptions_url(project), class: "btn btn-blue cursor-pointer", method: :post do %>
           <span>
             (<%= project.subscribers.count %>)
           </span>
@@ -34,13 +34,13 @@
 
     <% if allow_action? :projects, :edit %>
       <li class="mr-4">
-        <%= link_to "Editer", edit_project_url(project), class: "button is-small" %>
+        <%= button_to "Editer", edit_project_url(project), method: :put, class: "btn btn-blue cursor-pointer" %>
       </li>
     <% end %>
 
     <% if allow_action? :assignments, :create %>
       <li class="mr-4">
-        <%= link_to "Gérer les membres", project_assignments_path(project), class: "button is-small" %>
+        <%= button_to "Gérer les membres", project_assignments_path(project), method: :get, class: "btn btn-blue cursor-pointer" %>
       </li>
     <% end %>
   <% end %>
@@ -48,14 +48,14 @@
   <% if project.archived? %>
     <% if allow_action? :archives, :destroy %>
       <li class="mr-4">
-        <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "button is-small" %>
+        <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "btn btn-red" %>
       </li>
     <% end %>
   <% end %>
 
   <% if allow_action? :projects, :delete %>
     <li class="mr-4">
-      <%= link_to "Supprimer", project, method: :delete, class: "button is-small is-danger" %>
+      <%= button_to "Supprimer", project, method: :delete, class: "btn btn-red cursor-pointer" %>
     </li>
   <% end %>
   </ul>

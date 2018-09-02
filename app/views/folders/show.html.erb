@@ -1,6 +1,6 @@
 <div class="mb-8">
   <% if @folder.root? %>
-    <h2>Projet <%= @project.root_folder.name %></h2>
+    <h2 class="mb-6">Projet <%= @project.root_folder.name %></h2>
     <%= render 'projects/controls', project: @project, subscription: @subscription %>
   <% else %>
     <%= render 'breadcrumbs' %>
