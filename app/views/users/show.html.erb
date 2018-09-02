@@ -1,73 +1,47 @@
-<section class="section">
-  <div class="container">
-    <h2 class="title is-2">
-      <%= @user.full_name %>
-    </h2>
+<h2 class="mb-6">
+  <%= @user.full_name %>
+</h2>
 
-    <div class="field is-grouped">
-      <p class="control">
-        <% if allow_action?(:users, :edit, @user) %>
-          <%= link_to "Editer", edit_user_url(@user), class: "button" %>
-        <% end %>
-      </p>
+<div class="flex mb-8">
+  <% if allow_action?(:users, :edit, @user) %>
+    <%= link_to "Editer", edit_user_url(@user), class: "btn btn-blue mr-4" %>
+  <% end %>
 
-      <p class="control">
-        <% if allow_action?(:users, :impersonate) %>
-          <%= button_to "Se connecter en tant que #{@user.first_name}", user_impersonation_path(@user), method: :post, class: "button" %>
-        <% end %>
-      </p>
-    </div>
+  <% if allow_action?(:users, :impersonate) %>
+    <%= button_to "Se connecter en tant que #{@user.first_name}", user_impersonation_path(@user), method: :post, class: "btn btn-blue mr-4" %>
+  <% end %>
 
-    <div class="content">
-    </div>
+  <% if allow_action?(:users, :destroy, @user) %>
+    <%= button_to "Supprimer", @user, method: :delete, class: "btn btn-red mr-4" %>
+  <% end %>
+</div>
 
-    <table class="table">
-      <tbody>
-        <tr>
-          <th>
-            Statut du compte
-          </th>
-          <td>
-            <%= @user.account_status %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Niveau d'accès
-          </th>
-          <td>
-            <%= t "activerecord.attributes.user.group.#{@user.group}" %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Email
-          </th>
-          <td>
-            <%= @user.email %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Ville
-          </th>
-          <td>
-            <%= @user.city %>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            Groupe
-          </th>
-          <td>
-            <%= link_to @user.company.name, @user.company %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="mb-6">
+  <h3>Statut du compte</h3>
+  <p><%= @user.account_status %></p>
+</div>
 
-    <% if allow_action?(:users, :destroy, @user) %>
-      <%= link_to "Supprimer", @user, method: :delete, data: { confirm: "Etes-vous sur de vouloir supprimer ce compte ?" }, class: "button is-danger" %>
-    <% end %>
-  </div>
-</section
+<div class="mb-6">
+  <h3>Niveau d'accès</h3>
+  <p><%= t "activerecord.attributes.user.group.#{@user.group}" %></p>
+</div>
+
+<div class="mb-6">
+  <h3>Email</h3>
+  <p><%= @user.email %></p>
+</div>
+
+<div class="mb-6">
+  <h3>Ville</h3>
+  <p><%= @user.city %></p>
+</div>
+
+<div class="mb-6">
+  <h3>Groupe</h3>
+  <p><%= link_to @user.company.name, @user.company %></p>
+</div>
+
+<div class="mb-6">
+  <h3>Projets</h3>
+  <p><%= @user.projects_names %></p>
+</div>
