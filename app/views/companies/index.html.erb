@@ -1,30 +1,17 @@
 <h2 class="mb-8">Groupes</h2>
 
-<div class="content">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @companies.each do |company| %>
-        <tr>
-          <td>
-            <%= link_to company.name, company %>
-          </td>
-
-          <td>
-            <%= render 'controls', company: company %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+<div class="mb-8">
   <% if allow_action? :companies, :create %>
-    <%= link_to 'Créer un nouveau groupe', new_company_url, class:"button is-primary" %>
+    <%= link_to 'Créer un nouveau groupe', new_company_url, class:"btn btn-blue" %>
+  <% end %>
+</div>
+
+<div class="flex flex-wrap">
+  <% @companies.each do |company| %>
+    <div class="w-1/5 rounded overflow-hidden shadow mr-4 mb-4">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2"><%= link_to company.name, company %></div>
+      </div>
+    </div>
   <% end %>
 </div>
