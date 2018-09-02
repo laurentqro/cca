@@ -1,38 +1,29 @@
-<section class="section">
-  <div class="container">
-    <div class="content">
-      <h3 class="title is-3"><%= t("devise.sign_in") %></h3>
+  <div class="w-full max-w-xs container mx-auto">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" }) do |f| %>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
-          <div class="control">
-            <%= f.label :email, class: "label" %>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input" %>
-          </div>
-        </div>
+      <div class="mb-4">
+        <%= f.label :email, class: "block text-grey-darker text-sm font-bold mb-2" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
 
-        <div class="field">
-          <div class="control">
-            <%= f.label :password, class: "label" %>
-            <%= f.password_field :password, autocomplete: "off", class: "input" %>
-          </div>
-        </div>
+      <div class="mb-6">
+        <%= f.label :password, class: "block text-grey-darker text-sm font-bold mb-2" %>
+        <%= f.password_field :password, autocomplete: "off", class: "shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
 
+      <div class="mb-6">
         <% if devise_mapping.rememberable? -%>
-          <div class="field">
-            <div class="control">
-              <label class="checkbox" name="remember_me">
-                <%= f.check_box :remember_me, class: "checkbox" %>
-                <%= t("devise.remember_me") %>
-              </label>
-            </div>
-          </div>
+          <label class="block text-grey-darker text-sm mb-2" name="remember_me">
+            <%= f.check_box :remember_me, class: "checkbox" %>
+            <%= t("devise.remember_me") %>
+          </label>
         <% end -%>
+      </div>
 
-        <%= f.submit t("devise.sign_in"), class: "button" %>
-      <% end %>
-    </div>
-
-    <%= render "users/shared/links" %>
+      <div class="flex items-center justify-between">
+        <%= f.submit t("devise.sign_in"), class: "btn btn-blue mr-4" %>
+        <%= render "users/shared/links" %>
+      </div>
+    <% end %>
   </div>
-</section
+</div>
