@@ -205,29 +205,20 @@ viewResetFiltersButton =
 
 viewProjectFilter : Model -> Html Msg
 viewProjectFilter model =
-    div [ class "field" ]
-        [ label [ for "project_filter", class "label" ] [ text "Projet" ]
-        , div [ class "control" ]
-            [ input
-                [ class "input"
+        input [ class "appearance-none block bg-grey-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 , id "project_filter"
                 , type_ "text"
                 , placeholder "Projet"
                 , value model.projectQueryValue
                 , onInput SetProjectQueryValue
+                , autofocus True
                 ]
                 []
-            ]
-        ]
 
 
 viewUserFilter : Model -> Html Msg
 viewUserFilter model =
-    div [ for "user_filter", class "field" ]
-        [ label [ for "user_filter", class "label" ] [ text "Utilisateur" ]
-        , div [ class "control" ]
-            [ input
-                [ class "input"
+        input [ class "appearance-none block bg-grey-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 , id "user_filter"
                 , type_ "text"
                 , placeholder "Utilisateur"
@@ -236,26 +227,18 @@ viewUserFilter model =
                 , autofocus True
                 ]
                 []
-            ]
-        ]
-
 
 viewCompanyFilter : Model -> Html Msg
 viewCompanyFilter model =
-    div [ class "field" ]
-        [ label [ for "company_filter", class "label" ] [ text "Groupe" ]
-        , div [ class "control" ]
-            [ input
-                [ class "input"
+        input [ class "appearance-none block bg-grey-lighter text-grey-darker border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                 , id "company_filter"
                 , type_ "text"
-                , placeholder "Projet"
+                , placeholder "Groupe"
                 , value model.companyQueryValue
                 , onInput SetCompanyQueryValue
+                , autofocus True
                 ]
                 []
-            ]
-        ]
 
 
 usersListHeader : Html Msg
