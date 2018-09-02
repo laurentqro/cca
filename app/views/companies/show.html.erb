@@ -1,46 +1,43 @@
-<h2 class="mb-8">Groupe</h2>
-<%= tag.h2 @company.name, class: "title is-2" %>
+<h2 class="mb-8"><%= @company.name %></h2>
 
-<div class="content">
-  <%= render 'controls', company: @company %>
-
-  <% if @company.users.any? %>
-    <hr />
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th>
-            Nom
-          </th>
-          <th>
-            Email
-          </th>
-          <th>
-            Niveau d'accès
-          </th>
-          <th>
-            Statut
-          </th>
-          <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @company.users.each do |user| %>
-          <tr>
-            <td><%= link_to user.full_name, user %></td>
-            <td><%= user.email %></td>
-            <td><%= t("activerecord.attributes.user.group.#{user.group}") %></td>
-            <td><%= user.account_status %></td>
-            <td>
-              <% if allow_action?(:users, :edit, user) %>
-                <%= link_to "Editer", edit_user_url(user), class: "button is-small" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
+<div class="flex justify-center text-grey">
+  <div class="w-1/5 h-12">
+  Nom
+  </div>
+  <div class="w-1/5 h-12">
+    Projets
+  </div>
+  <div class="w-1/5 h-12">
+    Groupe
+  </div>
+  <div class="w-1/5 h-12">
+    Niveau d'accès
+  </div>
+  <div class="w-1/5 h-12">
+    Statut
+  </div>
 </div>
+
+<% if @company.users.none? %>
+  <p>Ce groupe ne contient aucun utilisateur</p>
+<% end %>
+
+<% @company.users.each do |user| %>
+  <div class="flex justify-center">
+    <div class="w-1/5 h-8">
+      <%= link_to user.full_name, user %>
+    </div>
+    <div class="w-1/5 h-8">
+      <%= user.projects_names %>
+    </div>
+    <div class="w-1/5 h-8">
+      <%= user.company.name %>
+    </div>
+    <div class="w-1/5 h-8">
+      <%= t("activerecord.attributes.user.group.#{user.group}") %>
+    </div>
+    <div class="w-1/5 h-8">
+      <%= user.account_status %>
+    </div>
+  </div>
+<% end %>
