@@ -34,7 +34,7 @@
 
     <% if allow_action? :projects, :edit %>
       <li class="mr-4">
-        <%= button_to "Editer", edit_project_url(project), method: :put, class: "btn btn-blue cursor-pointer" %>
+        <%= button_to "Editer", edit_project_url(project), method: :get, class: "btn btn-blue cursor-pointer" %>
       </li>
     <% end %>
 

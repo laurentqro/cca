@@ -21,7 +21,7 @@
 
         <div class="flex w-1/4">
           <%= link_to "Editer mon profil", edit_user_registration_url, class: "mr-2 text-grey-light" %>
-          <%= link_to 'Déconnexion', destroy_user_session_url, method: :delete, class: "text-grey-light" %>
+          <%= button_to 'Déconnexion', destroy_user_session_url, method: :delete, class: "bg-grey-darkest text-grey-light underline" %>
         </div>
       <% end %>
     </div>
