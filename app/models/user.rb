@@ -26,6 +26,10 @@ class User < ApplicationRecord
 
   enum group: [ :partner, :employee, :admin ]
 
+  def self.default_scope
+    order('last_name ASC')
+  end
+
   scope :search, ->(query) {
     if query.present?
       includes(:projects, :company)
@@ -60,7 +64,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    "#{first_name} #{last_name}"
+    "#{last_name}, #{first_name}"
   end
 
   def projects_names
