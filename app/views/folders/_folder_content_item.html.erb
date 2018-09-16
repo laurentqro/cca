@@ -1,0 +1,34 @@
+<div class="flex text-sm mb-4">
+  <div class="w-1/3">
+    <i class="w-4 h-4 mr-2 far fa-folder"></i>
+    <%= link_to folder.name, project_folder_path(@project, folder) %>
+  </div>
+
+  <div class="w-1/6">
+    -
+  </div>
+
+  <div class="w-1/6">
+    <%= folder.user.full_name %>
+  </div>
+
+  <div class="w-1/6">
+    -
+  </div>
+
+  <div class="w-1/6">
+    Dossier
+  </div>
+
+  <div class="w-1/6">
+    <% if allow_action? :folders, :edit, folder %>
+      <%= link_to "Déplacer vers ...", edit_project_folder_path(@project, folder), title: "Déplacer ce dossier", class: "text-xs" %>
+    <% end %>
+  </div>
+
+  <div class="w-1/6">
+    <% if allow_action? :folders, :destroy, folder %>
+      <%= button_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "text-xs text-red underline" %>
+    <% end %>
+  </div>
+</div>
