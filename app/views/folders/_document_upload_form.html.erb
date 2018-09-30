@@ -1,4 +1,5 @@
 <%= form_with(model: @folder.documents.build, local: true) do |f| %>
   <%= f.hidden_field :folder_id, value: @folder.id %>
-  <%= file_field_tag 'document[file]', multiple: true %>
+  <%= file_field_tag 'document[file]', multiple: true, direct_upload: true %>
+  <%= f.submit %>
 <% end %>
