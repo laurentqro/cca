@@ -18,7 +18,7 @@ gem 'mailgun-ruby', '~> 1.1.11'
 gem 'shrine', '~> 2.12.0'
 gem 'ancestry', '~> 3.0.2'
 gem 'webpacker', '~> 3.5.5'
-gem 'aws-sdk-s3', '~> 1'
+gem 'aws-sdk-s3', '~> 1', require: false
 gem 'jquery-rails', '~> 4.3'
 gem 'jquery-fileupload-rails', '0.4.7'
 gem 'tzinfo-data'
