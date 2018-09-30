@@ -1,5 +1,5 @@
 class Document < ApplicationRecord
-  include DocumentUploader::Attachment.new(:file)
+  has_one_attached :file
 
   belongs_to :folder
   belongs_to :user
