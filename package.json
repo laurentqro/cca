@@ -4,6 +4,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
     "@rails/webpacker": "4.0.0-pre.2",
+    "activestorage": "^5.2.1",
     "normalize.css": "^8.0.0",
     "tailwindcss": "^0.6.4"
   },
