@@ -52,7 +52,7 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal "Opération #{activity.project.name} - nouveau document", email.subject
     assert_includes email.html_part.body.to_s, "#{activity.user.full_name}"
     assert_includes email.html_part.body.to_s, "#{activity.user.company.name}"
-    assert_includes email.html_part.body.to_s, "#{activity.trackable.file.original_filename}"
+    assert_includes email.html_part.body.to_s, "#{activity.trackable.file.filename}"
   end
 
   test "invitation accepted" do
