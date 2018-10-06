@@ -27,10 +27,14 @@ class UserMailerTest < ActionMailer::TestCase
     stub_request(:put, s3_url).to_return(body: '', status: 200)
 
     document = Document.create(
-      file: File.open('test/fixtures/files/pdf-sample.pdf'),
       folder: folder,
       user: user
     )
+
+    document.file.attach(io: File.open('test/fixtures/files/pdf-sample.pdf'),
+                         filename: 'pdf-sample.pdf',
+                         content_type: 'application/pdf')
+
 
     activity = user.activities.create(action: "create",
                                      trackable: document,
