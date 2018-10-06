@@ -1,20 +1,20 @@
 class DocumentsController < ApplicationController
   def create
-    respond_to do |format|
-      folder = Folder.find(document_params[:folder_id])
+    folder = Folder.find(document_params[:folder_id])
+    notice = 'Une erreur est survenue'
 
-      if @current_resource.save
-        activity = current_user.activities.build(action:    "create",
-                                                 trackable: @current_resource,
-                                                 project:   folder.project,
-                                                 folder:    folder)
-        activity.save
+    if @current_resource.save
+      activity = current_user.activities.build(action:    "create",
+                                               trackable: @current_resource,
+                                               project:   folder.project,
+                                               folder:    folder)
+      activity.save
 
-        UserMailer.new_document(activity).deliver_now
-
-        format.js
-      end
+      UserMailer.new_document(activity).deliver_now
+      notice = 'Document déposé avec succès.'
     end
+
+    redirect_to project_folder_path(folder.project, folder), notice: notice
   end
 
   def edit
