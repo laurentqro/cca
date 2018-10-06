@@ -45,14 +45,6 @@
     <% end %>
   <% end %>
 
-  <% if project.archived? %>
-    <% if allow_action? :archives, :destroy %>
-      <li class="mr-4">
-        <%= link_to "Désarchiver", archive_path(project.id), method: :delete, class: "btn btn-red" %>
-      </li>
-    <% end %>
-  <% end %>
-
   <% if allow_action? :projects, :delete %>
     <li class="mr-4">
       <%= button_to "Supprimer", project, method: :delete, class: "btn btn-red cursor-pointer" %>

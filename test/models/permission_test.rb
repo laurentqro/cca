@@ -184,9 +184,6 @@ class UserTest < ActiveSupport::TestCase
     # can view the list of users assigned to a project
     assert permission.allow_action?(:assignments, :index)
 
-    # can view the archives
-    assert permission.allow_action?(:archives, :index)
-
     # can only update a partner
     assert permission.allow_action?(:users, :edit, users(:partner))
     assert !permission.allow_action?(:users, :edit, users(:employee))

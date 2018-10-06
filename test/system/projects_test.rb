@@ -29,25 +29,4 @@ class ProjectsTest < ApplicationSystemTestCase
 
     assert_text "Projet #{projects(:pyramid).name} supprimé."
   end
-
-  test 'adding a project to the archives' do
-    project = projects(:pyramid)
-    visit project_folder_url(project, project.root_folder)
-    click_on 'Archiver'
-
-    assert_text "Projet #{project.name} archivé."
-    assert_text  project.name
-    assert_current_path archives_path
-  end
-
-  test 'removing a project from the archives' do
-    project = projects(:pyramid)
-    project.archived!
-    visit project_folder_url(project, project.root_folder)
-    click_on 'Désarchiver'
-
-    assert_text "Projet #{project.name} désarchivé."
-    assert_text project.name
-    assert_current_path projects_path
-  end
 end

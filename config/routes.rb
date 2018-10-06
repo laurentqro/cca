@@ -44,5 +44,4 @@ Rails.application.routes.draw do
   end
 
   resources :documents
-  resources :archives, only: [:index, :create, :destroy]
 end

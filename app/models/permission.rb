@@ -42,7 +42,6 @@ class Permission
         allow_action :documents,   :create
         allow_action :folders,     [:show, :create]
         allow_action :companies,   [:index, :show, :new, :create, :edit, :update]
-        allow_action :archives,    :index
         allow_action :assignments, :index
         allow_action 'api/assignments', [:create, :destroy]
         allow_action :employments, [:index, :create, :destroy]
