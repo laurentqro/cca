@@ -11,8 +11,6 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in "project_filter", with: "pyr"
 
-    wait_for_ajax
-
     results = page.all('tbody tr')
 
     assert_equal(1, results.count)
@@ -25,8 +23,6 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in "company_filter", with: "HBO"
 
-    wait_for_ajax
-
     results = page.all('tbody tr')
 
     assert_equal(3, results.count)
@@ -38,8 +34,6 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
 
     fill_in "user_filter", with: "Jon"
-
-    wait_for_ajax
 
     results = page.all('tbody tr')
 
