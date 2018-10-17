@@ -15,7 +15,6 @@ Rails.application.routes.draw do
     path: 'auth'
 
   mount Sidekiq::Web => '/sidekiq'
-  mount Shrine.presign_endpoint(:cache) => '/presign'
 
   root to: 'projects#index'
 
