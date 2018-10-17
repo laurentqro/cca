@@ -3,16 +3,17 @@ class DocumentsController < ApplicationController
     folder = Folder.find(document_params[:folder_id])
     notice = 'Une erreur est survenue'
 
-    if @current_resource.save
-      activity = current_user.activities.build(action:    "create",
-                                               trackable: @current_resource,
-                                               project:   folder.project,
-                                               folder:    folder)
-      activity.save
+    document = Document.create!(document_params)
 
-      UserMailer.new_document(activity).deliver_now
-      notice = 'Document déposé avec succès.'
-    end
+    activity = Activity.create!(action:    "create",
+                                trackable: document,
+                                project:   folder.project,
+                                folder_id: document_params[:folder_id],
+                                user_id:   document_params[:user_id])
+
+    UserMailer.new_document(activity).deliver_now
+
+    notice = 'Document déposé avec succès.'
 
     redirect_to project_folder_path(folder.project, folder), notice: notice
   end
@@ -42,7 +43,7 @@ class DocumentsController < ApplicationController
   private
 
   def document_params
-    params.require(:document).permit(:file, :folder_id)
+    params.require(:document).permit(:file, :folder_id, :user_id)
   end
 
   def current_resource
@@ -50,7 +51,6 @@ class DocumentsController < ApplicationController
       @current_resource = Document.find(params[:id])
     else
       @current_resource = current_user.documents.build(
-        file: document_params[:file],
         folder: Folder.find(document_params[:folder_id]),
         user: current_user
       )
