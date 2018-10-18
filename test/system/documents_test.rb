@@ -22,7 +22,7 @@ class DocumentsTest < ApplicationSystemTestCase
 
     stub_request(:delete, s3_url).to_return(body: '', status: 200)
 
-    find_link(title: 'Supprimer ce document').click
+    click_button(title: 'Supprimer ce document')
 
     assert_text 'Document supprimé avec succès.'
   end
