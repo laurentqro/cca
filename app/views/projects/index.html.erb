@@ -12,16 +12,19 @@
         </thead>
 
         <tbody>
-          <% @projects.each do |project| %>
-            <tr>
-              <td>
-                <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
-              </td>
 
-              <td>
-                <%= render 'controls', project: project, subscription: project.subscriptions.find_by(subscriber: current_user, subscribeable: project) %>
-              </td>
-            </tr>
+          <% @projects.each do |project| %>
+            <div class="columns">
+              <div class="column is-one-half">
+                <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
+              </div>
+
+              <div class="column">
+                <%= render 'controls',
+                  project: project,
+                  subscription: project.subscriptions.find_by(subscriber: current_user, subscribeable: project) %>
+            </div>
+            </div>
           <% end %>
         </tbody>
       </table>
