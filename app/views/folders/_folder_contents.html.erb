@@ -49,7 +49,7 @@
             </span>
           </td>
           <td>
-            <%= link_to document.file.name, rails_blob_path(document.file, disposition: "attachment") %>
+            <%= link_to document.file.filename, rails_blob_path(document.file, disposition: "attachment") %>
           </td>
           <td>
             <%= document.created_at.strftime("%d %b %Y à %H:%M") %>
