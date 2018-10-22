@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column">
     <% if subscription.present? %>
-      <%= link_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
+      <%= button_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
         <span>
           (<%= project.subscribers.count %>)
         </span>
@@ -11,7 +11,7 @@
         <span>Arrêter de suivre</span>
       <% end %>
     <% else %>
-      <%= link_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
+      <%= button_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
         <span>
           (<%= project.subscribers.count %>)
         </span>
