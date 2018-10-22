@@ -3,7 +3,7 @@
     <% parent.children.each do |folder| %>
       <%= form.radio_button(:folder_id, folder.id, checked: folder.id == current_folder.id) %>
       <span class="icon">
-        <i class="fa fa-folder-o"></i>
+        <i class="far fa-folder"></i>
       </span>
 
       <%= folder.name %>

@@ -2,33 +2,22 @@
   <div class="container">
     <h2 class="title is-2">Projets</h2>
 
-    <div class="content">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th></th>
-          </tr>
-        </thead>
+    <% @projects.each do |project| %>
+      <div class="columns">
+        <div class="column is-one-half">
+          <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
+        </div>
 
-        <tbody>
-          <% @projects.each do |project| %>
-            <tr>
-              <td>
-                <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
-              </td>
+        <div class="column">
+          <%= render 'controls',
+            project: project,
+            subscription: project.subscriptions.find_by(subscriber: current_user, subscribeable: project) %>
+        </div>
+      </div>
+    <% end %>
 
-              <td>
-                <%= render 'controls', project: project, subscription: project.subscriptions.find_by(subscriber: current_user, subscribeable: project) %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% if allow_action? :projects, :new %>
-        <%= link_to 'Créer un nouveau projet', new_project_url, class:"button is-primary" %>
-      <% end %>
-    </div>
+    <% if allow_action? :projects, :new %>
+      <%= link_to 'Créer un nouveau projet', new_project_url, class:"button is-primary" %>
+    <% end %>
   </div>
 </section>

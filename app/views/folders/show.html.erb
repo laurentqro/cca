@@ -3,7 +3,14 @@
     <% if @folder.root? %>
       <h3 class="subtitle is-6">Projet</h3>
       <%= tag.h2 @project.root_folder.name, class: "title is-2" %>
-      <%= render 'projects/controls', project: @project, subscription: @subscription %>
+      <div class="columns">
+        <div class="column is-half">
+          <%= render 'projects/controls', project: @project, subscription: @subscription %>
+        </div>
+        <div class="column">
+        </div>
+      </div>
+
       <hr />
     <% else %>
       <%= render 'breadcrumbs' %>

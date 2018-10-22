@@ -25,7 +25,7 @@ class FoldersTest < ApplicationSystemTestCase
     fill_in 'folder[name]', with: 'Folder name'
     click_button 'Créer'
 
-    find_link(title: 'Supprimer ce dossier').click
+    click_button(title: 'Supprimer ce dossier')
 
     assert_text 'Dossier supprimé avec succès.'
   end

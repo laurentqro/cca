@@ -7,5 +7,5 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
 import 'bulma/bulma'
+import "@fortawesome/fontawesome-free/js/all";

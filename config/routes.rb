@@ -30,8 +30,7 @@ Rails.application.routes.draw do
   resources :users,
     path: 'utilisateurs',
     path_names: { new: 'creer', edit: 'editer' } do
-      post :impersonate, on: :member, path: 'imitation'
-      post :stop_impersonating, on: :collection, path: 'stop-imitation'
+      resource :impersonation, only: [:create, :destroy], module: :users
     end
 
   resources :companies, path: 'groupes', path_names: { new: 'creer', edit: 'editer' }, except: :destroy do

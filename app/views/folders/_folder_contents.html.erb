@@ -18,7 +18,7 @@
         <tr>
           <td class="is-narrow">
             <span class="icon">
-              <i class="fa fa-folder-o"></i>
+              <i class="far fa-folder"></i>
             </span>
           </td>
           <td><%= link_to folder.name, project_folder_path(@project, folder) %></td>
@@ -33,7 +33,7 @@
           </td>
           <td class="is-narrow">
             <% if allow_action? :folders, :destroy, folder %>
-              <%= link_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "button is-small is-danger" %>
+              <%= button_to "Supprimer", project_folder_path(@project, folder), method: :delete, title: "Supprimer ce dossier", class: "button is-small is-danger" %>
             <% end %>
           </td>
         </tr>
@@ -45,7 +45,7 @@
         <tr>
           <td class="is-narrow">
             <span class="icon">
-              <i class="fa fa-file-o"></i>
+              <i class="far fa-file"></i>
             </span>
           </td>
           <td>
@@ -70,7 +70,7 @@
           </td>
           <td class="is-narrow">
             <% if allow_action? :documents, :destroy, document %>
-              <%= link_to "Supprimer", document, method: :delete, title: "Supprimer ce document", class: "button is-small is-danger" %>
+              <%= button_to "Supprimer", document, method: :delete, title: "Supprimer ce document", class: "button is-small is-danger" %>
             <% end %>
           </td>
         </tr>
