@@ -1,6 +1,6 @@
 <%= form_with(model: Document.new, local: true) do |f| %>
   <%= f.hidden_field :folder_id, value: @folder.id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.file_field :file, multiple: true, direct_upload: true %>
-  <%= f.submit class: "btn btn-blue" %>
+  <%= f.file_field :file, direct_upload: true %>
+  <%= f.submit "Ajouter un document" %>
 <% end %>
