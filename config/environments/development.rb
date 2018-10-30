@@ -37,7 +37,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
-  config.active_job.queue_adapter = :sidekiq
+  config.active_job.queue_adapter = :inline
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -62,6 +62,5 @@ Rails.application.configure do
 
   config.webpacker.check_yarn_integrity = false
 
-  config.active_job.queue_adapter = :inline
   config.active_storage.service = :amazon
 end
