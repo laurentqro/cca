@@ -67,7 +67,7 @@
     </table>
 
     <% if allow_action?(:users, :destroy, @user) %>
-      <%= link_to "Supprimer", @user, method: :delete, data: { confirm: "Etes-vous sur de vouloir supprimer ce compte ?" }, class: "button is-danger" %>
+      <%= button_to "Supprimer", @user, method: :delete, data: { confirm: "Etes-vous sur de vouloir supprimer ce compte ?" }, class: "button is-danger" %>
     <% end %>
   </div>
 </section
