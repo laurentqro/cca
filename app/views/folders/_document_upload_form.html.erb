@@ -2,5 +2,10 @@
   <%= f.hidden_field :folder_id, value: @folder.id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.file_field :file, direct_upload: true %>
-  <%= f.submit "Ajouter un document" %>
+  <%= f.button type: :submit, class: "button" do %>
+    <span class="file-icon">
+      <i class="fas fa-upload"></i>
+    </span>
+    <span>Déposer</span>
+  <% end %>
 <% end %>
