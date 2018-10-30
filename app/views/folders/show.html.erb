@@ -1,7 +1,6 @@
 <section class="section">
   <div class="container">
     <% if @folder.root? %>
-      <h3 class="subtitle is-6">Projet</h3>
       <%= tag.h2 @project.root_folder.name, class: "title is-2" %>
       <div class="columns">
         <div class="column is-half">
@@ -10,8 +9,6 @@
         <div class="column">
         </div>
       </div>
-
-      <hr />
     <% else %>
       <%= render 'breadcrumbs' %>
     <% end %>
