@@ -61,4 +61,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.webpacker.check_yarn_integrity = false
+
+  config.active_job.queue_adapter = :inline
+  config.active_storage.service = :amazon
 end

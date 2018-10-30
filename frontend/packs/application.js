@@ -9,3 +9,6 @@
 
 import 'bulma/bulma'
 import "@fortawesome/fontawesome-free/js/all";
+import * as ActiveStorage from "activestorage";
+
+ActiveStorage.start();
