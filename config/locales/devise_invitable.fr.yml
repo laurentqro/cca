@@ -3,7 +3,7 @@ fr:
     failure:
       invited: "Vous avez une invitation en attente. Veuillez l'accepter pour terminer la création de votre compte."
     invitations:
-      send_instructions: "Une invitation a ete envoyée à %{email}"
+      send_instructions: "Une invitation a été envoyée à %{email}"
       invitation_token_invalid: "Le jeton de l'invitation est invalide."
       updated: "Votre mot de passe est enregistré. Vous êtes maintenant connecté."
       updated_not_active: "Votre mot de passe est enregistré."
@@ -17,10 +17,10 @@ fr:
         submit_button: "Enregistrer mon mot de passe"
     mailer:
       invitation_instructions:
-        subject: "Votre invitation a CCA"
+        subject: "Votre invitation à CCA"
         hello: "Bonjour,"
-        someone_invited_you: "Vous avez ete invité(e) à %{url}. Pour accepter l'invitation, cliquez sur le lien ci-dessous."
-        accept: "Accepter l'invitation"
+        someone_invited_you: "Vous avez été invité(e) à %{url}. Pour accepter l'invitation, cliquez sur ce lien:"
+        accept: "accepter l'invitation"
         accept_until: "Cette invitation est valide jusqu'au %{due_date}."
         ignore: "Si vous ne souhaitez pas accepter cette invitation, il vous suffit d'ignorer le présent email."
   time:
