@@ -2,9 +2,6 @@
   <div class="column">
     <% if subscription.present? %>
       <%= button_to project_subscription_url(project, subscription), class: "button is-small", method: :delete do %>
-        <span>
-          (<%= project.subscribers.count %>)
-        </span>
         <span class="icon is-small has-text-danger">
           <i class="fas fa-users"></i>
         </span>
@@ -12,9 +9,6 @@
       <% end %>
     <% else %>
       <%= button_to project_subscriptions_url(project), class: "button is-small", method: :post do %>
-        <span>
-          (<%= project.subscribers.count %>)
-        </span>
         <span class="icon is-small has-text-success">
           <i class="fas fa-users"></i>
         </span>
