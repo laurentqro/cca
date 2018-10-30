@@ -10,7 +10,7 @@ class AssignmentsController < ApplicationController
 
     @project_assignments_json =
       ActiveModelSerializers::SerializableResource.new(
-        @project.assignments,
+        @project.assignments.includes(:user).order('users.last_name ASC'),
         each_serializer: AssignmentSerializer
     ).as_json
   end
