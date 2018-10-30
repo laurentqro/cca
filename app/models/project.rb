@@ -12,4 +12,8 @@ class Project < ApplicationRecord
 
   scope :active,   ->{ where(status: "active") }
   scope :archived, ->{ where(status: "archived") }
+
+  def self.default_scope
+    order('name ASC')
+  end
 end
