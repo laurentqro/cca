@@ -31,7 +31,7 @@ group :development, :test do
   gem 'chromedriver-helper'
   gem 'dotenv-rails', '~> 2.5.0'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 3.10'
+  gem 'capybara', '~> 3.11'
   gem 'selenium-webdriver'
   gem 'webmock', '~> 3.4'
 end
