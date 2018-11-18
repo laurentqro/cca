@@ -95,7 +95,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.1)
     connection_pool (2.2.2)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
@@ -128,7 +128,7 @@ GEM
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jmespath (1.4.0)
@@ -306,7 +306,7 @@ DEPENDENCIES
   devise_invitable (~> 1.7.5)
   dotenv-rails (~> 2.5.0)
   font-awesome-rails (~> 4.7)
-  jbuilder (~> 2.5)
+  jbuilder (~> 2.8)
   jquery-fileupload-rails (= 0.4.7)
   jquery-rails (~> 4.3)
   letter_opener (~> 1.6.0)
