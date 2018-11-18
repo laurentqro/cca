@@ -23,9 +23,6 @@ class UserMailerTest < ActionMailer::TestCase
     user = users(:one)
     folder = folders(:folder_one)
 
-    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
-    stub_request(:put, s3_url).to_return(body: '', status: 200)
-
     document = Document.create(
       folder: folder,
       user: user
@@ -54,7 +51,8 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ['admin@archicc.com'], email.to
     assert_equal [users(:two).email], email.bcc
     assert_equal "Opération #{activity.project.name} - nouveau document", email.subject
-    assert_includes email.html_part.body.to_s, "#{activity.user.full_name}"
+    assert_includes email.html_part.body.to_s, "#{activity.user.first_name}"
+    assert_includes email.html_part.body.to_s, "#{activity.user.last_name}"
     assert_includes email.html_part.body.to_s, "#{activity.user.company.name}"
     assert_includes email.html_part.body.to_s, "#{activity.trackable.file.filename}"
   end
