@@ -8,4 +8,18 @@
   <p><%= t("devise.mailer.invitation_instructions.accept_until", due_date: l(@resource.invitation_due_at, format: :'devise.mailer.invitation_instructions.accept_until_format')) %></p>
 <% end %>
 
-<p><%= t("devise.mailer.invitation_instructions.ignore").html_safe %></p>
+<p>Vous avez accès aux projets suivants:</p>
+
+<ul>
+  <% @resource.projects.each do |project| %>
+    <li><%= project.name %></li>
+  <% end %>
+</ul>
+
+<p>
+  <%= t("devise.mailer.invitation_instructions.ignore").html_safe %>
+</p>
+
+<p>Cordialement,</p>
+
+<p>Cabinet CCA</p>
