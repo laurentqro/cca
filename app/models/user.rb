@@ -78,4 +78,18 @@ class User < ApplicationRecord
   def active_for_authentication?
     super && self.active?
   end
+
+  def invitation_status
+    return "acceptée" if has_accepted_invitation?
+    return "envoyée"  if invited?
+    "aucune"
+  end
+
+  def has_accepted_invitation?
+    invitation_accepted_at.present?
+  end
+
+  def invited?
+    invitation_sent_at.present?
+  end
 end

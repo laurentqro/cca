@@ -16,6 +16,17 @@
           <%= button_to "Se connecter en tant que #{@user.first_name}", user_impersonation_path(@user), method: :post, class: "button" %>
         <% end %>
       </p>
+
+      <p class="control">
+        <% if allow_action? :invitations, :create %>
+          <% if !@user.has_accepted_invitation? %>
+            <%= form_tag(user_invitation_url) do %>
+              <%= hidden_field_tag "user_id", @user.id %>
+              <%= submit_tag "Envoyer une invitation", class:"button" %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </p>
     </div>
 
     <div class="content">
