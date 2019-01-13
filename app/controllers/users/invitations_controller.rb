@@ -8,7 +8,9 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def create
-    User.find(params[:user_id]).invite!
+    user = User.find(params[:user_id])
+    user.invite!
+    redirect_to user_path(user), notice: "Invitation envoyée"
   end
 
   def edit
