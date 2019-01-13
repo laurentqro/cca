@@ -1,7 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :full_name, :url, :projects, :company, :status, :group
+  attributes :id, :full_name, :url,
+             :projects, :company, :status,
+             :group, :invitation_status
 
   def full_name
     object.full_name
@@ -17,5 +19,9 @@ class UserSerializer < ActiveModel::Serializer
 
   def url
     user_path(object)
+  end
+
+  def invitation_status
+    object.invitation_status
   end
 end

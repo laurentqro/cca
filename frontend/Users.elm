@@ -33,6 +33,7 @@ type alias User =
     , company : Company
     , status : String
     , group : String
+    , invitation_status : String
     }
 
 
@@ -140,7 +141,7 @@ decodeProject =
 
 decodeUser : Decoder User
 decodeUser =
-    Decode.map7 User
+    Decode.map8 User
         (field "id" Decode.int)
         (field "full_name" Decode.string)
         (field "url" Decode.string)
@@ -148,6 +149,7 @@ decodeUser =
         (field "company" decodeCompany)
         (field "status" Decode.string)
         (field "group" Decode.string)
+        (field "invitation_status" Decode.string)
 
 
 decodeCompany : Decoder Company
@@ -266,6 +268,7 @@ viewUsersTable model =
                 , th [] [ text "Groupe" ]
                 , th [] [ text "Niveau d'accès" ]
                 , th [] [ text "Statut" ]
+                , th [] [ text "Invitation" ]
                 ]
             , tbody [] (List.map viewUserTableItem model.users)
             ]
@@ -280,6 +283,7 @@ viewUserTableItem user =
         , td [] [ text (user.company.name) ]
         , td [] [ text user.group ]
         , td [] [ text user.status ]
+        , td [] [ text user.invitation_status ]
         ]
 
 

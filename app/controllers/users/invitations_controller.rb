@@ -8,7 +8,7 @@ class Users::InvitationsController < Devise::InvitationsController
   end
 
   def create
-    super
+    User.find(params[:user_id]).invite!
   end
 
   def edit

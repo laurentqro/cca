@@ -20,9 +20,5 @@
     <% if allow_action? :users, :create %>
       <%= link_to 'Créer un nouvel utilisateur', new_user_url, class:"button is-primary" %>
     <% end %>
-
-    <% if allow_action? :invitations, :create %>
-      <%= link_to 'Créer une invitation', new_user_invitation_url, class:"button is-primary" %>
-    <% end %>
   </div>
 </section>
