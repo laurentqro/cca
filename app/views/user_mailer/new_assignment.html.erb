@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Bonjour,</p>
+
+    <p>Vous avez désormais accès aux documents du projet <%= link_to @project.name, project_folder_url(@project, @project.root_folder) %>.</p>
+
+    <p>Cordialement,</p>
+
+    <p>Cabinet CCA</p>
+  </body>
+</html>
