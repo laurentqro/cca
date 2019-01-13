@@ -9,6 +9,7 @@ class Api::AssignmentsController < Api::ApiController
 
     if @assignment.save
       render json: @assignment, status: :created
+      UserMailer.new_assignment(@assignment).deliver_now
     end
   end
 

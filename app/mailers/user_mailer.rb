@@ -2,10 +2,9 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     @user = user
     @login_url = new_user_session_url
-    email_with_name = %("#{@user.full_name}" <#{@user.email}>)
 
     mail(
-      to: email_with_name,
+      to: email_with_name(@user),
       subject: 'Bienvenue sur CCA'
     )
   end
@@ -30,5 +29,20 @@ class UserMailer < ApplicationMailer
       to: ENV['SYSTEM_FROM_EMAIL'],
       subject: "#{invitee.full_name} a accepté votre invitation"
     )
+  end
+
+  def new_assignment(assignment)
+    @project = assignment.project
+
+    mail(
+      to: email_with_name(assignment.user),
+      subject: "Nouveau projet: #{@project.name}"
+    )
+  end
+
+  private
+
+  def email_with_name(user)
+    %("#{user.full_name}" <#{user.email}>)
   end
 end
