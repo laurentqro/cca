@@ -4,4 +4,6 @@ class ApplicationController < ActionController::Base
   include Authorization
 
   impersonates :user
+
+  prepend_view_path Rails.root.join("frontend")
 end

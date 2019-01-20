@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+    <h2 class="title is-2">Projets</h2>
+
+    <% @projects.each do |project| %>
+      <div class="columns">
+        <div class="column is-one-half">
+          <%= link_to project.root_folder.name, project_folder_url(project, project.root_folder) %>
+        </div>
+
+        <div class="column">
+          <%= component 'project_controls',
+            project: project,
+            subscription: project.subscriptions.find_by(subscriber: current_user, subscribeable: project) %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if allow_action? :projects, :new %>
+      <%= link_to 'Créer un nouveau projet', new_project_url, class:"button is-primary" %>
+    <% end %>
+  </div>
+</section>

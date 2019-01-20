@@ -1,0 +1,48 @@
+<section class="section">
+  <div class="container">
+    <% if @folder.root? %>
+      <%= tag.h2 @project.root_folder.name, class: "title is-2" %>
+      <div class="columns">
+        <div class="column is-half">
+          <%= component 'project_controls', project: @project, subscription: @subscription %>
+        </div>
+        <div class="column">
+        </div>
+      </div>
+    <% else %>
+      <%= render 'breadcrumbs' %>
+    <% end %>
+
+    <div class="content">
+      <% if @folder.has_content? %>
+        <%= render 'folder_contents' %>
+      <% end %>
+    </div>
+
+    <% if allow_action? :folders, :create, @folder %>
+      <hr />
+
+      <div class="content">
+        <h3 class="title is-4">
+          Créer un nouveau dossier dans le dossier <em><%= @folder.name %></em>
+        </h3>
+
+        <%= render 'folder_creation_form' %>
+      </div>
+
+      <hr />
+    <% end %>
+
+    <% if allow_action? :documents, :create, @folder.documents.build %>
+      <div class="content">
+        <h4 class="title is-4">
+          Ajouter de nouveaux documents au dossier <em><%= @folder.name %></em>
+        </h4>
+
+        <%= render 'document_upload_form' %>
+      </div>
+
+      <div class="js-progress-component"></div>
+    <% end %>
+  </div>
+</section>
