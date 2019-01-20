@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  root to: 'pages#home'
+  root to: 'projects#index'
 
   namespace :api do
     resources :users, only: :index
