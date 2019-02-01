@@ -19,7 +19,7 @@ gem 'aws-sdk-s3', '~> 1'
 gem 'tzinfo-data'
 gem 'devise', '~> 4.5'
 gem 'devise_invitable', '~> 1.7.5'
-gem 'pretender', '~> 0.3.3'
+gem 'pretender', '~> 0.3.4'
 gem 'font-awesome-rails', '~> 4.7'
 gem 'active_model_serializers', '~> 0.10.8'
 
