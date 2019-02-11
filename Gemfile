@@ -21,7 +21,7 @@ gem 'devise', '~> 4.6'
 gem 'devise_invitable', '~> 1.7.5'
 gem 'pretender', '~> 0.3.4'
 gem 'font-awesome-rails', '~> 4.7'
-gem 'active_model_serializers', '~> 0.10.8'
+gem 'active_model_serializers', '~> 0.10.9'
 
 group :development, :test do
   gem 'chromedriver-helper'
