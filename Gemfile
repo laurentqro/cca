@@ -6,7 +6,7 @@ end
 
 gem 'rails', '~> 5.2.3'
 gem 'pg'
-gem 'puma', '~> 3.12'
+gem 'puma', '~> 4.2'
 gem 'sass-rails', '~> 5.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.9'
