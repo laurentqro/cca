@@ -168,7 +168,7 @@ GEM
     pretender (0.3.3)
       actionpack (>= 4.2)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.6)
     rack (2.2.3)
     rack-protection (2.0.5)
       rack
