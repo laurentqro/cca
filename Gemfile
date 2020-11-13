@@ -4,10 +4,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 6.0.3.4'
 gem 'pg'
 gem 'puma', '>= 3.12.6'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.8'
 gem 'bcrypt', '~> 3.1.12'
@@ -21,11 +21,11 @@ gem 'devise', '>= 4.7.1'
 gem 'devise_invitable', '~> 1.7.5'
 gem 'pretender', '~> 0.3.3'
 gem 'font-awesome-rails', '~> 4.7'
-gem 'active_model_serializers', '~> 0.10.8'
+gem 'active_model_serializers', '~> 0.10.10'
 
 group :development, :test do
   gem 'chromedriver-helper'
-  gem 'dotenv-rails', '~> 2.6.0'
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.12'
   gem 'selenium-webdriver'
