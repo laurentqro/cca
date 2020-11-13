@@ -1,0 +1,5 @@
+one:
+  name: file
+  record_type: Document
+  record_id: <%= ActiveRecord::FixtureSet.identify(:document_one) %>
+  blob_id: <%= ActiveRecord::FixtureSet.identify(:pdf) %>
