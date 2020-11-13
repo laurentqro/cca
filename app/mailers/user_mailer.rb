@@ -16,7 +16,7 @@ class UserMailer < ApplicationMailer
     recipients = activity.project.subscribers.pluck(:email).reject { |email| email == @user.email }
 
     mail(
-      to: ENV['SYSTEM_FROM_EMAIL'],
+      to: ENV['SYSTEM_TO_EMAIL'],
       bcc: recipients,
       subject: "Opération #{activity.project.name} - nouveau document"
     )
@@ -26,7 +26,7 @@ class UserMailer < ApplicationMailer
     @invitee = invitee
 
     mail(
-      to: ENV['SYSTEM_FROM_EMAIL'],
+      to: ENV['SYSTEM_TO_EMAIL'],
       subject: "#{invitee.full_name} a accepté votre invitation"
     )
   end
