@@ -35,16 +35,10 @@ class UserMailerTest < ActionMailer::TestCase
   test "new_document" do
     user = users(:one)
     folder = folders(:folder_one)
+    document = documents(:document_one)
 
-    document = Document.create(
-      folder: folder,
-      user: user
-    )
-
-    document.file.attach(io: File.open('test/fixtures/files/pdf-sample.pdf'),
-                         filename: 'pdf-sample.pdf',
-                         content_type: 'application/pdf')
-
+    user.documents << document
+    folder.documents << document
 
     activity = user.activities.create(action: "create",
                                      trackable: document,
@@ -64,8 +58,8 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal ['admin@archicc.com'], email.to
     assert_equal [users(:two).email], email.bcc
     assert_equal "Opération #{activity.project.name} - nouveau document", email.subject
-    assert_includes email.html_part.body.to_s, "#{activity.user.first_name}"
-    assert_includes email.html_part.body.to_s, "#{activity.user.last_name}"
+    assert_includes email.html_part.body.to_s, "Jon"
+    assert_includes email.html_part.body.to_s, "Snow"
     assert_includes email.html_part.body.to_s, "#{activity.user.company.name}"
     assert_includes email.html_part.body.to_s, "#{activity.trackable.file.filename}"
   end

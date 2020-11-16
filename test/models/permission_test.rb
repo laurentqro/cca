@@ -31,19 +31,9 @@ class UserTest < ActiveSupport::TestCase
 
   test 'logged in user can delete a document he owns' do
     user = users(:one)
-    project = projects(:pyramid)
-    project.users << user
-
+    document = documents(:document_one)
+    user.documents << document
     permission = Permission.new(user)
-
-    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
-    stub_request(:put, s3_url).to_return(body: '', status: 200)
-
-    document = Document.create(
-      file: File.open('test/fixtures/files/pdf-sample.pdf'),
-      folder: project.root_folder,
-      user: user
-    )
 
     assert permission.allow_action?(:documents, :destroy, document)
   end
@@ -125,40 +115,34 @@ class UserTest < ActiveSupport::TestCase
     assert !permission.allow_action?(:folders, :show, other_folder)
   end
 
-  test 'partner can upload a document to a folder inside a project he is assigned to' do
+  test 'partner can upload a document to a project they are assigned to' do
+    # Assign partner to project Pyramid
     partner = users(:partner)
     project = projects(:pyramid)
     project.users << partner
 
+    # Partner creates a file in a folder on project Pyramid
+    document = documents(:document_one)
+    project.root_folder.documents << document
+    partner.documents << document
+
     permission = Permission.new(partner)
-
-    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
-    stub_request(:put, s3_url).to_return(body: '', status: 200)
-
-    document = Document.create(
-      file: File.open('test/fixtures/files/pdf-sample.pdf'),
-      folder: project.root_folder,
-      user: partner
-    )
 
     assert permission.allow_action?(:documents, :create, document)
   end
 
-  test 'partner cannot upload a document to a folder outside a project he is assigned to' do
+  test 'partner cannot upload a document to projects they are not assigned to' do
+    # Assign partner to project Pyramid
     partner = users(:partner)
     project = projects(:pyramid)
     project.users << partner
 
+    # Partner creates a file in a folder on project Colossus
+    document = documents(:document_one)
+    projects(:colossus).root_folder.documents << document
+    partner.documents << document
+
     permission = Permission.new(partner)
-
-    s3_url = %r{https://#{ENV['AWS_S3_BUCKET']}.s3.#{ENV['AWS_S3_REGION']}.amazonaws.com}
-    stub_request(:put, s3_url).to_return(body: '', status: 200)
-
-    document = Document.create(
-      file: File.open('test/fixtures/files/pdf-sample.pdf'),
-      folder: projects(:colossus).root_folder,
-      user: partner
-    )
 
     assert !permission.allow_action?(:documents, :create, document)
   end
