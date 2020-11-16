@@ -25,7 +25,7 @@ gem 'active_model_serializers', '~> 0.10.8'
 
 group :development, :test do
   gem 'chromedriver-helper'
-  gem 'dotenv-rails', '~> 2.6.0'
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.12'
   gem 'selenium-webdriver'
