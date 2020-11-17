@@ -148,7 +148,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mailgun-ruby (1.1.11)
+    mailgun-ruby (1.2.0)
       rest-client (~> 2.0.2)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
@@ -299,7 +299,7 @@ DEPENDENCIES
   jbuilder (~> 2.8)
   letter_opener (~> 1.7.0)
   listen (>= 3.0.5, < 3.4)
-  mailgun-ruby (~> 1.1.11)
+  mailgun-ruby (~> 1.2.0)
   pg
   pretender (~> 0.3.3)
   puma (>= 3.12.6)
