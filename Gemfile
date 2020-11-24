@@ -23,7 +23,7 @@ gem 'font-awesome-rails', '~> 4.7'
 gem 'active_model_serializers', '~> 0.10.10'
 
 group :development, :test do
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0', require: false
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.12'
