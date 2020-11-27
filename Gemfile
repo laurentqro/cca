@@ -26,7 +26,7 @@ group :development, :test do
   gem 'webdrivers', '~> 4.0', require: false
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capybara', '~> 3.12'
+  gem 'capybara', '~> 3.34'
   gem 'selenium-webdriver'
   gem 'webmock', '~> 3.5'
 end
