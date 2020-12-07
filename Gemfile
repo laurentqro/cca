@@ -20,7 +20,7 @@ gem 'devise', '>= 4.7.1'
 gem 'devise_invitable', '~> 2.0.3'
 gem 'pretender', '~> 0.3.3'
 gem 'font-awesome-rails', '~> 4.7'
-gem 'active_model_serializers', '~> 0.10.10'
+gem 'active_model_serializers', '~> 0.10.11'
 
 group :development, :test do
   gem 'webdrivers', '~> 4.0', require: false
