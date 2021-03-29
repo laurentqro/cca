@@ -28,7 +28,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 3.34'
   gem 'selenium-webdriver'
-  gem 'webmock', '~> 3.5'
+  gem 'webmock', '~> 3.12'
 end
 
 group :development do
